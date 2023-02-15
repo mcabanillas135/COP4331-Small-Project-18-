@@ -24,10 +24,10 @@ connection.connect(error => {
 
 // Signup endpoint
 app.post('/signup', (req, res) => {
-  const { name, email, password } = req.body;
+  const { user, password } = req.body;
 
   // Check if user already exists
-  const sqlSelect = `SELECT * FROM users WHERE email = '${email}'`;
+  const sqlSelect = `SELECT * FROM users WHERE user = '${user}'`;
   connection.query(sqlSelect, (error, results) => {
     if (error) throw error;
     if (results.length > 0) {
@@ -35,10 +35,10 @@ app.post('/signup', (req, res) => {
     }
 
     // Add new user
-    const sqlInsert = `INSERT INTO users (name, email, password) VALUES ('${name}', '${email}', '${password}')`;
+    const sqlInsert = `INSERT INTO users (user, password) VALUES ('${user}', '${password}')`;
     connection.query(sqlInsert, (error, result) => {
       if (error) throw error;
-      const newUser = { id: result.insertId, name, email };
+      const newUser = { id: result.insertId, user };
       return res.status(201).json({ message: 'User created', user: newUser });
     });
   });
@@ -46,10 +46,10 @@ app.post('/signup', (req, res) => {
 
 // Login endpoint
 app.post('/login', (req, res) => {
-  const { email, password } = req.body;
+  const { user, password } = req.body;
 
   // Check if user exists
-  const sqlSelect = `SELECT * FROM users WHERE email = '${email}' AND password = '${password}'`;
+  const sqlSelect = `SELECT * FROM users WHERE user = '${user}' AND password = '${password}'`;
   connection.query(sqlSelect, (error, results) => {
     if (error) throw error;
     if (results.length === 0) {
