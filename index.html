@@ -7,11 +7,11 @@
 </head>
 <body>
     <div class="container">
-        <form class="form" id="login">
+        <form class="form" id="login">  <! Login form  >
             <h1 class="form__title">Login</h1>
             <div class="form__message form__message--error"></div>
             <div class="form__input-group">
-                <input type="text" class="form__input" autofocus placeholder="Username or email">
+                <input type="text" class="form__input" autofocus placeholder="Username">
                 <div class="form__input-error-message"></div>
             </div>
             <div class="form__input-group">
@@ -20,13 +20,12 @@
             </div>
             <button class="form__button" type="submit">Continue</button>
             <p class="form__text">
-                <a href="#" class="form__link">Forgot your password?</a>
             </p>
             <p class="form__text">
                 <a class="form__link" href="./" id="linkCreateAccount">Create an Account</a>
             </p>
         </form>
-        <form class="form form form--hidden" id="createAccount">
+        <form class="form form form--hidden" id="createAccount"> <! Sign up form>
             <h1 class="form__title">Create Account</h1>
             <div class="form__message form__message--error"></div>
             <div class="form__input-group">
@@ -51,5 +50,12 @@
             </p>
         </form>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+<script>
+  function addDarkmodeWidget() {
+    new Darkmode().showWidget();
+  }
+  window.addEventListener('load', addDarkmodeWidget);
+</script>
     <script src="main.js"></script>
 </body>
