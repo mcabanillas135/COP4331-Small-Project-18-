@@ -1,8 +1,8 @@
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'password',
-  database: 'mydatabase'
+  host: 'cop4332.xyz',
+  user: 'contactmanager',
+  password: 'COP4331',
+  database: 'COP4331'
 });
 
 connection.connect(error => {
