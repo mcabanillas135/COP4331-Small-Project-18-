@@ -2,7 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mysql = require('mysql');
-
+const session = require('express-session');
+const path = require('path');
 const app = express();
 
 // Middleware
@@ -10,46 +11,58 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // MySQL connection
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'password',
-  database: 'mydatabase'
-});
+const connection = mysql.createConnection(
+  {
+    host: 'localhost',
+    user: 'contactmanager',
+    password: 'COP4331',
+    database: 'COP4331'
+  }
+);
 
-connection.connect(error => {
-  if (error) throw error;
-  console.log('Connected to the database');
-});
+connection.connect(error => 
+  {
+    if (error) 
+    {
+      console.log('Error connecting to the database:', err):
+      return;
+    }
+    console.log('Connected to the database');
+  }
+);
 
 // Signup endpoint
-app.post('/signup', (req, res) => {
-  const { user, password } = req.body;
+app.post('/signup', (req, res) => 
+  {
+    const { user, password } = req.body;
 
-  // Check if user already exists
-  const sqlSelect = `SELECT * FROM users WHERE user = '${user}'`;
-  connection.query(sqlSelect, (error, results) => {
-    if (error) throw error;
-    if (results.length > 0) {
-      return res.status(409).json({ message: 'User already exists' });
-    }
+    // Check if user already exists
+    const sqlSelect = `SELECT * FROM Contact_User WHERE User_Name = '${user}'`;
+    connection.query(sqlSelect, (error, results) => 
+      {
+        if (error) throw error;
+        if (results.length > 0) 
+          {
+            return res.status(409).json({ message: 'User already exists' });
+          }
 
-    // Add new user
-    const sqlInsert = `INSERT INTO users (user, password) VALUES ('${user}', '${password}')`;
-    connection.query(sqlInsert, (error, result) => {
-      if (error) throw error;
-      const newUser = { id: result.insertId, user };
-      return res.status(201).json({ message: 'User created', user: newUser });
-    });
+        // Add new user
+        const sqlInsert = `INSERT INTO Contact_User (user, password) VALUES ('${user}', '${password}')`;
+        connection.query(sqlInsert, (error, result) => 
+          {
+            if (error) throw error;
+            const newUser = { id: result.insertId, user };
+            return res.status(201).json({ message: 'User created', user: newUser });
+          });
+      });
   });
-});
 
 // Login endpoint
 app.post('/login', (req, res) => {
   const { user, password } = req.body;
 
   // Check if user exists
-  const sqlSelect = `SELECT * FROM users WHERE user = '${user}' AND password = '${password}'`;
+  const sqlSelect = `SELECT * FROM Contact_User WHERE User_Name = '${user}' AND Password = '${password}'`;
   connection.query(sqlSelect, (error, results) => {
     if (error) throw error;
     if (results.length === 0) {
