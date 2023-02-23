@@ -1,3 +1,5 @@
+const mysql = require('mysql');
+
 const connection = mysql.createConnection({
   host: 'cop4332.xyz',
   user: 'contactmanager',
@@ -8,7 +10,8 @@ const connection = mysql.createConnection({
 connection.connect(error => {
   if (error) 
   {
-    console.log('Failed to connect to database'); 
+    console.error(error); 
+    return res.status(501).json({ message: 'Server cannot connect' });
   };
   console.log('Connected to the database');
 });
@@ -20,14 +23,20 @@ const handleLogin = (req, res) =>
   // Check if user exists
   const sqlSelect = `SELECT * FROM Contact_User WHERE User_Name = '${User_Name}' AND Password = '${Password}'`;
   connection.query(sqlSelect, (error, results) => {
-    if (error) throw error;
-    if (results.length === 0) {
+    if (error) 
+    {
+      console.error(error);
+      return res.status(500).json({ message: 'Server error' });
+    }
+    if (results.length === 0) 
+    {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
     const user = results[0];
     return res.status(200).json({ message: 'Login successful', user });
   });
+
 };
 
 module.exports = handleLogin;
