@@ -21,7 +21,7 @@ const handleLogin = (req, res) =>
   const { id, user, password } = req.body;
 
   // Check if user exists
-  const sqlSelect = `SELECT * FROM Contact_User WHERE User_Name = '${User_Name}' AND Password = '${Password}'`;
+  const sqlSelect = `SELECT * FROM Contact_User WHERE User_Name = '${user}' AND Password = '${password}'`;
   connection.query(sqlSelect, (err, results) => {
     if (err) 
     {
