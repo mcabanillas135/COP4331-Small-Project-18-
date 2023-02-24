@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mysql = require('mysql');
 const handleLogin = require('./Login');
-const handleSignup = require'./Signup');
+const handleSignup = require('./Signup');
 
 const app = express();
 
