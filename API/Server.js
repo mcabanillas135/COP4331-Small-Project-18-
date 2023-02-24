@@ -19,14 +19,19 @@ const connection = mysql.createConnection({
   database: 'COP4331'
 });
 
-connection.connect(error => {
-  if (error) throw error;
+connection.connect(err => {
+  if (err) 
+  {
+    console.error(err); 
+    return res.status(501).json({ message: 'Server cannot connect' });
+  };
   console.log('Connected to the database');
 });
 
-// Signup + Login endpoint
+// Signup + Login + ContactAdd endpoint
 app.post('/signup', handleSignup);
-app.post('/login', HandleLogin);
+app.post('/login', handleLogin);
+app.post('/ContactAdd', handleContactAdd);
 
 // Start server
 app.listen(3000, () => 
