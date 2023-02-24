@@ -32,7 +32,7 @@ const handleSignup = (req, res) =>
     }
 
     // Add new user
-    const sqlInsert = `INSERT INTO users (user, password) VALUES ('${user}', '${password}')`;
+    const sqlInsert = `INSERT INTO Contact_User (user, password) VALUES ('${user}', '${password}')`;
     connection.query(sqlInsert, (error, result) => {
       if (error) throw error;
       const newUser = { id: result.insertId, user };
