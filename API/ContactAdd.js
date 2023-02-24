@@ -10,10 +10,10 @@ app.use(bodyParser.json());
 app.use(cors());
 
 var con = mysql.createConnection({
-  host: "localhost",
-  user: "yourusername",
-  password: "yourpassword",
-  database: "cop4331"
+  host: 'cop4332.xyz',
+  user: 'contactmanager',
+  password: 'COP4331',
+  database: 'COP4331'
 });
 
 con.connect(function(err) {
