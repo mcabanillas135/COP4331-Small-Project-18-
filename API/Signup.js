@@ -1,3 +1,5 @@
+const mysql = require('mysql');
+
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -5,8 +7,12 @@ const connection = mysql.createConnection({
   database: 'mydatabase'
 });
 
-connection.connect(error => {
-  if (error) throw error;
+connection.connect(err => {
+  if (err)
+  {
+    console.error(err); 
+    return res.status(501).json({ message: 'Server cannot connect' });
+  };
   console.log('Connected to the database');
 });
 
@@ -16,8 +22,11 @@ const handleSignup = (req, res) =>
 
   // Check if user already exists
   const sqlSelect = `SELECT * FROM users WHERE user = '${user}'`;
-  connection.query(sqlSelect, (error, results) => {
-    if (error) throw error;
+  connection.query(sqlSelect, (err, results) => {
+    if (err) 
+    {
+      console.error(err);
+    };
     if (results.length > 0) {
       return res.status(409).json({ message: 'User already exists' });
     }
