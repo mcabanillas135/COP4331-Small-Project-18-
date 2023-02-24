@@ -40,3 +40,5 @@ app.post('/ContactAdd', (req, res) => {
     });
   });
 });
+
+module.exports = handleContactAdd;
