@@ -7,10 +7,10 @@ const connection = mysql.createConnection({
   database: 'COP4331'
 });
 
-connection.connect(error => {
-  if (error) 
+connection.connect(err => {
+  if (err) 
   {
-    console.error(error); 
+    console.error(err); 
     return res.status(501).json({ message: 'Server cannot connect' });
   };
   console.log('Connected to the database');
@@ -22,10 +22,10 @@ const handleLogin = (req, res) =>
 
   // Check if user exists
   const sqlSelect = `SELECT * FROM Contact_User WHERE User_Name = '${User_Name}' AND Password = '${Password}'`;
-  connection.query(sqlSelect, (error, results) => {
-    if (error) 
+  connection.query(sqlSelect, (err, results) => {
+    if (err) 
     {
-      console.error(error);
+      console.error(err);
       return res.status(500).json({ message: 'Server error' });
     }
     if (results.length === 0) 
