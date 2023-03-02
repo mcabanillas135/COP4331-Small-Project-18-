@@ -2,6 +2,8 @@ login = "http://24.199.121.145/COP4331-Small-Project-18-/Login.php";
 
 let  Username = document.getElementById("username");
 let Password = document.getElementById("password");
+console.log(Username);
+console.log(Password);
 document.getElementById("password");
 
 const options = {
@@ -54,16 +56,20 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
         loginForm.classList.remove("form--hidden");
         createAccountForm.classList.add("form--hidden");
     });
+    
     let body = {
         UserName: Username.value,
         Password: Password.value,
 
       };
+
     loginForm.addEventListener("submit", async e => { 
         console.log("i am working");
 
         e.preventDefault();
         console.log("I have been pressed");
+        console.log(Username.value);
+        console.log(Password.value);
         let response = await fetch(login, {
             method: "POST",
             headers: {
