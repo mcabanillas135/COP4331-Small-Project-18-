@@ -1,7 +1,7 @@
 login = "http://24.199.121.145/COP4331-Small-Project-18-/Login.php";
 
-const Username = document.getElementById("username");
-const Password = document.getElementById("password");
+let  Username = document.getElementById("username");
+let Password = document.getElementById("password");
 document.getElementById("password");
 
 const options = {
