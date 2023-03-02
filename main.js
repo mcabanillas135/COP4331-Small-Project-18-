@@ -1,7 +1,8 @@
 login = "http://24.199.121.145/COP4331-Small-Project-18-/Login.php";
 
-const username = document.getElementById("username");
-const password = document.getElementById("password");
+const Username = document.getElementById("username");
+const Password = 
+document.getElementById("password");
 
 const options = {
     bottom: '64px', // default: '32px'
@@ -54,8 +55,8 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
         createAccountForm.classList.add("form--hidden");
     });
     let body = {
-        UserName: username.value,
-        Password: password.value,
+        UserName: Username.value,
+        Password: Password.value,
 
       };
     loginForm.addEventListener("submit", async e => { 
