@@ -7,15 +7,15 @@
 </head>
 <body>
     <div class="container">
-        <form class="form" id="login">  <! Login form  >
+        <form class="form" id="login">
             <h1 class="form__title">Login</h1>
             <div class="form__message form__message--error"></div>
             <div class="form__input-group">
-                <input type="text" class="form__input" autofocus placeholder="Username">
+                <input type="text" class="form__input" autofocus placeholder="Username" id = username>
                 <div class="form__input-error-message"></div>
             </div>
             <div class="form__input-group">
-                <input type="password" class="form__input" autofocus placeholder="Password">
+                <input type="password" class="form__input" autofocus placeholder="Password" id = password>
                 <div class="form__input-error-message"></div>
             </div>
             <button class="form__button" type="submit">Continue</button>
@@ -25,7 +25,7 @@
                 <a class="form__link" href="./" id="linkCreateAccount">Create an Account</a>
             </p>
         </form>
-        <form class="form form form--hidden" id="createAccount"> <! Sign up form>
+        <form class="form form form--hidden" id="createAccount"> 
             <h1 class="form__title">Create Account</h1>
             <div class="form__message form__message--error"></div>
             <div class="form__input-group">
