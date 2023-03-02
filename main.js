@@ -1,3 +1,22 @@
+login = "http://24.199.121.145/COP4331-Small-Project-18-/Login.php";
+
+const options = {
+    bottom: '64px', // default: '32px'
+    right: 'unset', // default: '32px'
+    left: '32px', // default: 'unset'
+    time: '0.3', // default: '0.3s'
+    mixColor: '#fff', // default: '#fff'
+    backgroundColor: '#fff',  // default: '#fff'
+    buttonColorDark: '#100f2c',  // default: '#100f2c'
+    buttonColorLight: '#fff', // default: '#fff'
+    saveInCookies: true, // default: true,
+    label: '🌓', // default: ''
+    autoMatchOsTheme: true // default: true
+  }
+  
+  const darkmode = new Darkmode(options);
+  darkmode.showWidget();
+
 function setFormMessage(formElement, type, message) { 
     const messageElement = formElement.querySelector(".form__message"); //gets the message from the form
 
@@ -32,8 +51,14 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
         createAccountForm.classList.add("form--hidden");
     });
 
-    loginForm.addEventListener("submit", e => { //
+    loginForm.addEventListener("submit", e => { 
+
         e.preventDefault();
+        console.log(login);
+
+        
+    
+
 
         // api stuff
 
@@ -53,19 +78,3 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
     });
 });
 //dark mode
-const options = {
-    bottom: '64px', // default: '32px'
-    right: 'unset', // default: '32px'
-    left: '32px', // default: 'unset'
-    time: '0.3', // default: '0.3s'
-    mixColor: '#fff', // default: '#fff'
-    backgroundColor: '#fff',  // default: '#fff'
-    buttonColorDark: '#100f2c',  // default: '#100f2c'
-    buttonColorLight: '#fff', // default: '#fff'
-    saveInCookies: true, // default: true,
-    label: '🌓', // default: ''
-    autoMatchOsTheme: true // default: true
-  }
-  
-  const darkmode = new Darkmode(options);
-  darkmode.showWidget();
