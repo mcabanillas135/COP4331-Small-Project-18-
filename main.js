@@ -51,10 +51,30 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
         createAccountForm.classList.add("form--hidden");
     });
 
-    loginForm.addEventListener("submit", e => { 
+    loginForm.addEventListener("submit", async e => { 
+        console.log("i am working");
 
         e.preventDefault();
-        console.log(login);
+        console.log("I have been pressed");
+        let response = await fetch(login, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(body),
+          });
+          let data = await response.json();
+
+          if (data.error) {
+            console.log("There was an error with the api call");
+            console.log(data.error);
+        
+
+        
+            return;
+          } else {
+            console.log("yay it worked");
+          }
 
         
     
