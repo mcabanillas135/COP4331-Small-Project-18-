@@ -18,7 +18,7 @@
                 <input type="password" class="form__input" autofocus placeholder="Password" id = password>
                 <div class="form__input-error-message"></div>
             </div>
-            <button class="form__button" type="submit">Continue</button>
+            <button class="form__button" type="submit" onclick="toContactPage()">Continue</button>
             <p class="form__text">
             </p>
             <p class="form__text">
@@ -56,6 +56,10 @@
     new Darkmode().showWidget();
   }
   window.addEventListener('load', addDarkmodeWidget);
+  
+  function toContactPage(){
+	window.location.href = "contactPage.html"
+  }
 </script>
     <script src="main.js"></script>
 </body>

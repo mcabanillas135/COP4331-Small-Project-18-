@@ -1,0 +1,78 @@
+body {
+    --color-primary: #ef3800;
+    --color-primary-dark: #bf2d00;
+    --color-secondary: #252c6a;
+    --color-error: #cc3333;
+    --color-success: #4bb544;
+    --border-radius: 4px;
+
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.container {
+    margin: 1rem;
+    padding: 2rem;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius);
+    background: #ffffff;
+	font: 500 1rem 'Quicksand', sans-serif;
+}
+.form__title {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+.form__input-group {
+    margin-bottom: 1rem;
+}
+
+.form__input{
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    box-sizing: border-box;
+    border-radius: var(--border-radius);
+    border: 1px solid #eeeeee;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.form__input:focus {
+    border-color: var(--color-primary);
+    background: #ffffff;
+}
+
+.form__input--error {
+    color: var(--color-error);
+    border-color: var(--color-error);
+}
+
+.form__input-error-message {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--color-error);
+}
+.settingsBar{
+	float: right;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px black solid;
+  margin-bottom:10px;
+}
+tr:first-child{
+	background-color: #04AA6D;
+}
+tr:not(:first-child):hover {
+    background-color: coral;
+}
+tr:not(:last-child){
+	border-bottom: 1px solid #ddd;
+}
+td:not(:last-child){
+	border-right: 1px solid #ddd;
+}
