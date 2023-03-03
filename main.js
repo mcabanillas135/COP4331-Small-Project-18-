@@ -1,9 +1,7 @@
-login = "http://24.199.121.145/COP4331-Small-Project-18-/Login.php";
+login = "http://24.199.121.145/COP4331-Small-Project-18-/API/Login.php";
 
-let  Username = document.getElementById("username");
-let Password = document.getElementById("password");
-console.log(Username);
-console.log(Password);
+const Username = document.getElementById("username").innerHTML;
+const Password = document.getElementById("password").innerHTML;
 document.getElementById("password");
 
 const options = {
@@ -22,54 +20,41 @@ const options = {
   
   const darkmode = new Darkmode(options);
   darkmode.showWidget();
-
 function setFormMessage(formElement, type, message) { 
     const messageElement = formElement.querySelector(".form__message"); //gets the message from the form
-
     messageElement.textContent = message;
     messageElement.classList.remove("form__message--success", "form__message--error"); //stops the msgs from poppin up right away
     messageElement.classList.add(`form__message--${type}`); 
 }
-
 function setInputError(inputElement, message) { 
     inputElement.classList.add("form__input--error");
     inputElement.parentElement.querySelector(".form__input-error-message").textContent = message; // go to the input, then go to the class, then select the message and assign to msg
 }
-
 function clearInputError(inputElement) { //does what name says
     inputElement.classList.remove("form__input--error");
     inputElement.parentElement.querySelector(".form__input-error-message").textContent = "";
 }
-
 document.addEventListener("DOMContentLoaded", () => { //displays the login or the signup form
     const loginForm = document.querySelector("#login");
     const createAccountForm = document.querySelector("#createAccount");
-
     document.querySelector("#linkCreateAccount").addEventListener("click", e => {
         e.preventDefault();
         loginForm.classList.add("form--hidden");
         createAccountForm.classList.remove("form--hidden");
     });
-
     document.querySelector("#linkLogin").addEventListener("click", e => { //removes the hidden form from the login link to the signup page
         e.preventDefault(); //stops the page from just refreshing
         loginForm.classList.remove("form--hidden");
         createAccountForm.classList.add("form--hidden");
     });
-    
     let body = {
         UserName: Username.value,
         Password: Password.value,
-
       };
-
     loginForm.addEventListener("submit", async e => { 
         console.log("i am working");
-
         e.preventDefault();
         console.log("I have been pressed");
-        console.log(Username.value);
-        console.log(Password.value);
         let response = await fetch(login, {
             method: "POST",
             headers: {
@@ -78,34 +63,26 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
             body: JSON.stringify(body),
           });
           let data = await response.json();
-
           if (data.error) {
             console.log("There was an error with the api call");
             console.log(data.error);
         
-
         
             return;
           } else {
             console.log("yay it worked");       
           }
-
         
     
-
-
         // api stuff
-
         setFormMessage(loginForm, "error", "Invalid username/password combination");
     });
-
     document.querySelectorAll(".form__input").forEach(inputElement => { 
         inputElement.addEventListener("blur", e => { // blur means when the input field is not selected
             if (e.target.id === "signupUsername" && e.target.value.length > 0 && e.target.value.length < 10) { // if there is an input and theres less then 10 chars
                 setInputError(inputElement, "Username must be at least 10 characters in length");
             }
         });
-
         inputElement.addEventListener("input", e => {
             clearInputError(inputElement); //clears the errors in the input fields whilst you type inside of it
         });
