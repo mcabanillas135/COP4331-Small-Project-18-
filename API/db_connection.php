@@ -10,7 +10,9 @@
 
     // Check connection
     if ($conn->connect_error) {
-        die('Connection failed: ' . $conn->connect_error);
+        $retValue = '{"User_Id":0,"User_Name":"","Password":"","error":"' . $conn->connect_error . '"}';
+		header('Content-type: application/json');
+        echo $retValue;
     }
 
     // Set the charset to UTF-8
