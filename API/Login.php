@@ -6,8 +6,14 @@
 	$id = 0;
 	$firstName = "";
 	$lastName = "";
+	
+	$host = 'cop4332.xyz';
+	$user = 'contactmanager';
+	$password = 'COP4331';
+	$database = 'COP4331';
 
-	$conn = new mysqli("cop4332.xyz", "contactmanager", "COP4331", "COP4331"); 	
+	// Create connection
+	$conn = new mysqli($host, $user, $password, $database);
 	if( $conn->connect_error )
 	{
 		returnWithError( $conn->connect_error );
