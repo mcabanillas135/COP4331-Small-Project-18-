@@ -26,7 +26,7 @@
 
 	function getUserInfo($conn, $username, $password) {
 		// Preparing the sql query with a statement, much more secure as opposed to the sql_query() function
-		$stmt = $conn->prepare("SELECT * FROM Contact_User WHERE User_Name = ? AND Password = ?");
+		$stmt = $conn->prepare("SELECT * FROM Contact_User WHERE User_Name = ? AND Password = ? LIMIT 1");
 		$stmt->bind_param("ss", $username, $password);
 		$stmt->execute();
 		$result = $stmt->get_result();
@@ -64,16 +64,28 @@
 	{
 		// Print an error
 		http_response_code(400);
-		$retValue = '{"User_Id":0,"User_Name":"","Password":"","error":"' . $err . '"}';
-		sendResultInfoAsJson( $retValue );
+		$retValue = 
+			[        
+				'User_Id' => 0,
+				'User_Name' => '',
+				'Password' => '',
+				'error' => $err 
+			];
+		sendResultInfoAsJson( json_encode($retValue) );
 	}
 	
 	function returnWithInfo( $user_name, $password, $id )
 	{
 		// Print a success
 		http_response_code(200);
-		$retValue = '{"User_Id":' . $id . ',"User_Name":"' . $user_name . '","Password":"' . $password . '","error":"none"}';
-		sendResultInfoAsJson( $retValue );
+		$retValue =
+			[
+				'User_Id' => $id,
+				'User_Name' => $user_name,
+				'Password' => $password,
+				'error' => "none"
+			]
+		sendResultInfoAsJson( json_encode($retValue) );
 	}
 	
 ?>
