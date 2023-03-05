@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
                 alert("Invalid username or password"); // display an alert
             }
         
-          });
+          }).catch(error => console.log("Network error"));
           
 
 
