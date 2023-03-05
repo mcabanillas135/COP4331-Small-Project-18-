@@ -49,12 +49,14 @@
 	
 	function returnWithError( $err )
 	{
+		http_response_code(400);
 		$retValue = '{"User_Id":0,"User_Name":"","Password":"","error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
 	function returnWithInfo( $user_name, $password, $id )
 	{
+		http_response_code(200);
 		$retValue = '{"User_Id":' . $id . ',"User_Name":"' . $user_name . '","Password":"' . $password . '","error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
