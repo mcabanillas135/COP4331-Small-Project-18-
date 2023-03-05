@@ -72,22 +72,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
         
           });
           
-          let data = await response.json();
-          if (data.error) {
 
-            setFormMessage(loginForm, "error", "Invalid username/password combination");
-        
-            return;
-          } 
-          if(data.error)
-          {
-            console.log("There was an error with the api call");
-            console.log(data.error);
-          }
-        
-          else {
-            setFormMessage(loginForm, "success", "Log in worked");      
-          }
 
 
     
