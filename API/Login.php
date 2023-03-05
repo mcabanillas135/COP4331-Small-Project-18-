@@ -73,7 +73,7 @@
 	{
 		// Print a success
 		http_response_code(200);
-		$retValue = '{"User_Id":' . $id . ',"User_Name":"' . $user_name . '","Password":"' . $password . '","error":""}';
+		$retValue = '{"User_Id":' . $id . ',"User_Name":"' . $user_name . '","Password":"' . $password . '","error":"none"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
