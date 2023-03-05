@@ -2,19 +2,22 @@
 
 	$inData = getRequestInfo();
 	
+	$id = $inData['User_Id'];
+	$username = $inData['User_Name'];
+	$password = $inData['Password'];
+
 	// Imported the connection since it will be the same code across the entire api
 	// Adds a level of encryption as the database login details arent AS visible
 	require_once('db_connection.php');
 	
 	// If the connectin is a success, automatically enter the sql query. Not very safe would be better to have a handleLogin() function instead
 	// Not a big deal for our purposes
-
-	$user_info = getUserInfo($conn, $inData['User_Name'], $inData['Password']);
+	$user_info = getUserInfo($conn, $username, $password);
 
 	// If logging in returns a user, return the user with the success code
 	if ($user_info) 
 	{
-		returnWithInfo($user_info['user_name'], $user_info['password'], $user_info['user_id']);
+		returnWithInfo($user_info['User_Name'], $user_info['Password'], $user_info['User_Id']);
 	} else 
 	{
 		returnWithError("No Records Found");
@@ -23,11 +26,11 @@
 	$conn->close();
 
 
-	function getUserInfo($conn, $username, $password) 
+	function getUserInfo($conn, $user, $pass) 
 	{
 		// Preparing the sql query with a statement, much more secure as opposed to the sql_query() function
 		$stmt = $conn->prepare("SELECT * FROM Contact_User WHERE User_Name = ? AND Password = ? LIMIT 1");
-		$stmt->bind_param("ss", $username, $password);
+		$stmt->bind_param("ss", $user, $pass);
 		$stmt->execute();
 		$result = $stmt->get_result();
 		$stmt->close();
@@ -37,9 +40,9 @@
 			// Returning it like this makes it easier to format into json if i remember correctly
 			return 
 			[
-				'user_name' => $row['User_Name'],
-				'password' => $row['Password'],
-				'user_id' => $row['User_Id']
+				'User_Name' => $row['User_Name'],
+				'Password' => $row['Password'],
+				'User_Id' => $row['User_Id']
 			];
 		} else 
 		{
