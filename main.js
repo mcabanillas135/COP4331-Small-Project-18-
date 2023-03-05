@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
     });
     let body = {
         UserName: Username.value,
-        Password: Password.value,
+        Password: Password.value
       };
     loginForm.addEventListener("submit", async e => { 
         e.preventDefault();
@@ -59,6 +59,17 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
               "Content-Type": "application/json",
             },
             body: JSON.stringify(body),
+            
+          }).then (res =>  {
+            if(res.ok) { 
+                // login successful, do something
+                alert("Login successful!"); // display an alert
+                window.location.href = "dashboard.html"; // redirect to the dashboard
+            } else { 
+                // login unsuccessful, do something else
+                alert("Invalid username or password"); // display an alert
+            }
+        
           });
           
           let data = await response.json();
@@ -77,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
           else {
             setFormMessage(loginForm, "success", "Log in worked");      
           }
+
 
     
         // api stuff
