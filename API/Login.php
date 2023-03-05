@@ -8,9 +8,11 @@
 	{
 		$user_info = getUserInfo($conn, $inData['User_Name'], $inData['Password']);
 
-		if ($user_info) {
+		if ($user_info) 
+		{
 			returnWithInfo($user_info['user_name'], $user_info['password'], $user_info['user_id']);
-		} else {
+		} else 
+		{
 			returnWithError("No Records Found");
 		}
 		
@@ -23,13 +25,16 @@
 		$stmt->execute();
 		$result = $stmt->get_result();
 
-		if ($row = $result->fetch_assoc()) {
-			return [
+		if ($row = $result->fetch_assoc()) 
+		{
+			return 
+			[
 				'user_name' => $row['User_Name'],
 				'password' => $row['Password'],
 				'user_id' => $row['User_Id']
 			];
-		} else {
+		} else 
+		{
 			return null;
 		}
 
