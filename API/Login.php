@@ -1,7 +1,6 @@
 <?php
 	$inData = getRequestInfo();
-	
-	$id = $inData['User_Id'];
+
 	$username = $inData['User_Name'];
 	$password = $inData['Password'];
 
@@ -16,7 +15,7 @@
 	// If logging in returns a user, return the user with the success code
 	if ($user_info) 
 	{
-		returnWithInfo($user_info['User_Name'], $user_info['Password'], $user_info['User_Id']);
+		returnWithInfo($user_info['User_Name'], $user_info['Password']);
 	} else 
 	{
 		returnWithError("No Records Found");
@@ -41,7 +40,6 @@
 			[
 				'User_Name' => $row['User_Name'],
 				'Password' => $row['Password'],
-				'User_Id' => $row['User_Id']
 			];
 		} else 
 		{
@@ -68,7 +66,6 @@
 		http_response_code(400);
 		$retValue = 
 			[        
-				'User_Id' => 0,
 				'User_Name' => '',
 				'Password' => '',
 				'error' => $err 
@@ -76,13 +73,12 @@
 		sendResultInfoAsJson( json_encode($retValue) );
 	}
 	
-	function returnWithInfo( $user_name, $password, $id )
+	function returnWithInfo( $user_name, $password )
 	{
 		// Print a success
 		http_response_code(200);
 		$retValue =
 			[
-				'User_Id' => $id,
 				'User_Name' => $user_name,
 				'Password' => $password,
 				'error' => 'none'
