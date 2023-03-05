@@ -1,7 +1,7 @@
 <?php
 	
-	// $host = 'cop4332.xyz';
-	$host = 'localhost';
+	$host = 'cop4332.xyz';
+	// $host = 'localhost';
 	$user = 'contactmanager';
 	$password = 'COP4331';
 	$database = 'COP4331';
