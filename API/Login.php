@@ -83,7 +83,7 @@
 				'User_Id' => $id,
 				'User_Name' => $user_name,
 				'Password' => $password,
-				'error' => "none"
+				'error' => 'none'
 			]
 		sendResultInfoAsJson( json_encode($retValue) );
 	}
