@@ -23,7 +23,8 @@
 	$conn->close();
 
 
-	function getUserInfo($conn, $username, $password) {
+	function getUserInfo($conn, $username, $password) 
+	{
 		// Preparing the sql query with a statement, much more secure as opposed to the sql_query() function
 		$stmt = $conn->prepare("SELECT * FROM Contact_User WHERE User_Name = ? AND Password = ? LIMIT 1");
 		$stmt->bind_param("ss", $username, $password);
