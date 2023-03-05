@@ -11,8 +11,27 @@
 
 	// Imported the connection since it will be the same code across the entire api
 	// Adds a level of encryption as the database login details arent AS visible
-	require_once('db_connection.php');
+	// require_once('db_connection.php');
+	$host = 'cop4332.xyz';
+	$user = 'contactmanager';
+	$password = 'COP4331';
+	$database = 'COP4331';
+
+	// Create connection
+	$conn = new mysqli($host, $user, $password, $database);
+
+	// Check connection
+	if ($conn->connect_error) 
+	{
+		$retValue = '{"User_Id":0,"User_Name":"","Password":"","error":"' . $conn->connect_error . '"}';
+		header('Content-type: application/json');
+		echo $retValue;
 	
+   		// Adding a more explicit script terminator because of science
+		exit()
+    	}	
+
+
 	// If the connectin is a success, automatically enter the sql query. Not very safe would be better to have a handleLogin() function instead
 	// Not a big deal for our purposes
 	$user_info = getUserInfo($conn, $username, $password);
