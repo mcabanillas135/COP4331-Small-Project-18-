@@ -6,23 +6,22 @@
 	// Adds a level of encryption as the database login details arent AS visible
 	require_once('db_connection.php');
 	
-	// If the connectino is a success, enter the sql query. Not very safe would be better to have a handleLogin() function instead
+	// If the connectin is a success, automatically enter the sql query. Not very safe would be better to have a handleLogin() function instead
 	// Not a big deal for our purposes
-	if( !$conn->connect_error )
-	{
-		$user_info = getUserInfo($conn, $inData['User_Name'], $inData['Password']);
 
-		// If logging in returns a user, return the user with the success code
-		if ($user_info) 
-		{
-			returnWithInfo($user_info['user_name'], $user_info['password'], $user_info['user_id']);
-		} else 
-		{
-			returnWithError("No Records Found");
-		}
-		
-		$conn->close();
+	$user_info = getUserInfo($conn, $inData['User_Name'], $inData['Password']);
+
+	// If logging in returns a user, return the user with the success code
+	if ($user_info) 
+	{
+		returnWithInfo($user_info['user_name'], $user_info['password'], $user_info['user_id']);
+	} else 
+	{
+		returnWithError("No Records Found");
 	}
+
+	$conn->close();
+
 
 	function getUserInfo($conn, $username, $password) {
 		// Preparing the sql query with a statement, much more secure as opposed to the sql_query() function
