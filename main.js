@@ -1,7 +1,7 @@
 login = "http://24.199.121.145/COP4331-Small-Project-18-/API/Login.php";
 
-const Username = document.getElementById("username").innerHTML;
-const Password = document.getElementById("password").innerHTML;
+const Username = document.getElementById("username");
+const Password = document.getElementById("password");
 document.getElementById("password");
 
 const options = {
@@ -52,9 +52,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
         Password: Password.value,
       };
     loginForm.addEventListener("submit", async e => { 
-        console.log("i am working");
         e.preventDefault();
-        console.log("I have been pressed");
         let response = await fetch(login, {
             method: "POST",
             headers: {
@@ -62,17 +60,24 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
             },
             body: JSON.stringify(body),
           });
+          
           let data = await response.json();
           if (data.error) {
-            console.log("There was an error with the api call");
-            console.log(data.error);
-        
+
+            setFormMessage(loginForm, "error", "Invalid username/password combination");
         
             return;
-          } else {
-            console.log("yay it worked");       
+          } 
+          if(data.error)
+          {
+            console.log("There was an error with the api call");
+            console.log(data.error);
           }
         
+          else {
+            setFormMessage(loginForm, "success", "Log in worked");      
+          }
+
     
         // api stuff
         setFormMessage(loginForm, "error", "Invalid username/password combination");
