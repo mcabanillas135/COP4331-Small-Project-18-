@@ -1,4 +1,4 @@
-login = "http://24.199.121.145/COP4331-Small-Project-18-/API/Login.php";
+login = "http://cop4332.xyz/COP4331-Small-Project-18-/API/Login.php";
 
 const Username = document.getElementById("username");
 const Password = document.getElementById("password");
