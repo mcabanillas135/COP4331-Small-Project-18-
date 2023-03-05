@@ -48,7 +48,7 @@ create table Contact_Database(Phone varchar(255) NOT NULL,
                               First_Name varchar(255) NOT NULL,
                               Last_Name varchar(255) NOT NULL,
                               Email varchar(255), PRIMARY KEY (Email)
-                              FOREIGN KEY(User_Id) REFERNCES Contact_User(User_Id));
+                              FOREIGN KEY(User_Id) REFERENCES Contact_User(User_Id));
 
 insert into Contact_Database values('708-729-5525', 'Tracy', 'Moyers', 'TracyCMoyers@rhyta.com');
 insert into Contact_Database values('920-630-8895', 'Vanessa', 'McDonald', 'VanessaTMcDonald@jourrapide.com');
