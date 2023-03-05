@@ -34,6 +34,8 @@ create table Contact_database(Phone varchar(255) NOT NULL,
                                   First_Name varchar(255) NOT NULL,
                                    Last_Name varchar(255) NOT NULL,
                              Email varchar(255), PRIMARY KEY (Email));
+                             
+alter table Contact_database ADD UNIQUE (Phone);
 
 insert into Contact_database values('440-253-2934', 'Jeff', 'Humphrey', 'JeffrHumphrey@jourrapide.com');
 insert into Contact_database values('619-521-6156', 'Margaret', 'Rose', 'MargaretJRose@jourrapide.com');
