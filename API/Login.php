@@ -30,7 +30,8 @@
 		$stmt->bind_param("ss", $username, $password);
 		$stmt->execute();
 		$result = $stmt->get_result();
-
+		$stmt->close();
+		
 		if ($row = $result->fetch_assoc()) 
 		{
 			// Returning it like this makes it easier to format into json if i remember correctly
@@ -44,8 +45,6 @@
 		{
 			return null;
 		}
-
-		$stmt->close();
 	}
 
 	function getRequestInfo()
