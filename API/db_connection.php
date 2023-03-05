@@ -11,7 +11,7 @@
     // Check connection
     if ($conn->connect_error) {
         $retValue = '{"User_Id":0,"User_Name":"","Password":"","error":"' . $conn->connect_error . '"}';
-		header('Content-type: application/json');
+	header('Content-type: application/json');
         echo $retValue;
     }
 
