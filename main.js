@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
         createAccountForm.classList.add("form--hidden");
     });
     let body = {
-        UserName: Username.value,
+        User_Name: Username.value,
         Password: Password.value
       };
     loginForm.addEventListener("submit", async e => { 
@@ -63,6 +63,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
           }).then (res =>  {
             if(res.ok) { 
                 // login successful, do something
+
                 alert("Login successful!"); // display an alert
                 window.location.href = "dashboard.html"; // redirect to the dashboard
             } else { 
