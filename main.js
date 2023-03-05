@@ -47,18 +47,19 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
         loginForm.classList.remove("form--hidden");
         createAccountForm.classList.add("form--hidden");
     });
-    let body = {
-        User_Name: Username.value,
-        Password: Password.value
-      };
+
     loginForm.addEventListener("submit", async e => { 
+        let tmp = {
+            User_name: Username.value,
+            Password: Password.value
+        };
         e.preventDefault();
-        let response = await fetch(login, {
+        let response =fetch(login, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify(body),
+            body: JSON.stringify(tmp),
             
           }).then (res =>  {
             if(res.ok) { 
