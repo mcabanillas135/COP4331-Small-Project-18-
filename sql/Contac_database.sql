@@ -54,6 +54,8 @@ create table Contact_personal(Email varchar(255),
                                    Zip_Code int, DOB DATE,
                                    Date_Created DATE, Date_Edited DATE,
                                    PRIMARY KEY (Email));
+ alter table Contact_personal ADD UNIQUE (Phone);
+
 
 insert into Contact_personal values('TracyCMoyers@rhyta.com', '708-729-5525', '496 Rose Street', 'Arlington Heights', 'IL', '60005', '1955-03-15', '2001-06-20', '2020-09-12');
 insert into Contact_personal values('VanessaTMcDonald@jourrapide.com', '920-630-8895', '3410 Tail Ends Road', 'Milwaukee', 'WI', '53202', '1984-04-14', '1999-07-30', '2010-07-30');
