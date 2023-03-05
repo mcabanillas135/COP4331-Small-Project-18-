@@ -1,42 +1,41 @@
 <?php
 
 	$inData = getRequestInfo();
-	
-	$id = 0;
-	$firstName = "";
-	$lastName = "";
-	
-	$host = 'cop4332.xyz';
-	$user = 'contactmanager';
-	$password = 'COP4331';
-	$database = 'COP4331';
 
-	// Create connection
-	$conn = new mysqli($host, $user, $password, $database);
-	if( $conn->connect_error )
+	require_once('db_connection.php');
+	
+	if( !$conn->connect_error )
 	{
-		returnWithError( $conn->connect_error );
+		$user_info = getUserInfo($conn, $inData['User_Name'], $inData['Password']);
+
+		if ($user_info) {
+			returnWithInfo($user_info['user_name'], $user_info['password'], $user_info['user_id']);
+		} else {
+			returnWithError("No Records Found");
+		}
+		
+		$conn->close();
 	}
-	else
-	{
+
+	function getUserInfo($conn, $username, $password) {
 		$stmt = $conn->prepare("SELECT * FROM Contact_User WHERE User_Name = ? AND Password = ?");
-		$stmt->bind_param("ss", $inData["User_Name"], $inData["Password"]);
+		$stmt->bind_param("ss", $username, $password);
 		$stmt->execute();
 		$result = $stmt->get_result();
 
-		if( $row = $result->fetch_assoc()  )
-		{
-			returnWithInfo( $row['User_Name'], $row['Password'], $row['User_Id'] );
-		}
-		else
-		{
-			returnWithError("No Records Found");
+		if ($row = $result->fetch_assoc()) {
+			return [
+				'user_name' => $row['User_Name'],
+				'password' => $row['Password'],
+				'user_id' => $row['User_Id']
+			];
+		} else {
+			return null;
 		}
 
 		$stmt->close();
-		$conn->close();
 	}
-	
+
 	function getRequestInfo()
 	{
 		return json_decode(file_get_contents('php://input'), true);
@@ -54,9 +53,9 @@
 		sendResultInfoAsJson( $retValue );
 	}
 	
-	function returnWithInfo( $firstName, $lastName, $id )
+	function returnWithInfo( $user_name, $password, $id )
 	{
-		$retValue = '{"User_Id":' . $id . ',"User_Name":"' . $firstName . '","Password":"' . $lastName . '","error":""}';
+		$retValue = '{"User_Id":' . $id . ',"User_Name":"' . $user_name . '","Password":"' . $password . '","error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
