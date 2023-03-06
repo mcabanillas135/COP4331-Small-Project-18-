@@ -1,2 +1,2 @@
 # COP4331-Small-Project-18-
-Yes
+Small project for COP 4331
