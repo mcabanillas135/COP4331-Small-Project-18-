@@ -1,6 +1,6 @@
 login = "http://cop4332.xyz/COP4331-Small-Project-18-/API/Login.php";
 
-const Username = document.getElementById("username");
+const User_name = document.getElementById("username");
 const Password = document.getElementById("password");
 document.getElementById("password");
 
@@ -50,9 +50,10 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
 
     loginForm.addEventListener("submit", async e => { 
         let tmp = {
-            User_name: Username.value,
-            Password: Password.value
+             User_name : document.getElementById("username").value,
+             Password : document.getElementById("password").value
         };
+        console.log(tmp);
         e.preventDefault();
         let response =fetch(login, {
             method: "POST",
@@ -79,7 +80,6 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
 
     
         // api stuff
-        setFormMessage(loginForm, "error", "Invalid username/password combination");
     });
     document.querySelectorAll(".form__input").forEach(inputElement => { 
         inputElement.addEventListener("blur", e => { // blur means when the input field is not selected
