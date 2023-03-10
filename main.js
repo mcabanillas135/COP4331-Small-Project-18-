@@ -24,31 +24,31 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
             try {
                 request.onload = function () {
                     console.log(
-                        "[Received Data (" + url + ")]: " + request.responseText
+                        "[Received Data (" + login + ")]: " + request.responseText
                     );
                     
                     let response = JSON.parse(request.responseText);
                     console.log(response);
         
                     if (response.error) {
-                        console.log("[Request Error (" + url + ")]: " + response.error);
+                        console.log("[Request Error (" + login + ")]: " + response.error);
                         return;
                     }
         
                     // successful
                     console.log(
-                        "[Request Success (" + url + ")]:  " + response.success
+                        "[Request Success (" + login + ")]:  " + response.success
                     );
                 };
         
                 console.log(
-                    "[Sending Request (" + url + ")]: " + JSON.stringify(inData)
+                    "[Sending Request (" + login + ")]: " + JSON.stringify(inData)
                 );
         
                 if (inData instanceof FormData) request.send(inData);
                 else request.send(JSON.stringify(inData));
             } catch (err) {
-                console.log("[Request Error (" + url + ")]: " + response.error);
+                console.log("[Request Error (" + login + ")]: " + response.error);
             }
         
         // api stuff
