@@ -28,16 +28,16 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
                     );
                     
                     let response = JSON.parse(request.responseText);
-                    console.log(response);
+                    console.log("response");
         
                     if (response.error) {
-                        console.log("[Request Error (" + login + ")]: " + response.error);
+                        console.log("error");
                         return;
                     }
         
                     // successful
                     console.log(
-                        "[Request Success (" + login + ")]:  " + response.success
+                        "successful"
                     );
                 };
         
