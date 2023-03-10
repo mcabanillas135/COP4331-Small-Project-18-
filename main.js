@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
 
     loginForm.addEventListener("submit", async e => { 
         let tmp = {
-             User_name : document.getElementById("username").value,
+             User_Name : document.getElementById("username").value,
              Password : document.getElementById("password").value
         };
         console.log(tmp);
