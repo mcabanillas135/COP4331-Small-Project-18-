@@ -16,26 +16,41 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
              Password : document.getElementById("password").value
         };
         e.preventDefault();
-        let response =fetch(login, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(tmp),
-            
-          }).then (res =>  {
-            if(res.ok) { 
-                console.log("good");
-            } else { 
-                console.log("bad");
+            let request = new XMLHttpRequest();
+            request.open("POST", url, true);
+        
+            console.log(inData);
+        
+            try {
+                request.onload = function () {
+                    console.log(
+                        "[Received Data (" + url + ")]: " + request.responseText
+                    );
+                    
+                    let response = JSON.parse(request.responseText);
+                    console.log(response);
+        
+                    if (response.error) {
+                        console.log("[Request Error (" + url + ")]: " + response.error);
+                        return;
+                    }
+        
+                    // successful
+                    console.log(
+                        "[Request Success (" + url + ")]:  " + response.success
+                    );
+                };
+        
+                console.log(
+                    "[Sending Request (" + url + ")]: " + JSON.stringify(inData)
+                );
+        
+                if (inData instanceof FormData) request.send(inData);
+                else request.send(JSON.stringify(inData));
+            } catch (err) {
+                console.log("[Request Error (" + url + ")]: " + response.error);
             }
         
-          }).catch(error => console.log("Network error"));
-          
-
-
-
-    
         // api stuff
     });
 
