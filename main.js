@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
             let request = new XMLHttpRequest();
             request.open("POST", login, true);
         
-            console.log(inData);
+            console.log(tmp);
         
             try {
                 request.onload = function () {
@@ -42,10 +42,10 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
                 };
         
                 console.log(
-                    "[Sending Request (" + login + ")]: " + JSON.stringify(inData)
+                    "[Sending Request (" + login + ")]: " + JSON.stringify(tmp)
                 );
         
-                if (inData instanceof FormData) request.send(inData);
+                if (tmp instanceof FormData) request.send(inData);
                 else request.send(JSON.stringify(inData));
             } catch (err) {
                 console.log("[Request Error (" + login + ")]: " + response.error);
