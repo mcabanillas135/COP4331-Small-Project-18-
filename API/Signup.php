@@ -4,11 +4,11 @@
 
     	require_once( 'db_connection.php' );
 	
-	$result = addUser($conn, $inData['User_Id'], $inData['User_Name'], $inData['Password']);
+	$result = addUser($conn, $inData['User_Name'], $inData['Password']);
 
 	if ($result) 
 	{
-	    returnWithInfo($inData['User_Name'], $inData['User_Id']);
+	    returnWithInfo($inData['User_Name']);
 	} else
 	{
 	    returnWithError("Failed to add user");
@@ -17,10 +17,10 @@
 	$conn->close();
    	
     
-    function addUser($conn, $id, $username, $password)
+    function addUser($conn, $username, $password)
     {
-        $stmt = $conn->prepare("SELECT * FROM Contact_User WHERE User_Id = ? OR User_Name = ?");
-   	$stmt->bind_param("ss", $id, $username);
+        $stmt = $conn->prepare("SELECT * FROM Contact_User WHERE User_Name = ?");
+   	$stmt->bind_param("s", $username);
    	$stmt->execute();
     	$result = $stmt->get_result();
    	$stmt->close();
@@ -30,8 +30,8 @@
            return false;  
         }
         
-        $stmt = $conn->prepare("INSERT INTO Contact_User VALUES (?, ?, ?)");
-	$stmt->bind_param("sss", $id, $username, $password);
+        $stmt = $conn->prepare("INSERT INTO Contact_User VALUES (?, ?)");
+	$stmt->bind_param("ss", $username, $password);
 	$result = $stmt->execute();
         $stmt->close();
         
@@ -54,7 +54,6 @@
 		http_response_code(400);
 	    	$retValue = 
 			[        
-				'User_Id' => 0,
 				'User_Name' => '',
 				'Password' => '',
 				'error' => $err 
@@ -62,13 +61,12 @@
 		sendResultInfoAsJson( json_encode($retValue) );
 	}
                 
-    function returnWithInfo( $username, $id )
+    function returnWithInfo( $username )
 	{
 		// Print a success
 		http_response_code(200);
 	    	$retValue =
 			[
-				'User_Id' => $id,
 				'User_Name' => $username,
 				'error' => 'none'
 			];
