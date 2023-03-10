@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
                 if (tmp instanceof FormData) request.send(inData);
                 else request.send(JSON.stringify(inData));
             } catch (err) {
-                console.log("[Request Error (" + login + ")]: " + response.error);
+                console.log("test");
             }
         
         // api stuff
