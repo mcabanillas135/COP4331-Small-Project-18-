@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
              User_name : document.getElementById("username").value,
              Password : document.getElementById("password").value
         };
-        e.preventDefault();
             let request = new XMLHttpRequest();
             request.open("POST", login, true);
         
