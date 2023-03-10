@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
         };
         e.preventDefault();
             let request = new XMLHttpRequest();
-            request.open("POST", url, true);
+            request.open("POST", login, true);
         
             console.log(inData);
         
