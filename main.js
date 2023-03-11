@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
             try {
                 request.onload = function () {
                     console.log(
-                        "[Received Data (" + login + ")]: " + request.responseText
+                        "Data has been recieved"
                     );
                     
                     let response = JSON.parse(request.responseText);
@@ -36,13 +36,11 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
                     }
         
                     // successful
-                    console.log(
-                        "successful"
-                    );
+                    console.log("successful");
                 };
         
                 console.log(
-                    "[Sending Request (" + login + ")]: " + JSON.stringify(tmp)
+                    "Sending a request"
                 );
         
                 if (tmp instanceof FormData) request.send(inData);
