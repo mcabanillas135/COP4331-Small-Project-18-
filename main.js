@@ -43,8 +43,8 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
                     "Sending a request"
                 );
         
-                if (tmp instanceof FormData) request.send(inData);
-                else request.send(JSON.stringify(inData));
+                if (tmp instanceof FormData) request.send(tmp);
+                else request.send(JSON.stringify(tmp));
             } catch (err) {
                 console.log("test");
             }
