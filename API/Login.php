@@ -12,15 +12,6 @@
 	// Not a big deal for our purposes
 	$user_info = getUserInfo($conn, $username, $password);
 
-	// If logging in returns a user, return the user with the success code
-	if ($user_info) 
-	{
-		returnWithInfo($user_info['User_Name'], $user_info['Password']);
-	} else 
-	{
-		returnWithError("No Records Found");
-	}
-
 	$conn->close();
 
 
@@ -33,9 +24,10 @@
 		$result = $stmt->get_result();
 		$stmt->close();
 		
+		// If logging in returns a user, return the user with the success code
 		if ($row = $result->fetch_assoc()) 
 		{
-			// Returning it like this makes it easier to format into json if i remember correctly
+			returnWithInfo($row['User_Name'], $row['Password']);
 			return 
 			[
 				'User_Name' => $row['User_Name'],
@@ -43,6 +35,7 @@
 			];
 		} else 
 		{
+			returnWithError("No Records Found");
 			return null;
 		}
 	}
@@ -70,7 +63,7 @@
 				'Password' => '',
 				'error' => $err 
 			];
-		sendResultInfoAsJson( json_encode($retValue) );
+		sendResultInfoAsJson( $retValue );
 	}
 	
 	function returnWithInfo( $user_name, $password )
@@ -83,7 +76,7 @@
 				'Password' => $password,
 				'error' => 'none'
 			];
-		sendResultInfoAsJson( json_encode($retValue) );
+		sendResultInfoAsJson( $retValue );
 	}
 	
 ?>
