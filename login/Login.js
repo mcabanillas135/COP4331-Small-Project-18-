@@ -1,4 +1,4 @@
-login = "http://cop4332.xyz/http/access-control-allow-origin/COP4331-Small-Project-18-/API/Login.php";
+login = "http://cop4332.xyz/COP4331-Small-Project-18-/http/access-control-allow-origin/API/Login.php";
 
 
 document.addEventListener("DOMContentLoaded", () => { //displays the login or the signup form
