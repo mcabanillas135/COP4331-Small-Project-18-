@@ -1,10 +1,12 @@
 <?php
 	header("Access-Control-Allow-Origin: *");
+	error_reporting(E_ALL);
+    	ini_set('display_errors', 'on');
 
 	$inData = getRequestInfo();
 	
-	$User_Name = "";
-	$Password = "";
+	$user = "";
+	$pass = "";
 
 	$conn = new mysqli("localhost", "contactmanager", "COP4331", "COP4331"); 	
 	if( $conn->connect_error )
@@ -18,7 +20,7 @@
 		$stmt->execute();
 		$result = $stmt->get_result();
 
-		if( $row = $result->fetch_assoc()  )
+		if( $row = $result->fetch_assoc() )
 		{
 			returnWithInfo( $row['User_Name'], $row['Password']);
 		}
@@ -26,7 +28,10 @@
 		{
 			returnWithError("No Records Found");
 		}
-		}
+		
+		$stmt->close();
+		$conn->close();
+	}
 	
 	function getRequestInfo()
 	{
