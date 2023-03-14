@@ -1,5 +1,6 @@
-login = "http://cop4332.xyz/API/Login.php";
 
+baseurl = "http://24.199.121.145/";
+login = baseurl + "/API/Login.php";
 
 document.addEventListener("DOMContentLoaded", () => { //displays the login or the signup form
     const loginForm = document.querySelector("#login");
@@ -18,17 +19,15 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
         e.preventDefault();
             let request = new XMLHttpRequest();
             request.open("POST", login, true);
-        
+
             console.log(tmp);
         
             try {
                 request.onload = function () {
-                    console.log(
-                        "Data has been recieved"
-                    );
+                    console.log("Data has been recieved");
                     
                     let response = JSON.parse(request.responseText);
-                    console.log("response");
+                    console.log(response);
         
                     if (response.error) {
                         console.log("error");
@@ -39,9 +38,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
                     console.log("successful");
                 };
         
-                console.log(
-                    "Sending a request"
-                );
+                console.log("Sending a request");
         
                 if (tmp instanceof FormData) request.send(tmp);
                 else request.send(JSON.stringify(tmp));
