@@ -1,5 +1,5 @@
 
-baseurl = "http://24.199.121.145/";
+baseurl = "http://24.199.121.145";
 login = baseurl + "/API/Login.php";
 
 
