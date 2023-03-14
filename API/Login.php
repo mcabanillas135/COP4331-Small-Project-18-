@@ -1,4 +1,6 @@
 <?php
+	header("Access-Control-Allow-Origin: *");
+
 	$inData = getRequestInfo();
 	
 	$User_Name = "";
