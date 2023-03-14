@@ -39,13 +39,13 @@
 	
 	function returnWithError( $err )
 	{
-		$retValue = '{"firstName":"","lastName":"","error":"' . $err . '"}';
+		$retValue = '{"User_Name":"","Password":"","error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
-	function returnWithInfo( $firstName, $lastName)
+	function returnWithInfo( $user, $pass)
 	{
-		$retValue = '{"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":"","success":"Successfully logged in"}';
+		$retValue = '{"User_Name":"' . $user . '","Password":"' . $pass . '","error":"","success":"Successfully logged in"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
