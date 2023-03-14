@@ -1,5 +1,5 @@
 
-baseurl = "http://24.199.121.145";
+baseurl = "http://cop4332.xyz";
 login = baseurl + "/API/Login.php";
 
 
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
             let request = new XMLHttpRequest();
             if (!request.open("POST", login))
             {
-                baseurl = "http://cop4332.xyz";
+                baseurl = "http://24.199.121.145";
                 login = baseurl + "/API/Login.php";
                 request.open("POST", login);
             }
