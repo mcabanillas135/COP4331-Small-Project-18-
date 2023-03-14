@@ -1,8 +1,8 @@
 <?php
 	$inData = getRequestInfo();
 	
-	$firstName = "";
-	$lastName = "";
+	$User_Name = "";
+	$Password = "";
 
 	$conn = new mysqli("localhost", "contactmanager", "COP4331", "COP4331"); 	
 	if( $conn->connect_error )
@@ -39,7 +39,7 @@
 	
 	function returnWithError( $err )
 	{
-		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+		$retValue = '{"firstName":"","lastName":"","error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
