@@ -1,20 +1,30 @@
 <?php
-
+	header("Access-Control-Allow-Origin: *");
+	error_reporting(E_ALL);
+    	ini_set('display_errors', 'on')
+		
     	$inData = getRequestInfo();
 
-    	require_once( 'db_connection.php' );
-	
-	$result = addUser($conn, $inData['User_Name'], $inData['Password']);
+    	$conn = new mysqli("localhost", "contactmanager", "COP4331", "COP4331"); 	
 
-	if ($result) 
+	if( $conn->connect_error )
 	{
-	    returnWithInfo($inData['User_Name']);
-	} else
-	{
-	    returnWithError("Failed to add user");
+		returnWithError( $conn->connect_error );
 	}
+	else
+	{
+		$result = addUser($conn, $inData['User_Name'], $inData['Password']);
 
-	$conn->close();
+		if ($result) 
+		{
+		    returnWithInfo($inData['User_Name']);
+		} else
+		{
+		    returnWithError("Failed to add user");
+		}
+
+		$conn->close();
+	}
    	
     
     function addUser($conn, $username, $password)
