@@ -2,6 +2,7 @@
 baseurl = "http://24.199.121.145/";
 login = baseurl + "/API/Login.php";
 
+
 document.addEventListener("DOMContentLoaded", () => { //displays the login or the signup form
     const loginForm = document.querySelector("#login");
     const createAccountForm = document.querySelector("#createAccount");
@@ -18,8 +19,12 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
         };
         e.preventDefault();
             let request = new XMLHttpRequest();
-            request.open("POST", login, true);
-
+            if (!request.open("POST", login))
+            {
+                baseurl = "http://cop4332.xyz";
+                login = baseurl + "/API/Login.php";
+                request.open("POST", login);
+            }
             console.log(tmp);
         
             try {
