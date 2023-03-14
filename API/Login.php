@@ -5,7 +5,6 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 $inData = getRequestInfo();
 
-$id = 0;
 $firstName = "";
 $lastName = "";
 
@@ -23,7 +22,7 @@ else
 
 	if( $row = $result->fetch_assoc()  )
 	{
-		returnWithInfo( $row['User_Name'], $row['Password'], $row['User_Id'] );
+		returnWithInfo( $row['User_Name'], $row['Password']);
 	}
 	else
 	{
@@ -51,9 +50,9 @@ function returnWithError( $err )
 	sendResultInfoAsJson( $retValue );
 }
 
-function returnWithInfo( $firstName, $lastName, $id )
+function returnWithInfo( $firstName, $lastName )
 {
-	$retValue = '{"User_Id":' . $id . ',"User_Name":"' . $firstName . '","Password":"' . $lastName . '","error":""}';
+	$retValue = '{"User_Name":"' . $firstName . '","Password":"' . $lastName . '","error":""}';
 	sendResultInfoAsJson( $retValue );
 }
 
