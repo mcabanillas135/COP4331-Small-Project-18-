@@ -1,20 +1,38 @@
 baseurl = "http://cop4332.xyz";
 login = baseurl + "/API/Login.php";
 
+function setFormMessage(formElement, type, message) {
+    const messageElement = formElement.querySelector(".form__message");
+
+    messageElement.textContent = message;
+    messageElement.classList.remove("form__message--success", "form__message--error");
+    messageElement.classList.add(`form__message--${type}`);
+}
+
+function setInputError(inputElement, message) {
+    inputElement.classList.add("form__input--error");
+    inputElement.parentElement.querySelector(".form__input-error-message").textContent = message;
+}
+
+function clearInputError(inputElement) {
+    inputElement.classList.remove("form__input--error");
+    inputElement.parentElement.querySelector(".form__input-error-message").textContent = "";
+}
 
 document.addEventListener("DOMContentLoaded", () => { //displays the login or the signup form
     const loginForm = document.querySelector("#login");
     const createAccountForm = document.querySelector("#createAccount");
-    document.querySelector("#linkLogin").addEventListener("click", e => { //removes the hidden form from the login link to the signup page
-        e.preventDefault(); //stops the page from just refreshing
-        loginForm.classList.remove("form--hidden");
-        createAccountForm.classList.add("form--hidden");
-    });
 
-    document.querySelector("linkCreateAccount").addEventListener("click", e => { //removes the hidden form from the signup link to the login page
-        e.preventDefault(); //stops the page from just refreshing
+    document.querySelector("#linkCreateAccount").addEventListener("click", e => {
+        e.preventDefault();
         loginForm.classList.add("form--hidden");
         createAccountForm.classList.remove("form--hidden");
+    });
+
+    document.querySelector("#linkLogin").addEventListener("click", e => {
+        e.preventDefault();
+        loginForm.classList.remove("form--hidden");
+        createAccountForm.classList.add("form--hidden");
     });
 
     loginForm.addEventListener("submit", async e => { 
@@ -109,3 +127,6 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
 
 });
 //dark mode
+
+
+
