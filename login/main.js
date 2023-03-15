@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
         createAccountForm.classList.add("form--hidden");
     });
 
-    document.querySelector("#linkCreateAccount").addEventListener("click", e => { //removes the hidden form from the signup link to the login page
+    document.querySelector("linkCreateAccount").addEventListener("click", e => { //removes the hidden form from the signup link to the login page
         e.preventDefault(); //stops the page from just refreshing
         loginForm.classList.add("form--hidden");
         createAccountForm.classList.remove("form--hidden");
