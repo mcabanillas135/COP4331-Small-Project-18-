@@ -81,12 +81,13 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
     });
     createAccountForm.addEventListener("submit", async e => { 
         e.preventDefault();
-         signupUsername = document.getElementById("signupUsername");
-         signUpPassword = document.getElementById("signupPassword");
-         confirmPassword = document.getElementById("confirmPassword")
-        console.log(signupUsername.value);
-        console.log(signUpPassword.value);
-        console.log(confirmPassword.value);
+         signupUsername = document.getElementById("signupUsername").value;
+         signUpPassword = document.getElementById("signupPassword").value;
+         confirmPassword = document.getElementById("confirmPassword").value;
+         if (signUpPassword != confirmPassword)
+         {
+            alert("passwords dont match");
+         }
 
     });
 });
