@@ -82,11 +82,11 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
     createAccountForm.addEventListener("submit", async e => { 
         e.preventDefault();
          signupUsername = document.getElementById("signupUsername");
-         signUpPassword = document.getElementById("signUpPassword");
+         signUpPassword = document.getElementById("signupPassword");
          confirmPassword = document.getElementById("confirmPassword")
-        console.log(signupUsername);
-        console.log(signUpPassword);
-        console.log(confirmPassword);
+        console.log(signupUsername.value);
+        console.log(signUpPassword.value);
+        console.log(confirmPassword.value);
 
     });
 });
