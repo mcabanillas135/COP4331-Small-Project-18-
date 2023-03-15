@@ -1,6 +1,6 @@
 baseurl = "http://cop4332.xyz";
 login = baseurl + "/API/Login.php";
-
+signup = baseurl + "/API/Signup.php"
 
 function setFormMessage(formElement, type, message) {
     const messageElement = formElement.querySelector(".form__message");
@@ -86,9 +86,48 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
          confirmPassword = document.getElementById("confirmPassword").value;
          if (signUpPassword != confirmPassword)
          {
-            alert("passwords dont match");
+                alert("passwords dont match");
          }
-
+        if (signUpPassword = confirmPassword)
+        {
+            let tmp = {
+                User_Name : document.getElementById("signupUsername").value,
+                Password : document.getElementById("signupPassword").value
+           };
+            let request = new XMLHttpRequest();
+            if (!request.open("POST", signup))
+            {
+                baseurl = "http://24.199.121.145";
+                signup = baseurl + "/API/Signup.php";
+                request.open("POST", signup);
+            }
+            console.log(tmp);
+        
+            try {
+                request.onload = function () {
+                    console.log("Data has been recieved");
+                    
+                    let response = JSON.parse(request.responseText);
+                    console.log(response);
+        
+                    if (response.error) {
+                        console.log("not signed up");
+                        return;
+                    }
+        
+                    // successful
+                    console.log("signed up");
+                    
+                };
+        
+                console.log("Sending a request");
+        
+                if (tmp instanceof FormData) request.send(tmp);
+                else request.send(JSON.stringify(tmp));
+            } catch (err) {
+                console.log("there was an error");
+            }
+        }
     });
 });
 //dark mode
