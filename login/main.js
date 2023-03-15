@@ -82,9 +82,9 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
     });
     createAccountForm.addEventListener("submit", async e => { 
         e.preventDefault();
-         signupUsername = document.getElementById(signupUsername);
-         signUpPassword = document.getElementById(signUpPassword);
-         confirmPassword = document.getElementById(confirmPassword);
+         signupUsername = document.getElementById("signupUsername");
+         signUpPassword = document.getElementById("signUpPassword");
+         confirmPassword = document.getElementById("confirmPassword");
         console.log(signupUsername);
         console.log(signUpPassword);
         console.log(confirmPassword);
