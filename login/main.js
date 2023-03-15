@@ -1,9 +1,6 @@
 baseurl = "http://cop4332.xyz";
 login = baseurl + "/API/Login.php";
-// initalizing values so that they can be assigned
- signupUsername = "1";
- signUpPassword = "1";
- confirmPassword = "1";
+
 
 function setFormMessage(formElement, type, message) {
     const messageElement = formElement.querySelector(".form__message");
@@ -84,9 +81,9 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
     });
     createAccountForm.addEventListener("submit", async e => { 
         e.preventDefault();
-        let signupUsername = document.getElementById(signupUsername);
-        let signUpPassword = document.getElementById(signUpPassword);
-        let confirmPassword = document.getElementById(confirmPassword);
+         signupUsername = document.getElementById("signupUsername");
+         signUpPassword = document.getElementById("signUpPassword");
+         confirmPassword = document.getElementById("confirmPassword")
         console.log(signupUsername);
         console.log(signUpPassword);
         console.log(confirmPassword);
