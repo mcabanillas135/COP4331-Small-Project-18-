@@ -28,7 +28,7 @@
     		$result = $stmt1->get_result();
 		
 			
-		if($result->num_rows > 0)
+		if( $row = $result->fetch_assoc() )
         	{
 			returnWithError("Failed to add user. User already exists.");  
         	}
