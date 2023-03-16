@@ -16,7 +16,7 @@
 	}
 	else
 	{
-		if(!username || !password)
+		if(!$username || !$password)
 		{
 			returnWithError("Empty User");
 		}
