@@ -54,14 +54,14 @@
     function returnWithError( $err )
 	{
 	    	$retValue = '{"User_Name":"","Password":"","error":"' . $err . '"}';
-		sendResultInfoAsJson( json_encode($retValue) );
+		sendResultInfoAsJson( $retValue );
 	}
                 
     function returnWithInfo( $username, $password )
 	{
 		// Print a success
 	    	$retValue = $retValue = '{"User_Name":"' . $username . '","Password":"' . $password . '","error":"","success":"Successfully created user"}';
-		sendResultInfoAsJson( json_encode($retValue) );
+		sendResultInfoAsJson( $retValue );
 	}
 
 ?>
