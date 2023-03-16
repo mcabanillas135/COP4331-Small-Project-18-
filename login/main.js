@@ -20,6 +20,7 @@ function clearInputError(inputElement) {
     inputElement.parentElement.querySelector(".form__input-error-message").textContent = "";
 }
 
+
 document.addEventListener("DOMContentLoaded", () => { //displays the login or the signup form
     const loginForm = document.querySelector("#login");
     const createAccountForm = document.querySelector("#createAccount");
@@ -60,6 +61,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
         
                     if (response.error) {
                         console.log("error");
+                        setFormMessage(loginForm, "error", reponse.error);
                         return;
                     }
         
@@ -131,6 +133,5 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
     });
 });
 //dark mode
-
 
 
