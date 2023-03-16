@@ -53,7 +53,6 @@
 
     function returnWithError( $err )
 	{
-		http_response_code(400);
 	    	$retValue = '{"User_Name":"","Password":"","error":"' . $err . '"}';
 		sendResultInfoAsJson( json_encode($retValue) );
 	}
@@ -61,7 +60,6 @@
     function returnWithInfo( $username, $password )
 	{
 		// Print a success
-		http_response_code(200);
 	    	$retValue = $retValue = '{"User_Name":"' . $username . '","Password":"' . $password . '","error":"","success":"Successfully created user"}';
 		sendResultInfoAsJson( json_encode($retValue) );
 	}
