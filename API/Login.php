@@ -1,6 +1,5 @@
 <?php
-	header("Access-Control-Allow-Origin: *");
-
+	
 	$inData = getRequestInfo();
 	
 	$Id = 0;
