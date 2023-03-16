@@ -3,12 +3,7 @@ login = baseurl + "/API/Login.php";
 signup = baseurl + "/API/Signup.php"
 
 function setFormMessage(formElement, type, message) {
-    let messageElement = formElement.querySelector(".form__message");
-    if (!messageElement) {
-        messageElement = document.createElement("div");
-        messageElement.classList.add("form__message");
-        formElement.appendChild(messageElement);
-    }
+    const messageElement = formElement.querySelector(".form__message");
 
     messageElement.textContent = message;
     messageElement.classList.remove("form__message--success", "form__message--error");
@@ -82,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
             } catch (err) {
                 console.log("test");
             }
-        
+            setFormMessage(loginForm, "error", "test");
         // api stuff
 
     });
