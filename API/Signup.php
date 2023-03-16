@@ -16,20 +16,19 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("SELECT * FROM Contact_User WHERE User_Name = ?");
-   		$stmt->bind_param("s", $username);
-   		$stmt->execute();
-    		$result = $stmt->get_result();
-		$stmt->close()
+		$stmt1 = $conn->prepare("SELECT * FROM Contact_User WHERE User_Name = ?");
+   		$stmt1->bind_param("s", $username);
+   		$stmt1->execute();
+    		$result = $stmt1->get_result();
 			
 		if($result->num_rows > 0)
         	{
           		return returnWithError("Failed to add user. User already exists.");  
         	}
 		
-		$stmt = $conn->prepare("INSERT INTO Contact_user VALUES (?, ?)");
-		$stmt->bind_param("ss", $username, $password);
-		$result = $stmt->execute();
+		$stmt2 = $conn->prepare("INSERT INTO Contact_user VALUES (?, ?)");
+		$stmt2->bind_param("ss", $username, $password);
+		$result = $stmt2->execute();
         	
 		if ($result) 
 		{
@@ -39,7 +38,8 @@
 		    returnWithError("Failed to add user");
 		}
 		
-		$stmt->close();
+		$stmt1->close();
+		$stmt2->close();
 		$conn->close();
 	}
 
