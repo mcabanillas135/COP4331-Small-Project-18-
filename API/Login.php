@@ -3,8 +3,9 @@
 
 	$inData = getRequestInfo();
 	
-	$firstName = "";
-	$lastName = "";
+	$Id = 0;
+	$Username = "";
+	$Password = "";
 
 	$conn = new mysqli("localhost", "contactmanager", "COP4331", "COP4331"); 	
 
