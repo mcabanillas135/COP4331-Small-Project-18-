@@ -39,26 +39,26 @@
 		$conn->close();
 	}
 
-    function sendResultInfoAsJson( $obj )
+    	function sendResultInfoAsJson( $obj )
 	{
 		// Lets the receiver/sender know the data type
 		header('Content-type: application/json');
 		echo $obj;
 	}
                 
-    function getRequestInfo() {
-        return json_decode(file_get_contents('php://input'), true);   
-    }
+    	function getRequestInfo() 
+	{
+        	return json_decode(file_get_contents('php://input'), true);   
+    	}
 
-    function returnWithError( $err )
+    	function returnWithError( $err )
 	{
 	    	$retValue = '{"User_Name":"","Password":"","error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
                 
-    function returnWithInfo( $username, $password )
+    	function returnWithInfo( $username, $password )
 	{
-		// Print a success
 	    	$retValue = $retValue = '{"User_Name":"' . $username . '","Password":"' . $password . '","error":"","success":"Successfully created user"}';
 		sendResultInfoAsJson( $retValue );
 	}
