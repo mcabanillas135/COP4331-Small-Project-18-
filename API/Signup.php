@@ -57,9 +57,9 @@
 		sendResultInfoAsJson( $retValue );
 	}
                 
-    	function returnWithInfo( $username, $password )
+    	function returnWithInfo( $user, $pass )
 	{
-	    	$retValue = $retValue = '{"User_Name":"' . $username . '","Password":"' . $password . '","error":"","success":"Successfully created user"}';
+	    	$retValue = '{"User_Name":"' . $user . '","Password":"' . $pass . '","error":"","success":"Successfully created user"}';
 		sendResultInfoAsJson( $retValue );
 	}
 
