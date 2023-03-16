@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
         
                     if (response.error) {
                         console.log("error");
-                        setFormMessage(loginForm, "error", reponse.error);
+                        setFormMessage(loginForm, "error", "invalid username or password");
                         return;
                     }
         
