@@ -1,4 +1,4 @@
-baseurl = "http://cop4332.xyz";
+baseurl = "https://cop4332.xyz";
 login = baseurl + "/API/Login.php";
 signup = baseurl + "/API/Signup.php"
 
