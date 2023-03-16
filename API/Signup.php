@@ -20,13 +20,14 @@
    		$stmt->bind_param("s", $username);
    		$stmt->execute();
     		$result = $stmt->get_result();
-		
+		$stmt->close()
+			
 		if($result->num_rows > 0)
         	{
           		return returnWithError("Failed to add user. User already exists.");  
         	}
 		
-		$stmt = $conn->prepare("INSERT INTO Contact_User VALUES (?, ?)");
+		$stmt = $conn->prepare("INSERT INTO Contact_user VALUES (?, ?)");
 		$stmt->bind_param("ss", $username, $password);
 		$result = $stmt->execute();
         	
