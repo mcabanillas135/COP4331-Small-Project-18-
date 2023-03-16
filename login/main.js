@@ -24,6 +24,8 @@ function clearInputError(inputElement) {
 document.addEventListener("DOMContentLoaded", () => { //displays the login or the signup form
     const loginForm = document.querySelector("#login");
     const createAccountForm = document.querySelector("#createAccount");
+    alert("alerts are displaying");
+    setFormMessage(loginForm, "error", "this is a test");
 
     document.querySelector("#linkCreateAccount").addEventListener("click", e => {
         e.preventDefault();
