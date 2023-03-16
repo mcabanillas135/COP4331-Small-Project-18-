@@ -61,6 +61,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
         
                     if (response.error) {
                         console.log("error");
+                        alert(response.error);
                         return;
                     }
         
@@ -75,10 +76,6 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
                 else request.send(JSON.stringify(tmp));
             } catch (err) {
                 console.log("test");
-            }
-            if(reponse.error)
-            {
-                setFormMessage(loginForm, "error", "Invalid username/password combination");
             }
         
         // api stuff
@@ -117,6 +114,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
         
                     if (response.error) {
                         console.log("not signed up");
+                        alert(response.error);
                         return;
                     }
         
