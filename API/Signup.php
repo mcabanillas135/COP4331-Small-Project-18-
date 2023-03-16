@@ -17,7 +17,6 @@
    		$stmt->bind_param("s", $username);
    		$stmt->execute();
     		$result = $stmt->get_result();
-		$stmt->close();
 		
 		if($result->num_rows > 0)
         	{
