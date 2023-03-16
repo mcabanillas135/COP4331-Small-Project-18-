@@ -22,7 +22,7 @@
 			returnWithError("Empty User");
 		}
 		
-		$stmt1 = $conn->prepare("SELECT * FROM Contact_User WHERE User_Name = ?");
+		$stmt1 = $conn->prepare("SELECT * FROM Contact_user WHERE User_Name = ?");
    		$stmt1->bind_param("s", $username);
    		$stmt1->execute();
     		$result = $stmt1->get_result();
