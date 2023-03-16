@@ -3,7 +3,12 @@ login = baseurl + "/API/Login.php";
 signup = baseurl + "/API/Signup.php"
 
 function setFormMessage(formElement, type, message) {
-    const messageElement = formElement.querySelector(".form__message");
+    let messageElement = formElement.querySelector(".form__message");
+    if (!messageElement) {
+        messageElement = document.createElement("div");
+        messageElement.classList.add("form__message");
+        formElement.appendChild(messageElement);
+    }
 
     messageElement.textContent = message;
     messageElement.classList.remove("form__message--success", "form__message--error");
@@ -60,8 +65,8 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
                     console.log(response);
         
                     if (response.error) {
-                        console.log("error");
-                        alert(response.error);
+                        //console.log("error");
+                        setFormMessage(loginForm, "error", response.error);
                         return;
                     }
         
@@ -113,8 +118,8 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
                     console.log(response);
         
                     if (response.error) {
-                        console.log("not signed up");
-                        alert(response.error);
+                        //console.log("not signed up");
+                        setFormMessage(loginForm, "error", response.error);
                         return;
                     }
         
