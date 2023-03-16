@@ -77,7 +77,6 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
             } catch (err) {
                 console.log("test");
             }
-            setFormMessage(loginForm, "error", "test");
         // api stuff
 
     });
@@ -90,7 +89,8 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
          {
                 alert("passwords dont match");
          }
-        if (signUpPassword = confirmPassword)
+        if (signUpPassword === confirmPassword)
+        
         {
             let tmp = {
                 User_Name : document.getElementById("signupUsername").value,
