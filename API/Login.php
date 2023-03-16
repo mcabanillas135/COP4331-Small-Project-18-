@@ -16,7 +16,7 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("SELECT * FROM Contact_User WHERE User_Name = ? AND Password = ?");
+		$stmt = $conn->prepare("SELECT * FROM Contact_user WHERE User_Name = ? AND Password = ?");
 		$stmt->bind_param("ss", $username, $password);
 		$stmt->execute();
 		$result = $stmt->get_result();
