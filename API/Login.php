@@ -2,8 +2,8 @@
 	$inData = getRequestInfo();
 	
 	$id = 0;
-	$username = "";
-	$password = "";
+	$username = $inData["User_Name"];
+	$password = $inData["Password"];
 
 	$conn = new mysqli("localhost", "contactmanager", "COP4331", "COP4331"); 	
 
@@ -14,7 +14,7 @@
 	else
 	{
 		$stmt = $conn->prepare("SELECT * FROM Contact_User WHERE User_Name = ? AND Password = ?");
-		$stmt->bind_param("ss", $inData["User_Name"], $inData["Password"]);
+		$stmt->bind_param("ss", $username, $password);
 		$stmt->execute();
 		$result = $stmt->get_result();
 
