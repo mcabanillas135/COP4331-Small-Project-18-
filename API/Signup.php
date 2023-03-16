@@ -26,7 +26,7 @@
    		$stmt1->bind_param("s", $username);
    		$stmt1->execute();
     		$result = $stmt1->get_result();
-		$stmt1->close();
+		
 			
 		if($result->num_rows > 0)
         	{
@@ -49,8 +49,7 @@
 			$stmt2->close();
 		}
 		
-		
-		
+		$stmt1->close();
 		$conn->close();
 	}
 
