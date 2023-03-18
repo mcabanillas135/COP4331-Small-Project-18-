@@ -22,6 +22,21 @@ const editButton = document.getElementById('editButton');
 const confirmButton = document.getElementById('confirmButton');
 const allDetailedInfo = document.getElementsByClassName("detailedInfo");
 
+const addContactPage = document.getElementById('addContactDetails');
+const addFirstName = document.getElementById('addFirstName');
+const addLastName = document.getElementById('addLastName');
+const addEmail = document.getElementById('addEmail');
+const addPhone = document.getElementById('addPhone');
+const addStreet = document.getElementById('addStreet');
+const addCity = document.getElementById('addCity');
+const addState = document.getElementById('addState');
+const addZip = document.getElementById('addZip');
+const addBirth = document.getElementById('addBirth');
+const addCreated = document.getElementById('addCreated');
+const addEdited = document.getElementById('addEdited');
+const allAddInfo = document.getElementsByClassName('addInfo');
+const confirmAdd = document.getElementById('confirmAdd');
+
 
 
 for(let i=0; i < allDetailedInfo.length; i++) {
@@ -105,6 +120,7 @@ function deselectAll(){
 	for(let i = 0;i < tableRows.length; i++) {
 		tableRows[i].classList.remove('selected');
 	}
+	contactDetailsPage.style.display = 'none';
 }
 
 function setUneditable() {
@@ -135,6 +151,36 @@ function confirmEdits() {
 	cells[3].innerHTML = detailedEmail.value;
 }
 
+function showAddContactPage() {
+	// deselectAll();
+	addContactPage.style.display = 'block';
+	for(let i=0; i < allAddInfo.length; i++) {
+		allAddInfo[i].value = "";
+	}
+}
+
+function addContact() {
+	// add contact to database
+	// add contact information to table
+	const newRow = contactTable.insertRow();
+	const firstNameCell = newRow.insertCell();
+    firstNameCell.textContent = addEdited.value;
+
+    const lastNameCell = newRow.insertCell();
+    lastNameCell.textContent = addLastName.value;
+
+    const phoneNumberCell = newRow.insertCell();
+    phoneNumberCell.textContent = addPhone.value;
+
+    const emailCell = newRow.insertCell();
+    emailCell.textContent = addEmail.value;
+	
+	newRow.addEventListener('click', selectRow);
+	
+	addContactPage.style.display = 'none';
+	
+	
+}
 	
 /* legacy code (add button is handled differently now)
 

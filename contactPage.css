@@ -182,4 +182,9 @@ tr.selected {
 	background-color: #ddd;
 }
 
+td, th {
+	padding: 5px;
+}
+
+
 

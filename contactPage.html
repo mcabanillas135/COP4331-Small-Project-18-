@@ -47,7 +47,7 @@
 			
 		</form>	
 		
-		<button id="addContactButton">Add Contact</button>
+		<button id="addContactButton" onclick = "showAddContactPage()">Add Contact</button>
 		
 		<div class = "buttonParent">
 
@@ -129,38 +129,40 @@
 
 		<form action="/action_page.php">
 			<label>First name:</label>
-			<input class = "detailedInfo" id="detailedFirstName" value="John">
+			<input class = "addInfo" id="addFirstName" value="John">
 			<br>
 			<label>Last name:</label>
-			<input class = "detailedInfo" id="detailedLastName" value="Doe">
+			<input class = "addInfo" id="addLastName" value="Doe">
 			<br>
 			<label>Email:</label>
-			<input class = "detailedInfo" id="detailedEmail" value="example@email.com">
+			<input class = "addInfo" id="addEmail" value="example@email.com">
 			<br>
 			<label>Phone:</label>
-			<input class = "detailedInfo" id="detailedPhone" value="012-345-6789">
+			<input class = "addInfo" id="addPhone" value="012-345-6789">
 			<br>
 			<label>Street Address:</label>
-			<input class = "detailedInfo" id="street"  value="123 Example Court">
+			<input class = "addInfo" id="addStreet"  value="123 Example Court">
 			<br>
 			<label>City:</label>
-			<input class = "detailedInfo" id="city" name="city" value="Orlando">
+			<input class = "addInfo" id="addCity" name="city" value="Orlando">
 			<br>
 			<label>State:</label>
-			<input class = "detailedInfo" id="state" name="state" value="FL">
+			<input class = "addInfo" id="addState" name="state" value="FL">
 			<br>
 			<label>Zip Code:</label>
-			<input class = "detailedInfo" id="zip" name="zip" value="32817">
+			<input class = "addInfo" id="addZip" name="zip" value="32817">
 			<br>
 			<label>Birth Date:</label>
-			<input class = "detailedInfo" id="birth" name="birth" value="2000-01-01">
+			<input class = "addInfo" id="addBirth" name="birth" value="2000-01-01">
 			<br>
 			<label>Date Created:</label>
-			<input class = "detailedInfo" id="created" name="created" value="2023-03-17">
+			<input class = "addInfo" id="addCreated" name="created" value="2023-03-17">
 			<br>
 			<label>Last Edited:</label>
-			<input class = "detailedInfo" id="edited" name="edited" value="2023-03-18">
+			<input class = "addInfo" id="addEdited" name="edited" value="2023-03-18">
 		</form>
+		
+		<button id = 'confirmAdd' onclick = 'addContact()'>Confirm</button>
 		
 	</div>
 			
