@@ -13,7 +13,6 @@
     $contact = new contact();
 
     // Required Fields
-    // $id = $inData["User_Id"];
     $contact->firstname = $inData["First_Name"];
     $contact->lastname = $inData["Last_Name"];
 
