@@ -1,10 +1,8 @@
 <?php
     class Contact
     {
-      public $phone;
       public $firstname;
       public $lastname;
-      public $email = "";
     }
 
     // Error Testing
@@ -16,12 +14,8 @@
 
     // Required Fields
     // $id = $inData["User_Id"];
-    $contact->phone = $inData["Phone"];
     $contact->firstname = $inData["First_Name"];
     $contact->lastname = $inData["Last_Name"];
-
-    // Not required Fields
-    $contact->email = $inData["Email"];
 
     $conn = new mysqli("localhost", "contactmanager", "COP4331", "COP4331"); 	
 
@@ -31,8 +25,8 @@
     }
     else
     {
-       $stmt = $conn->prepare("SELECT * FROM Contact_database WHERE Phone = ? AND First_Name = ? AND Last_Name = ? AND Email = ?");
-       $stmt->bind_param("ssss", $contact->phone, $contact->firstname, $contact->lastname, $contact->email);
+       $stmt = $conn->prepare("SELECT * FROM Contact_database WHERE First_Name = ? AND Last_Name = ?");
+       $stmt->bind_param("ss", $contact->firstname, $contact->lastname);
        $stmt->execute();
        $result = $stmt->get_result();
 
@@ -58,13 +52,13 @@
 
     function returnWithError( $err )
     {
-       $retValue = '{"Phone":"","First_Name":"","Last_Name":"","Email":"","error":"' . $err . '"}';
+       $retValue = '{"First_Name":"","Last_Name":"","error":"' . $err . '"}';
        sendResultInfoAsJson( $retValue );
     }
 
     function returnWithInfo( $contact ) 
     {
-        $retValue = '{"Phone":"' . $contact->phone . '","First_Name":"' . $contact->firstname . '","Last_Name":"' . $contact->lastname . '","Email":"' . $contact->email . '","error":"","success":"Found Contact."}';
+        $retValue = '{"First_Name":"' . $contact->firstname . '","Last_Name":"' . $contact->lastname . '","error":"","success":"Found Contact."}';
         sendResultInfoAsJson( $retValue );
     }
 	
