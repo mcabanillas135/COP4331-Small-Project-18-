@@ -13,7 +13,7 @@
     ini_set('display_errors', 'on');
 
     $inData = getRequestInfo();
-    $contact = new contact();
+    $contact = new Contact();
 
     // Required Fields
     $contact->phone = $inData["Phone"];
