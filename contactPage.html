@@ -9,43 +9,37 @@
 <body>
 	
 	<div class = "container" id = "container">
-		<form class="form" id="contacts">
-			<h1 class="form__title">Contacts</h1>
-			
-			<form class="form">
-				<div class="form__input-group">
-					<input type="text">
-					<button>Search</button>
-				</div>
-			</form>
+		<h1 class="form__title">Contacts</h1>
 		
-			<table id="contactList">
-				<tr>
-					<th> First Name </th>
-					<th> Last Name </th>
-					<th> Phone Number </th>
-					<th> Email </th>
-				</tr>
-				<tr>
-					<td> Quinn </td>
-					<td> Gilbert </td>
-					<td> 516-530-3021</td>
-					<td> quinngilbert@gmail.com </td>
-				</tr>
-				<tr>
-					<td> Michael </td>
-					<td> Scott </td>
-					<td>  </td>
-					<td> michaelscott@ddmfl.com </td>
-				</tr>
-				<tr>
-					<td> Dwight </td>
-					<td>  </td>
-					<td> 012-345-6789 </td>
-					<td> </td>
-			</table>
-			
-		</form>	
+		
+		<input type="text" id = "searchBar">
+		<button onclick = "searchTable()">Search</button>
+	
+		<table id="contactList">
+			<tr>
+				<th> First Name </th>
+				<th> Last Name </th>
+				<th> Phone Number </th>
+				<th> Email </th>
+			</tr>
+			<tr>
+				<td> Quinn </td>
+				<td> Gilbert </td>
+				<td> 516-530-3021</td>
+				<td> quinngilbert@gmail.com </td>
+			</tr>
+			<tr>
+				<td> Michael </td>
+				<td> Scott </td>
+				<td>  </td>
+				<td> michaelscott@ddmfl.com </td>
+			</tr>
+			<tr>
+				<td> Dwight </td>
+				<td>  </td>
+				<td> 012-345-6789 </td>
+				<td> </td>
+		</table>
 		
 		<button id="addContactButton" onclick = "showAddContactPage()">Add Contact</button>
 		

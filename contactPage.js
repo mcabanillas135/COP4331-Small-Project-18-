@@ -164,7 +164,7 @@ function addContact() {
 	// add contact information to table
 	const newRow = contactTable.insertRow();
 	const firstNameCell = newRow.insertCell();
-    firstNameCell.textContent = addEdited.value;
+    firstNameCell.textContent = addFirstName.value;
 
     const lastNameCell = newRow.insertCell();
     lastNameCell.textContent = addLastName.value;
@@ -178,8 +178,29 @@ function addContact() {
 	newRow.addEventListener('click', selectRow);
 	
 	addContactPage.style.display = 'none';
-	
-	
+}
+
+function searchTable() {
+	// Needs to be improved to search detailed values as well
+    var input, filter, found, table, tr, td, i, j;
+    input = document.getElementById("searchBar");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("contactList");
+    tr = table.getElementsByTagName("tr");
+    for (i = 1; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td");
+        for (j = 0; j < td.length; j++) {
+            if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                found = true;
+            }
+        }
+        if (found) {
+            tr[i].style.display = "";
+            found = false;
+        } else {
+            tr[i].style.display = "none";
+        }
+    }
 }
 	
 /* legacy code (add button is handled differently now)
