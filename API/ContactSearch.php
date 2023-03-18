@@ -38,7 +38,7 @@
 
        if( $result)
        {
-	       returnWithInfo("$contact");
+	       returnWithInfo($contact);
        }
        else
        {
