@@ -16,11 +16,13 @@ const city = document.getElementById('city');
 const state = document.getElementById('state');
 const zip = document.getElementById('zip');
 const birth = document.getElementById('birth');
-const added = document.getElementById('added');
+const created = document.getElementById('created');
 const edited = document.getElementById('edited');
 const editButton = document.getElementById('editButton');
 const confirmButton = document.getElementById('confirmButton');
 const allDetailedInfo = document.getElementsByClassName("detailedInfo");
+
+
 
 for(let i=0; i < allDetailedInfo.length; i++) {
 	allDetailedInfo[i].disabled = true;
@@ -62,7 +64,7 @@ function fillDetailed(selectedRow) {
 	const STATE = "";
 	const ZIP = "";
 	const BIRTH = "";
-	const ADDED = "";
+	const CREATED = "";
 	const EDITED = "";
 	
 	detailedFirstName.value = fName;
@@ -74,12 +76,13 @@ function fillDetailed(selectedRow) {
 	state.value = STATE;
 	zip.value = ZIP;
 	birth.value = BIRTH;
-	added.value = ADDED;
+	created.value = CREATED;
 	edited.value = EDITED;
+	
 }
 
 
-function deleteSelected(){
+function deleteSelected() {
 	for(let i=0; i<tableRows.length; i++){
 		if(tableRows[i].classList.contains('selected')) {
 			contactTable.deleteRow(i);
@@ -89,8 +92,49 @@ function deleteSelected(){
 }
 	
 function setEditable() {
+	editButton.style.display = 'none';
+	confirmButton.style.display = 'inline';
+	cancelButton.style.display = 'inline';
 	
+	for(let i = 0; i < allDetailedInfo.length; i++){
+		allDetailedInfo[i].disabled = false;
+	}
 }
+
+function deselectAll(){
+	for(let i = 0;i < tableRows.length; i++) {
+		tableRows[i].classList.remove('selected');
+	}
+}
+
+function setUneditable() {
+	editButton.style.display = 'inline';
+	confirmButton.style.display = 'none';
+	cancelButton.style.display = 'none';
+	
+	for(let i=0; i<allDetailedInfo.length; i++) {
+		allDetailedInfo[i].disabled = true;
+	}
+}
+
+function cancelEdits() {
+	// need to reload information from database
+	const selectedRow = document.querySelector('.selected');
+	fillDetailed(selectedRow);
+	setUneditable();
+}
+
+function confirmEdits() {
+	// update the database
+	setUneditable();
+	const selectedRow = document.querySelector('.selected');
+	const cells = selectedRow.querySelectorAll('td');
+	cells[0].innerHTML = detailedFirstName.value;
+	cells[1].innerHTML = detailedLastName.value;
+	cells[2].innerHTML = detailedPhone.value;
+	cells[3].innerHTML = detailedEmail.value;
+}
+
 	
 /* legacy code (add button is handled differently now)
 

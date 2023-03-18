@@ -47,14 +47,7 @@
 			
 		</form>	
 		
-		
-		<div class="form__input-group">
-			<input type="text" id = firstName autofocus placeholder="First Name">	
-			<input type="text" id = lastName autofocus placeholder="Last Name">
-			<input type="text" id = phoneNumber autofocus placeholder="Phone Number">
-			<input type="text" id = email autofocus placeholder="Email Address">
-			<button id="addContactButton">Add Contact</button>
-		</div>
+		<button id="addContactButton">Add Contact</button>
 		
 		<div class = "buttonParent">
 
@@ -126,8 +119,48 @@
 		</form>
 		
 		<button id = "editButton" onclick = 'setEditable()'>Edit</button>
-		<button id = "cancelButton" onclick = 'cancelEdits()'>Cancel</button> 
+		<button id = "cancelButton" onclick = 'cancelEdits()' style = "display: none">Cancel</button> 
 		<button id = "confirmButton" onclick = 'confirmEdits()' style = "display: none">Confirm</button>
+		
+	</div>
+	
+	<div class = "container" id = "addContactDetails" style = "display: none;">
+		<h1 class="form__title">Contact Information</h1>
+
+		<form action="/action_page.php">
+			<label>First name:</label>
+			<input class = "detailedInfo" id="detailedFirstName" value="John">
+			<br>
+			<label>Last name:</label>
+			<input class = "detailedInfo" id="detailedLastName" value="Doe">
+			<br>
+			<label>Email:</label>
+			<input class = "detailedInfo" id="detailedEmail" value="example@email.com">
+			<br>
+			<label>Phone:</label>
+			<input class = "detailedInfo" id="detailedPhone" value="012-345-6789">
+			<br>
+			<label>Street Address:</label>
+			<input class = "detailedInfo" id="street"  value="123 Example Court">
+			<br>
+			<label>City:</label>
+			<input class = "detailedInfo" id="city" name="city" value="Orlando">
+			<br>
+			<label>State:</label>
+			<input class = "detailedInfo" id="state" name="state" value="FL">
+			<br>
+			<label>Zip Code:</label>
+			<input class = "detailedInfo" id="zip" name="zip" value="32817">
+			<br>
+			<label>Birth Date:</label>
+			<input class = "detailedInfo" id="birth" name="birth" value="2000-01-01">
+			<br>
+			<label>Date Created:</label>
+			<input class = "detailedInfo" id="created" name="created" value="2023-03-17">
+			<br>
+			<label>Last Edited:</label>
+			<input class = "detailedInfo" id="edited" name="edited" value="2023-03-18">
+		</form>
 		
 	</div>
 			
