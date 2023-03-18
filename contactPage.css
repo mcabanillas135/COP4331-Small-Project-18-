@@ -55,8 +55,13 @@ body {
     font-size: 0.85rem;
     color: var(--color-error);
 }
-.settingsBar{
+#settingsBar{
 	float: right;
+}
+.buttonParent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 table {
   border-collapse: collapse;
@@ -65,7 +70,7 @@ table {
   margin-bottom:10px;
 }
 tr:first-child{
-	background-color: #252c6a;
+	background-color: #bf2d00;
     color: white;
 }
 tr:not(:first-child):hover {
@@ -77,6 +82,86 @@ tr:not(:last-child){
 td:not(:last-child){
 	border-right: 1px solid #ddd;
 }
-tr{
-	text-align: center;
+
+button {
+    background-color: #bf2d00;
+    border: none;
+    color: white;
+    width: 100 px;
+    height: 10 px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  /* Dropdown container */
+  input[type="range"] {
+    width: 140px;
+    height: 5px;
+    background: #ddd;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 5px;
+  }
+  
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #bf2d00;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  
+  input[type="range"]::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    background: #bf2d00;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  
+  input[type="range"]::-ms-thumb {
+    width: 15px;
+    height: 15px;
+    background: #bf2d00;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  
+  input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 5px;
+    background: #ddd;
+    border-radius: 5px;
+  }
+  
+  input[type="range"]::-moz-range-track {
+    width: 100%;
+    height: 5px;
+    background: #ddd;
+    border-radius: 5px;
+  }
+  
+  input[type="range"]::-ms-track {
+    width: 100%;
+    height: 5px;
+    background: #ddd;
+    border-radius: 5px;
+    color: transparent;
+  }
+  .settingsContainer {
+  display: none;
+  /* Other styles */
+}
+
+.settingsContainer.visible {
+  display: block;
 }

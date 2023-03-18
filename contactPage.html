@@ -6,7 +6,7 @@
 </head>
 <body>
 	
-	<div class = "container">
+	<div class = "container" id = "container">
 		<form class="form" id="contacts">
 			<h1 class="form__title">Contacts</h1>
 			
@@ -42,9 +42,7 @@
 					<td> 012-345-6789 </td>
 					<td> </td>
 			</table>
-		</form>
-		
-		<!--
+		</form>	
 		
 		<form class="form" id="addContactInfo">
 			<div class="form__input-group">
@@ -55,9 +53,7 @@
 				<button id="addContactButton">Add Contact</button>
 			</div>
 		</form>
-		
-		-->
-			
+	<div class = "buttonParent">
 		<form class="form">
 			<div class="form__input-group">
 				<button>edit</button>
@@ -66,59 +62,28 @@
 		</form>
 		
 		<form>
-			<div class="settingsBar">
-				<button>Settings</button>
-				<button>Log Out</button>
-			</div>
-		</form>
-		
-		<button onclick = "hideDiv(contactDetails)"> temp </button>
-			
-	</div>
+			<div id = "settingsBar">
+				<button id="settings-btn">Settings</button>
+        
+				<div id="settings-dropdown" style="display: none;">
 	
-	<div class = "container" id = contactDetails>
-		<form class="form" id="contactDetails">
-			<h1 class="form__title">Contact Information</h1>
-			
-			<form action="/action_page.php">
-				<label for="fname">First name:</label>
-				<input type="text" id="fname" name="fname" value="John">
-				<br>
-				<label for="lname">Last name:</label>
-				<input type="text" id="lname" name="lname" value="Doe">
-				<br>
-				<label for="email">Email:</label>
-				<input type="text" id="email" name="email" value="example@email.com">
-				<br>
-				<label for="phone">Phone:</label>
-				<input type="text" id="phone" name="phone" value="012-345-6789">
-				<br>
-				<label for="street">Street Address:</label>
-				<input type="text" id="street" name="street" value="123 Example Court">
-				<br>
-				<label for="city">City:</label>
-				<input type="text" id="city" name="city" value="Orlando">
-				<br>
-				<label for="state">State:</label>
-				<input type="text" id="state" name="state" value="FL">
-				<br>
-				<label for="zip">Zip Code:</label>
-				<input type="text" id="zip" name="zip" value="32817">
-				<br>
-				<label for="birth">Birth Date:</label>
-				<input type="text" id="birth" name="birth" value="2000-01-01">
-				<br>
-				<label for="created">Date Created:</label>
-				<input type="text" id="created" name="created" value="2023-03-17">
-				<br>
-				<label for="edited">Last Edited:</label>
-				<input type="text" id="edited" name="edited" value="2023-03-18">
-			</form>
-			
+			  	<br>
+					<button id="Edit-User">Edit username</button>
+					<br>
+					<button id ="Edit-pass">Edit password</button>
+					<br>
+					<div id="dark-mode-widget"></div>
+					<label for="size-slider">Size:</label>
+					<br> 
+					<input type="range" id="size-slider" min="1" max="50" value="25">
+				</div>
+					<button>Log Out</button>
+				</div>
+			</div>	
 		</form>
 	</div>
-	
-	
+			
+	</div>
 </body>
 <script>
 makeContactList();
@@ -128,11 +93,29 @@ function makeContactList(){
 	//let text = ...
 	//document.getElementById("contactList").innerHTML = text;
 }
-function replaceContentInContainer(target, source) {
-  document.getElementById(target).innerHTML = document.getElementById(source).innerHTML;
-}
-function hideDiv(div) {
-   document.getElementById(div).style.display = "none";
-}
 </script>
 <script src = "contactPage.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+<script>
+  function addDarkmodeWidget() {
+    new Darkmode().showWidget();
+  }
+  window.addEventListener('load', addDarkmodeWidget);
+  const options = {
+  bottom: '64px', // default: '32px'
+  right: 'unset', // default: '32px'
+  left: '32px', // default: 'unset'
+  time: '0.25s', // default: '0.3s'
+  mixColor: '#fff', // default: '#fff'
+  backgroundColor: '#fff',  // default: '#fff'
+  buttonColorDark: '#100f2c',  // default: '#100f2c'
+  buttonColorLight: '#fff', // default: '#fff'
+  saveInCookies: true, // default: true,
+  label: '🌓', // default: ''
+  autoMatchOsTheme: true // default: true
+}
+
+const darkmode = new Darkmode(options);
+darkmode.showWidget();
+</script>
