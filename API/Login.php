@@ -24,7 +24,7 @@
 
 		if( $row = $result->fetch_assoc() )
 		{
-			returnWithInfo( $row['User_Name'], $row['Password']);
+			return returnWithInfo( $row['User_Name'], $row['Password']);
 		}
 		else
 		{
