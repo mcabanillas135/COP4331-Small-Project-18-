@@ -1,7 +1,6 @@
 <?php
     class Contact
     {
-      public $username;
       public $phone;
       public $firstname;
       public $lastname;
@@ -17,7 +16,6 @@
 
     // Required Fields
     // $id = $inData["User_Id"];
-    $contact->username = $inData["User_Name"];
     $contact->phone = $inData["Phone"];
     $contact->firstname = $inData["First_Name"];
     $contact->lastname = $inData["Last_Name"];
@@ -33,18 +31,30 @@
     }
     else
     {
-       $stmt = $conn->prepare("SELECT * FROM Contact_user WHERE User_Name = ? AND Password = ?");
-       $stmt->bind_param("ss", $username, $password);
+       $stmt = $conn->prepare("SELECT * FROM Contact_database WHERE Phone = ? AND First_Name = ? AND Last_Name = ? AND Email = ?");
+       $stmt->bind_param("ssss", $contact->phone, $contact->firstname, $contact->lastname, $contact->email);
        $stmt->execute();
        $result = $stmt->get_result();
 
        if( $row = $result->fetch_assoc() )
        {
-           returnWithInfo($row['User_Name'], $row['Password']);
+	       returnWithError("Failed to add contact. Contact already exists.");
        }
        else
        {
-           returnWithError("No Records Found");
+	       $stmt2 = $conn->prepare("INSERT INTO Contact_database VALUES (?, ?, ?, ?)");
+	       $stmt2->bind_param("ssss", $contact->phone, $contact->firstname, $contact->lastname, $contact->email);
+	       $result = $stmt2->execute();
+	       
+	       if ($result) 
+	       {
+		       returnWithInfo($contact);
+	       } else
+	       {
+		       returnWithError("Failed to add contact");
+	       }
+			
+	       $stmt2->close();
        }
 
        $stmt->close();
