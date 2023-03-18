@@ -44,6 +44,8 @@
 			</table>
 		</form>
 		
+		<!--
+		
 		<form class="form" id="addContactInfo">
 			<div class="form__input-group">
 				<input type="text" id = firstName autofocus placeholder="First Name">	
@@ -53,6 +55,8 @@
 				<button id="addContactButton">Add Contact</button>
 			</div>
 		</form>
+		
+		-->
 			
 		<form class="form">
 			<div class="form__input-group">
@@ -67,8 +71,54 @@
 				<button>Log Out</button>
 			</div>
 		</form>
+		
+		<button onclick = "hideDiv(contactDetails)"> temp </button>
 			
 	</div>
+	
+	<div class = "container" id = contactDetails>
+		<form class="form" id="contactDetails">
+			<h1 class="form__title">Contact Information</h1>
+			
+			<form action="/action_page.php">
+				<label for="fname">First name:</label>
+				<input type="text" id="fname" name="fname" value="John">
+				<br>
+				<label for="lname">Last name:</label>
+				<input type="text" id="lname" name="lname" value="Doe">
+				<br>
+				<label for="email">Email:</label>
+				<input type="text" id="email" name="email" value="example@email.com">
+				<br>
+				<label for="phone">Phone:</label>
+				<input type="text" id="phone" name="phone" value="012-345-6789">
+				<br>
+				<label for="street">Street Address:</label>
+				<input type="text" id="street" name="street" value="123 Example Court">
+				<br>
+				<label for="city">City:</label>
+				<input type="text" id="city" name="city" value="Orlando">
+				<br>
+				<label for="state">State:</label>
+				<input type="text" id="state" name="state" value="FL">
+				<br>
+				<label for="zip">Zip Code:</label>
+				<input type="text" id="zip" name="zip" value="32817">
+				<br>
+				<label for="birth">Birth Date:</label>
+				<input type="text" id="birth" name="birth" value="2000-01-01">
+				<br>
+				<label for="created">Date Created:</label>
+				<input type="text" id="created" name="created" value="2023-03-17">
+				<br>
+				<label for="edited">Last Edited:</label>
+				<input type="text" id="edited" name="edited" value="2023-03-18">
+			</form>
+			
+		</form>
+	</div>
+	
+	
 </body>
 <script>
 makeContactList();
@@ -77,6 +127,12 @@ function makeContactList(){
 	
 	//let text = ...
 	//document.getElementById("contactList").innerHTML = text;
+}
+function replaceContentInContainer(target, source) {
+  document.getElementById(target).innerHTML = document.getElementById(source).innerHTML;
+}
+function hideDiv(div) {
+   document.getElementById(div).style.display = "none";
 }
 </script>
 <script src = "contactPage.js"></script>
