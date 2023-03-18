@@ -74,13 +74,13 @@
 
     function returnWithError( $err )
     {
-       $retValue = '{"Contact User":"","Phone":"","First_Name":"","Last_Name":"","Email":"","error":"' . $err . '"}';
+       $retValue = '{"Phone":"","First_Name":"","Last_Name":"","Email":"","error":"' . $err . '"}';
        sendResultInfoAsJson( $retValue );
     }
 
     function returnWithInfo( $contact ) 
     {
-        $retValue = '{"Contact User":"' . $contact->username . '","Phone":"' . $contact->phone . '","First_Name":"' . $contact->firstname . '","Last_Name":"' . $contact->lastname . '","Email":"' . $contact->email . '","error":"' . $err . '"}';
+        $retValue = '{"Phone":"' . $contact->phone . '","First_Name":"' . $contact->firstname . '","Last_Name":"' . $contact->lastname . '","Email":"' . $contact->email . '","error":"' . $err . '"}';
         sendResultInfoAsJson( $retValue );
     }
 	
