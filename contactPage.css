@@ -121,6 +121,7 @@ input[type="range"] {
   border-radius: 5px;
 }
 
+
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -176,3 +177,9 @@ display: none;
 .settingsContainer.visible {
 display: block;
 }
+
+tr.selected {
+	background-color: #ddd;
+}
+
+

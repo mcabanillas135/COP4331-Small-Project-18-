@@ -18,9 +18,16 @@ const zip = document.getElementById('zip');
 const birth = document.getElementById('birth');
 const added = document.getElementById('added');
 const edited = document.getElementById('edited');
+const editButton = document.getElementById('editButton');
+const confirmButton = document.getElementById('confirmButton');
+const allDetailedInfo = document.getElementsByClassName("detailedInfo");
+
+for(let i=0; i < allDetailedInfo.length; i++) {
+	allDetailedInfo[i].disabled = true;
+}
 
 // adds the highlight function (adds "selected" class to highlighted row)
-for(let i=0; i < tableRows.length; i++) {
+for(let i=1; i < tableRows.length; i++) {
 	const row = tableRows[i];
 	row.addEventListener('click', selectRow);
 }
@@ -37,8 +44,7 @@ function selectRow() {
 	}
 	this.classList.add('selected');
 	
-	fillDetailed(this);
-	
+	fillDetailed(this);	
 }
 
 function fillDetailed(selectedRow) {
@@ -70,10 +76,24 @@ function fillDetailed(selectedRow) {
 	birth.value = BIRTH;
 	added.value = ADDED;
 	edited.value = EDITED;
+}
+
+
+function deleteSelected(){
+	for(let i=0; i<tableRows.length; i++){
+		if(tableRows[i].classList.contains('selected')) {
+			contactTable.deleteRow(i);
+		}
+	}
+	contactDetailsPage.style.display = 'none';
+}
 	
+function setEditable() {
 	
 }
 	
+/* legacy code (add button is handled differently now)
+
 //adds the contact button
 addContactButton.addEventListener("click", e => {
     e.preventDefault();
@@ -93,6 +113,7 @@ addContactButton.addEventListener("click", e => {
 
 
 }); 
+*/
 
 const settingsBtn = document.getElementById('settings-btn');
 const editUsernameBtn = document.querySelector('#Edit-User');
