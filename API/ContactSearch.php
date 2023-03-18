@@ -64,7 +64,7 @@
 
     function returnWithInfo( $contact ) 
     {
-        $retValue = '{"Phone":"' . $contact->phone . '","First_Name":"' . $contact->firstname . '","Last_Name":"' . $contact->lastname . '","Email":"' . $contact->email . '"}';
+        $retValue = '{"Phone":"' . $contact->phone . '","First_Name":"' . $contact->firstname . '","Last_Name":"' . $contact->lastname . '","Email":"' . $contact->email . '","error":"","success":"Found Contact."}';
         sendResultInfoAsJson( $retValue );
     }
 	
