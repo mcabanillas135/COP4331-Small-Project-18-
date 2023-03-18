@@ -67,7 +67,8 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
         
                     // successful
                     console.log("successful");
-                    
+                    window.location.href = "contactPage.html";
+
                 };
         
                 console.log("Sending a request");
