@@ -165,3 +165,7 @@ button {
 .settingsContainer.visible {
   display: block;
 }
+
+tr.selected {
+	background-color: #ddd;
+}
