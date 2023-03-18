@@ -31,8 +31,8 @@
     }
     else
     {
-       $stmt = $conn->prepare("SELECT * FROM Contact_database WHERE Phone = ? AND First_Name = ? AND Last_Name = ? AND Email = ?");
-       $stmt->bind_param("ssss", $contact->phone, $contact->firstname, $contact->lastname, $contact->email);
+       $stmt = $conn->prepare("SELECT * FROM Contact_database WHERE Phone = ?");
+       $stmt->bind_param("s", $contact->phone);
        $stmt->execute();
        $result = $stmt->get_result();
 
