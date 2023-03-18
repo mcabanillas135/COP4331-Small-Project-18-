@@ -27,12 +27,12 @@
 
     if( $conn->connect_error )
     {
-       returnWithError( 0, $conn->connect_error );
+       returnWithError( $conn->connect_error );
     }
     else
     {
-       $stmt = $conn->prepare("SELECT * FROM Contact_database WHERE Phone = ? AND First_Name = ? AND Last_Name = ? AND Email = ?");
-       $stmt->bind_param("ssss", $contact->phone, $contact->firstname, $contact->lastname, $contact->email);
+       $stmt = $conn->prepare("SELECT * FROM Contact_database WHERE Phone = ? OR Email = ?");
+       $stmt->bind_param("ss", $contact->phone, $contact->email);
        $stmt->execute();
        $result = $stmt->get_result();
 

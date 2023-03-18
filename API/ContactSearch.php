@@ -36,7 +36,7 @@
        $stmt->execute();
        $result = $stmt->get_result();
 
-       if( $row = $result->fetch_assoc() )
+       if( $result)
        {
 	       returnWithInfo("$contact");
        }
