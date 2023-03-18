@@ -36,13 +36,13 @@
        $stmt->execute();
        $result = $stmt->get_result();
 
-       if( $result)
+       if( $result )
        {
-	       returnWithInfo($contact);
+		returnWithInfo($contact);
        }
        else
        {
-         returnWithEror("Contact does not exist.");
+       		returnWithEror("Contact does not exist.");
        }
 
     function getRequestInfo()
