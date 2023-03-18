@@ -1,10 +1,11 @@
 <?php
     class Contact
     {
-      public $phone;
-      public $firstname;
-      public $lastname;
-      public $email = "";
+	public $phone;
+	public $firstname;
+	public $lastname;
+	public $email = "";
+	public $datecreated;
     }
 
     // Error Testing
@@ -15,14 +16,12 @@
     $contact = new contact();
 
     // Required Fields
-    // $id = $inData["User_Id"];
     $contact->phone = $inData["Phone"];
     $contact->firstname = $inData["First_Name"];
     $contact->lastname = $inData["Last_Name"];
-
-    // Not required Fields
     $contact->email = $inData["Email"];
-
+    $contact->datecreated = $inData["Date_Created"];
+	
     $conn = new mysqli("localhost", "contactmanager", "COP4331", "COP4331"); 	
 
     if( $conn->connect_error )
@@ -42,8 +41,8 @@
        }
        else
        {
-	       $stmt2 = $conn->prepare("INSERT INTO Contact_database VALUES (?, ?, ?, ?)");
-	       $stmt2->bind_param("ssss", $contact->phone, $contact->firstname, $contact->lastname, $contact->email);
+	       $stmt2 = $conn->prepare("INSERT INTO Contact_database VALUES (?, ?, ?, ?, ?)");
+	       $stmt2->bind_param("sssss, $contact->phone, $contact->firstname, $contact->lastname, $contact->email, $contact->datecreated";
 	       $result = $stmt2->execute();
 	       
 	       if ($result) 
@@ -80,7 +79,7 @@
 
     function returnWithInfo( $contact ) 
     {
-        $retValue = '{"Phone":"' . $contact->phone . '","First_Name":"' . $contact->firstname . '","Last_Name":"' . $contact->lastname . '","Email":"' . $contact->email . '","error":"", "success":"Successfully added contact."}';
+        $retValue = '{"Phone":"' . $contact->phone . '","First_Name":"' . $contact->firstname . '","Last_Name":"' . $contact->lastname . '","Email":"' . $contact->email . '","Date created":"' . $contact->datecreated .'","error":"", "success":"Successfully added contact."}';
         sendResultInfoAsJson( $retValue );
     }
 	
