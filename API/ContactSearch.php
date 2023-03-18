@@ -35,7 +35,7 @@
        }
        else
        {
-       		returnWithEror("Contact does not exist.");
+       		returnWithError("Contact does not exist.");
        }
 
     function getRequestInfo()
