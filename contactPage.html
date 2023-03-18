@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<head>
+	<title>Contacts Page</title>
+	<link href="contactPage.css" rel="stylesheet">
+
+</head>
+<body>
+	
+	<div class = "container">
+		<form class="form" id="contacts">
+			<h1 class="form__title">Contacts</h1>
+			
+			<form class="form">
+				<div class="form__input-group">
+					<input type="text">
+					<button>Search</button>
+				</div>
+			</form>
+		
+			<table id="contactList">
+				<tr>
+					<th> First Name </th>
+					<th> Last Name </th>
+					<th> Phone Number </th>
+					<th> Email </th>
+				</tr>
+				<tr>
+					<td> Quinn </td>
+					<td> Gilbert </td>
+					<td> 516-530-3021</td>
+					<td> quinngilbert@gmail.com </td>
+				</tr>
+				<tr>
+					<td> Michael </td>
+					<td> Scott </td>
+					<td>  </td>
+					<td> michaelscott@ddmfl.com </td>
+				</tr>
+				<tr>
+					<td> Dwight </td>
+					<td>  </td>
+					<td> 012-345-6789 </td>
+					<td> </td>
+			</table>
+		</form>
+		
+		<form class="form" id="addContactInfo">
+			<div class="form__input-group">
+				<input type="text" id = firstName autofocus placeholder="First Name">	
+				<input type="text" id = lastName autofocus placeholder="Last Name">
+				<input type="text" id = phoneNumber autofocus placeholder="Phone Number">
+				<input type="text" id = email autofocus placeholder="Email Address">
+				<button id="addContactButton">Add Contact</button>
+			</div>
+		</form>
+			
+		<form class="form">
+			<div class="form__input-group">
+				<button>edit</button>
+				<button>delete</button>
+			</div>
+		</form>
+		
+		<form>
+			<div class="settingsBar">
+				<button>Settings</button>
+				<button>Log Out</button>
+			</div>
+		</form>
+			
+	</div>
+</body>
+<script>
+makeContactList();
+function makeContactList(){
+	// get table info from SQL query and fill table
+	
+	//let text = ...
+	//document.getElementById("contactList").innerHTML = text;
+}
+</script>
+<script src = "contactPage.js"></script>
