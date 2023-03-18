@@ -80,7 +80,7 @@
 
     function returnWithInfo( $contact ) 
     {
-        $retValue = '{"Phone":"' . $contact->phone . '","First_Name":"' . $contact->firstname . '","Last_Name":"' . $contact->lastname . '","Email":"' . $contact->email . '","error":""}';
+        $retValue = '{"Phone":"' . $contact->phone . '","First_Name":"' . $contact->firstname . '","Last_Name":"' . $contact->lastname . '","Email":"' . $contact->email . '","error":"", "success":"Successfully added contact."}';
         sendResultInfoAsJson( $retValue );
     }
 	
