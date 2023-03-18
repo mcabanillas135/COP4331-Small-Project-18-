@@ -27,7 +27,7 @@
 
     if( $conn->connect_error )
     {
-       returnWithError( 0, $conn->connect_error );
+       returnWithError( $conn->connect_error );
     }
     else
     {
