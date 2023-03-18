@@ -38,7 +38,7 @@
 
        if( $row = $result->fetch_assoc() )
        {
-	       returnWithError("Failed to add contact. Contact already exists.");
+	       returnWithError("Failed to add contact. Phone Number or Email already exists.");
        }
        else
        {
