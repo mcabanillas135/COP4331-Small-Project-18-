@@ -1,15 +1,15 @@
 <?php
 	// Error Testing
 	// error_reporting(E_ALL);
-    	// ini_set('display_errors', 'on');
+	// ini_set('display_errors', 'on');
 
 	$inData = getRequestInfo();
-	
+
 	$id = 0;
 	$username = $inData["User_Name"];
 	$password = $inData["Password"];
-	
-    	$conn = new mysqli("localhost", "contactmanager", "COP4331", "COP4331"); 	
+
+	$conn = new mysqli("localhost", "contactmanager", "COP4331", "COP4331");
 
 	if( $conn->connect_error )
 	{
@@ -21,59 +21,60 @@
 		{
 			returnWithError("Empty User");
 		}
-		
+
 		$stmt1 = $conn->prepare("SELECT * FROM Contact_user WHERE User_Name = ?");
-   		$stmt1->bind_param("s", $username);
-   		$stmt1->execute();
-    		$result = $stmt1->get_result();
-		
-			
+		$stmt1->bind_param("s", $username);
+		$stmt1->execute();
+		$result = $stmt1->get_result();
+
+
 		if( $row = $result->fetch_assoc() )
-        	{
-			returnWithError("Failed to add user. User already exists.");  
-        	}
+		{
+			returnWithError("Failed to add user. Username already exists.");
+		}
 		else
 		{
-			$stmt2 = $conn->prepare("INSERT INTO Contact_user VALUES (?, ?)");
+			$stmt2 = $conn->prepare("INSERT INTO Contact_user (User_Name, Password) VALUES (?, ?)");
 			$stmt2->bind_param("ss", $username, $password);
 			$result = $stmt2->execute();
+			$id = $stmt2->insert_id;
 
-			if ($result) 
+			if ($result)
 			{
-			    returnWithInfo($username, $password);
+				returnWithInfo($id, $username, $password);
 			} else
 			{
-			    returnWithError("Failed to add user");
+				returnWithError("Failed to add user");
 			}
-			
+
 			$stmt2->close();
 		}
-		
+
 		$stmt1->close();
 		$conn->close();
 	}
 
-    	function sendResultInfoAsJson( $obj )
+	function sendResultInfoAsJson( $obj )
 	{
 		// Lets the receiver/sender know the data type
 		header('Content-type: application/json');
 		echo $obj;
 	}
-                
-    	function getRequestInfo() 
-	{
-        	return json_decode(file_get_contents('php://input'), true);   
-    	}
 
-    	function returnWithError( $err )
+	function getRequestInfo()
 	{
-	    	$retValue = '{"User_Name":"","Password":"","error":"' . $err . '"}';
+		return json_decode(file_get_contents('php://input'), true);
+	}
+
+	function returnWithError( $err )
+	{
+		$retValue = '{"User_Name":"","Password":"","error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
-                
-    	function returnWithInfo( $user, $pass )
+
+	function returnWithInfo( $id, $user, $pass )
 	{
-	    	$retValue = '{"User_Name":"' . $user . '","Password":"' . $pass . '","error":"","success":"Successfully created user"}';
+		$retValue = '{"User_Id":"' . $id . '","User_Name":"' . $user . '","Password":"' . $pass . '","error":"","success":"Successfully created user"}';
 		sendResultInfoAsJson( $retValue );
 	}
 
