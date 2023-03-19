@@ -48,6 +48,8 @@
     while( $row = $result->fetch_assoc() )
     {
       $tmp = new Contact();
+      $tmp->id = $row["User_Id"];
+      $tmp->username = $row["User_Name"];
       $tmp->firstname = $row["FName"];
       $tmp->lastname = $row["LName"];
       $tmp->phone = $row["Phone"];
