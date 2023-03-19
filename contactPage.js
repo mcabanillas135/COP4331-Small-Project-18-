@@ -76,6 +76,7 @@ function makeContactList(){
 	};
 	let data = {};
 	let handleFunction = function(output) {
+		console.log("handler: "+output);
 		data = output;
 	}
 	postRequest("ContactDisplay.php", tmp, handleFunction);
@@ -115,7 +116,7 @@ function postRequest(loc, tmp, handler){
 		if (request.status === 200) {
 			// parse the response JSON and do something with it
 			var outputData = JSON.parse(request.responseText);
-			console.log(outputData);
+			console.log("postrequest: "+outputData);
 			// handler should do whatever needs to be done with that data
 			handler(outputData);
 		} else {
@@ -238,9 +239,7 @@ function addContact() {
 		Date_Created: addCreated.value
 	}
 	handleFunction = function() {}; // I don't do anything with the output data, I just want to add
-	let data = postRequest("ContactAdd.php", tmp, handleFunction);
-	
-	console.log("received: "+data);
+	postRequest("ContactAdd.php", tmp, handleFunction);
 	
 	
 	// add contact information to table
