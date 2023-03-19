@@ -5,7 +5,7 @@
 
 	$inData = getRequestInfo();
 
-	$id = $inData["User_Id"];
+	$phone = $inData["Phone"];
 
 	$conn = new mysqli("localhost", "contactmanager", "COP4331", "COP4331");
 
@@ -16,8 +16,8 @@
 	else
 	{
 
-		$stmt1 = $conn->prepare("DELETE FROM Contact_database WHERE User_Id = ?");
-		$stmt1->bind_param("i", $id);
+		$stmt1 = $conn->prepare("DELETE FROM Contact_database WHERE Phone = ?");
+		$stmt1->bind_param("s", $phone);
 		$stmt1->execute();
 		$result = $stmt1->get_result();
     
@@ -47,13 +47,13 @@
 
 	function returnWithError( $err )
 	{
-		$retValue = '{"User_Id":"","error":"' . $err . '"}';
+		$retValue = '{"Phone":"","error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 
 	function returnWithInfo($id)
 	{
-		$retValue = '{"User_Id":"' . $id . '","error":"","success":"Successfully deleted contact."}';
+		$retValue = '{"Phone":"' . $phone . '","error":"","success":"Successfully deleted contact."}';
 		sendResultInfoAsJson( $retValue );
 	}
 
