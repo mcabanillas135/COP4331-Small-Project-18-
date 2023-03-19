@@ -69,7 +69,6 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
                     else {
                         const userId = response.User_Id;
                         localStorage.setItem("userId", userId);
-                        window.location.href = "contactPage.html";
                     }
 
                 };
