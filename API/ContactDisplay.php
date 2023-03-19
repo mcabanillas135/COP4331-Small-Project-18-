@@ -55,7 +55,7 @@
       $fetchedcontact->zip = $row["Zip_Code"];
       $fetchedcontact->dob = $row["DOB"];
       $fetchedcontact->datecreated = $row["Date_Created"];
-      $fetchedcontacts[] = $fetchedcontact;
+      $contacts[] = $fetchedcontact;
     }
 
     if(count($contacts) == 0)
