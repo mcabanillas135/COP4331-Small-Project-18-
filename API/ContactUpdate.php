@@ -15,8 +15,6 @@
     public $dob = "";
   }
 
-	$conn = new mysqli("localhost", "contactmanager", "COP4331", "COP4331");
-
   $inData = getRequestInfo();
   $contact = new Contact();
 
@@ -25,7 +23,6 @@
   // these values are not allowed to be null
   $contact->firstname = $inData["FName"];
   $contact->lastname = $inData["LName"];
-  $contact->phone = $inData["Phone"];
   $contact->email = $inData["Email"];
   $contact->street = $inData["Street"];
   $contact->city = $inData["City"];
@@ -39,6 +36,8 @@
   // a Date
   $contact->dob = $inData["DOB"];
 
+  $conn = new mysqli("localhost", "contactmanager", "COP4331", "COP4331");
+
 	if( $conn->connect_error )
 	{
 		returnWithError( $conn->connect_error );
@@ -47,7 +46,7 @@
 	{
 
 		$stmt1 = $conn->prepare("UPDATE Contacts SET FName = ?, LName = ?, Email = ?, Street = ?, City = ?, State = ?, Zip_Code = ?, DOB = ? WHERE Phone = ?");
-		$stmt1->bind_param("sssssssssi", $contact->firstname, $contact->lastname, $contact->email, $contact->street, $contact->city, $contact->state, $contact->zip, $contact->dob, $phone);
+		$stmt1->bind_param("sssssssss", $contact->firstname, $contact->lastname, $contact->email, $contact->street, $contact->city, $contact->state, $contact->zip, $contact->dob, $phone);
 		$stmt1->execute();
 		$result = $stmt1->get_result();
     
@@ -83,7 +82,7 @@
 
 	function returnWithInfo($contact, $id)
 	{
-		$retValue = '{"FName":"' . $contact->firstname . '","LName":"' . $contact->lastname . '","Phone":"' . $contact->phone . '","Email":"' . $contact->email . '","Street":"' . $contact->street . '","City":"' . $contact->city . '","State":"' . $contact->state . '","Zip_Code":"' . $contact->zip . '","DOB":"' . $contact->dob . '","error":"", "success":"Successfully updated contact."}';
+		$retValue = '{"FName":"' . $contact->firstname . '","LName":"' . $contact->lastname . '","Phone":"' . $phone . '","Email":"' . $contact->email . '","Street":"' . $contact->street . '","City":"' . $contact->city . '","State":"' . $contact->state . '","Zip_Code":"' . $contact->zip . '","DOB":"' . $contact->dob . '","error":"", "success":"Successfully updated contact."}';
     		sendResultInfoAsJson( $retValue );
   	}
 
