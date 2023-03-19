@@ -1,4 +1,4 @@
-let testVar = "thisisatest";
+let testVar = "thisisatest";x
 
 baseurl = "http://cop4332.xyz";
 login = baseurl + "/API/Login.php";
@@ -150,7 +150,6 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
     });
 });
 //dark mode
-export{userId, User_Name};
 
 
 
