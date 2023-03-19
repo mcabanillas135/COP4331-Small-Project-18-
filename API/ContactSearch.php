@@ -1,6 +1,7 @@
 <?php
   class Contact
   {
+    public $id;
     public $username;
     public $firstname;
     public $lastname;
@@ -22,8 +23,10 @@
   $contact = new Contact();
 
   // Required Fields
-  $contact->firstname = $inData["First_Name"];
-  $contact->lastname = $inData["Last_Name"];
+  $contact->id = $inData["User_Id"];
+  $contact->username = $inData["User_Name"];
+  $contact->firstname = $inData["FName"];
+  $contact->lastname = $inData["LName"];
 
   $conn = new mysqli("localhost", "contactmanager", "COP4331", "COP4331");
 
@@ -33,8 +36,8 @@
   }
   else
   {
-    $stmt = $conn->prepare("SELECT * FROM Contact_database WHERE First_Name = ? OR Last_Name = ?");
-    $stmt->bind_param("ss", $contact->firstname, $contact->lastname);
+    $stmt = $conn->prepare("SELECT * FROM Contact_database WHERE User_Id = ? AND User_Name = ? AND (FName LIKE '%?%' OR LName Like '%?%')");
+    $stmt->bind_param("ssss", $contact->id, $contact->username, $contact->firstname, $contact->lastname);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -42,13 +45,24 @@
 
     while( $row = $result->fetch_assoc() )
     {
-      counter++;
+      $counter = counter + 1;
+      $contact->firstname = $row["FName"];
+      $contact->lastname = $row["LName"];
+      $contact->phone = $row["Phone"];
+      $contact->email = $row["Email"];
+      $contact->street = $row["Street"];
+      $contact->city = $row["City"];
+      $contact->state = $row["State"];
+      $contact->zip = $row["Zip_Code"];
+      $contact->dob = $row["DOB"];
+      $contact->datecreated = $row["Date_Created"];
+
       returnWithInfo($contact);
     }
 
     if($counter == 0)
     {
-      returnWithError("Contact Does not exist.");
+      returnWithError("Contact does not exist.");
     }
 
     $stmt->close();
@@ -75,7 +89,7 @@
 
   function returnWithInfo( $contact )
   {
-    $retValue = '{"First_Name":"' . $contact->firstname . '","Last_Name":"' . $contact->lastname . '","error":"","success":"Found Contact."}';
+    $retValue = '{"User_Id":"' . $contact->id . '","User_Name":"' . $contact->username . '","FName":"' . $contact->firstname . '","LName":"' . $contact->lastname . '","Phone":"' . $contact->phone . '","Email":"' . $contact->email . '","Street":"' . $contact->street . '","City":"' . $contact->city . '","State":"' . $contact->state . '","Zip_Code":"' . $contact->zip . '","DOB":"' . $contact->dob . '","Date_Created":"' . $contact->datecreated . '"}';
     sendResultInfoAsJson( $retValue );
   }
 
