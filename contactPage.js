@@ -114,7 +114,7 @@ function postRequest(loc, tmp, handler){
 	let inputJSON = JSON.stringify(tmp);
 	console.log(inputJSON);
 	request.setRequestHeader("Content-Type", "application/json");
-	request.onload = let handleFunction = function() {
+	request.onload = function() {
 		if (request.status === 200) {
 			// parse the response JSON and do something with it
 			var outputData = JSON.parse(request.responseText);
