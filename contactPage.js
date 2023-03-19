@@ -37,8 +37,6 @@ const addEdited = document.getElementById('addEdited');
 const allAddInfo = document.getElementsByClassName('addInfo');
 const confirmAdd = document.getElementById('confirmAdd');
 
-alert(userId);
-
 for(let i=0; i < allDetailedInfo.length; i++) {
 	allDetailedInfo[i].disabled = true;
 }
