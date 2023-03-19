@@ -66,8 +66,11 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
                     }
         
                     // successful
-                    console.log("successful");
-                    window.location.href = "contactPage.html";
+                    else {
+                        const userId = response.User_Id;
+                        localStorage.setItem("userId", userId);
+                        window.location.href = "contactPage.html";
+                    }
 
                 };
         
@@ -132,8 +135,6 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
             } catch (err) {
                 console.log("there was an error");
             }
-            console.log(response.User_Id);
-            User_Id = response.User_Id;
         }
     });
 });
