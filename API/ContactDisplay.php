@@ -23,7 +23,6 @@
   $querycontact = new Contact();
 
   $querycontact->id = $inData["User_Id"];
-  $querycontact->username = $inData["User_Name"];
 
   $conn = new mysqli("localhost", "contactmanager", "COP4331", "COP4331");
 
@@ -33,7 +32,7 @@
   }
   else
   {
-    $stmt = $conn->prepare( "SELECT * FROM Contact_database WHERE User_Id = ? AND User_Name = ?" );
+    $stmt = $conn->prepare( "SELECT * FROM Contact_database WHERE User_Id = ?" );
     $stmt->bind_param("ss", $querycontact->id, $querycontact->username);
     $stmt->execute();
     $result = $stmt->get_result();
