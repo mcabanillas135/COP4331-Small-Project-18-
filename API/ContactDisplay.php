@@ -38,19 +38,35 @@
     $stmt->execute();
     $result = $stmt->get_result();
 
-    $counter = 0;
+    $contacts = array();
 
     while( $row = $result->fetch_assoc() )
     {
-      $counter = $counter + 1;
-      returnWithInfo($contact);
+      $fetchedcontact = new Contact();
+      $fetchedcontact->id = $row["User_Id"];
+      $fetchedcontact->username = $row["User_Name"];
+      $fetchedcontact->firstname = $row["First_Name"];
+      $fetchedcontact->lastname = $row["Last_Name"];
+      $fetchedcontact->phone = $row["Phone"];
+      $fetchedcontact->email = $row["Email"];
+      $fetchedcontact->fetchedstreet = $row["Street"];
+      $fetchedcontact->city = $row["City"];
+      $fetchedcontact->state = $row["State"];
+      $fetchedcontact->zip = $row["Zip_Code"];
+      $fetchedcontact->dob = $row["DOB"];
+      $fetchedcontact->datecreated = $row["Date_Created"];
+      $fetchedcontacts[] = $fetchedcontact;
     }
 
-    if($counter == 0)
+    if(count($contacts) == 0)
     {
       returnWithError("Contacts Do not exist.");
     }
-
+    else
+    {
+      returnWithInfo($contacts);  
+    }
+    
     $stmt->close();
     $conn->close();
 
@@ -73,10 +89,30 @@
     sendResultInfoAsJson( $retValue );
   }
 
-  function returnWithInfo( $contact )
+  function returnWithInfo( $contacts )
   {
-    $retValue = '{"User_Id":"' . $contact->id . '","User_Name":"' . $contact->username . '","FName":"' . $contact->firstname . '","LName":"' . $contact->lastname . '","Phone":"' . $contact->phone . '","Email":"' . $contact->email . '","Street":"' . $contact->street . '","City":"' . $contact->city . '","State":"' . $contact->state . '","Zip_Code":"' . $contact->zip . '","DOB":"' . $contact->dob . '","Date_Created":"' . $contact->datecreated . '","error":"","success":"Found Contact."}';
-    sendResultInfoAsJson( $retValue );
+    $retValue = array();
+    $retValue['success'] = 'Found ' . count($contacts) . ' contact(s).';
+    $retValue['contacts'] = array();
+    
+    foreach ($contacts as $contact) {
+      $retValue['contacts'][] = array(
+        'User_Id' => $contact->id,
+        'User_Name' => $contact->username,
+        'FName' => $contact->firstname,
+        'LName' => $contact->lastname,
+        'Phone' => $contact->phone,
+        'Email' => $contact->email,
+        'Street' => $contact->street,
+        'City' => $contact->city,
+        'State' => $contact->state,
+        'Zip_Code' => $contact->zip,
+        'DOB' => $contact->dob,
+        'Date_Created' => $contact->datecreated,
+      );
+    }
+    
+    sendResultInfoAsJson( json_encode($retValue) );
   }
 
 ?>
