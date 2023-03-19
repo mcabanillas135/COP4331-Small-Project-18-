@@ -23,10 +23,10 @@
     
 			if ($result)
 			{
-				returnWithError("Failed to delete contact.");
+				returnWithInfo($id);
 			} else
 			{
-				returnWithInfo($id);
+				returnWithError("Failed to delete contact.");
 			}
 
 		$stmt1->close();
