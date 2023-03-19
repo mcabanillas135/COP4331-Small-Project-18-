@@ -82,9 +82,13 @@ async function makeContactList(){
 		console.log("data in handler: ");
 		console.log(data);
 	}
-	await postRequest("ContactDisplay.php", tmp, handleFunction);
+	postRequest("ContactDisplay.php", tmp, handleFunction);
 	console.log("data=");
 	console.log(data);
+	while(data == {} ){
+		console.log("data=");
+		console.log(data);
+	}
 	
 	// get table info from SQL query and fill table
 	
