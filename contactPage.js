@@ -38,6 +38,7 @@ const allAddInfo = document.getElementsByClassName('addInfo');
 const confirmAdd = document.getElementById('confirmAdd');
 
 alert("CHECK");
+alert(testVar);
 alert(userId);
 alert(User_Name);
 
