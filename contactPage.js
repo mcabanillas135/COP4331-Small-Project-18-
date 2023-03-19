@@ -78,16 +78,9 @@ function makeContactList(){
 		User_Name: username
 	};
 	let data = {};
-	let handleFunction = function() {
-		if (request.status === 200) {
-			// parse the response JSON and do something with it
-			var outputData = JSON.parse(request.responseText);
-			console.log(outputData);
-			data = outputData;
-		} else {
-			console.log("Request failed with status " + request.status);
-		}
-	};
+	let handleFunction = function(output) {
+		data = output;
+	}
 	postRequest("ContactDisplay.php", tmp, handleFunction);
 	console.log("data = "+data);
 	
@@ -121,7 +114,17 @@ function postRequest(loc, tmp, handler){
 	let inputJSON = JSON.stringify(tmp);
 	console.log(inputJSON);
 	request.setRequestHeader("Content-Type", "application/json");
-	request.onload = handler;
+	request.onload = let handleFunction = function() {
+		if (request.status === 200) {
+			// parse the response JSON and do something with it
+			var outputData = JSON.parse(request.responseText);
+			console.log(outputData);
+			// handler should do whatever needs to be done with that data
+			handler(outputData);
+		} else {
+			console.log("Request failed with status " + request.status);
+		}
+	};
 	request.send(inputJSON);
 }
 
