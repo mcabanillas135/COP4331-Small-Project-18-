@@ -45,8 +45,8 @@
       $fetchedcontact = new Contact();
       $fetchedcontact->id = $row["User_Id"];
       $fetchedcontact->username = $row["User_Name"];
-      $fetchedcontact->firstname = $row["First_Name"];
-      $fetchedcontact->lastname = $row["Last_Name"];
+      $fetchedcontact->firstname = $row["FName"];
+      $fetchedcontact->lastname = $row["LName"];
       $fetchedcontact->phone = $row["Phone"];
       $fetchedcontact->email = $row["Email"];
       $fetchedcontact->fetchedstreet = $row["Street"];
