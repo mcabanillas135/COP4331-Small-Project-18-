@@ -48,9 +48,9 @@
 		$stmt1 = $conn->prepare("UPDATE Contact_database SET FName = ?, LName = ?, Email = ?, Street = ?, City = ?, State = ?, Zip_Code = ?, DOB = ? WHERE Phone = ?");
 		$stmt1->bind_param("sssssssss", $contact->firstname, $contact->lastname, $contact->email, $contact->street, $contact->city, $contact->state, $contact->zip, $contact->dob, $phone);
 		$stmt1->execute();
-		$result = $stmt1->get_result();
+		$affectedRows = $stmt1->affected_rows;
     
-			if ($result)
+			if ($affectedRows > 0)
 			{
 				returnWithInfo($contact, $phone);
 			} else
@@ -80,7 +80,7 @@
 		sendResultInfoAsJson( $retValue );
 	}
 
-	function returnWithInfo($contact, $id)
+	function returnWithInfo($contact, $phone)
 	{
 		$retValue = '{"FName":"' . $contact->firstname . '","LName":"' . $contact->lastname . '","Phone":"' . $phone . '","Email":"' . $contact->email . '","Street":"' . $contact->street . '","City":"' . $contact->city . '","State":"' . $contact->state . '","Zip_Code":"' . $contact->zip . '","DOB":"' . $contact->dob . '","error":"", "success":"Successfully updated contact."}';
     		sendResultInfoAsJson( $retValue );
