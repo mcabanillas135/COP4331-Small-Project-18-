@@ -69,7 +69,7 @@
     else
     {
       // returnWithInfo($contacts); 
-      echo json_encodse($contacts);
+      echo json_encode($contacts);
     }
 
     $stmt->close();
