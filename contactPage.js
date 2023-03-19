@@ -117,6 +117,7 @@ function postRequest(loc, tmp, handler){
 			// parse the response JSON and do something with it
 			var outputData = JSON.parse(request.responseText);
 			console.log("postrequest: "+outputData);
+			console.log(outputData);
 			// handler should do whatever needs to be done with that data
 			handler(outputData);
 		} else {
