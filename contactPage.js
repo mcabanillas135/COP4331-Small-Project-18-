@@ -170,12 +170,12 @@ function fillDetailed(selectedRow) {
 		const lName = cells[1].textContent;
 		const phone = cells[2].textContent;
 		const email = cells[3].textContent;
-		const STREET = "";
-		const CITY = "";
-		const STATE = "";
-		const ZIP = "";
-		const BIRTH = "";
-		const CREATED = "";
+		const STREET = data.Street;
+		const CITY = data.City;
+		const STATE = data.State;
+		const ZIP = data.Zip_Code;
+		const BIRTH = data.DOB;
+		const CREATED = data.Date_Created;
 		const EDITED = "";
 	
 		detailedFirstName.value = fName;
