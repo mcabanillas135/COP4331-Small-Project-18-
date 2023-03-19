@@ -37,7 +37,7 @@ const addEdited = document.getElementById('addEdited');
 const allAddInfo = document.getElementsByClassName('addInfo');
 const confirmAdd = document.getElementById('confirmAdd');
 
-
+alert(userId);
 
 for(let i=0; i < allDetailedInfo.length; i++) {
 	allDetailedInfo[i].disabled = true;
@@ -185,8 +185,8 @@ function addContact() {
 	// add contact to database
 	
 	let tmp = {
-		User_Id: ,
-		User_Name: ,
+		User_Id: "16",
+		User_Name: "user",
 		FName: addFirstName.value, 
 		LName: addLastName.value, 
 		Phone: addPhone.value, 
