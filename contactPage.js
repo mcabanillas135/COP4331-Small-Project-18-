@@ -57,9 +57,6 @@ function getCookie(cname) {
 const userId = getCookie("userId");
 const username = getCookie("username");
 
-alert(userId);
-alert(username);
-
 for(let i=0; i < allDetailedInfo.length; i++) {
 	allDetailedInfo[i].disabled = true;
 }
@@ -82,7 +79,7 @@ function makeContactList(){
 		data = output;
 	}
 	postRequest("ContactDisplay.php", tmp, handleFunction);
-	console.log("data = "+data);
+	console.log("data = "+JSON.stringify(data));
 	
 	// get table info from SQL query and fill table
 	
@@ -240,8 +237,8 @@ function addContact() {
 		DOB: addBirth.value,
 		Date_Created: addCreated.value
 	}
-	
-	let data = postRequest("ContactAdd.php", tmp);
+	handleFunction = function() {}; // I don't do anything with the output data, I just want to add
+	let data = postRequest("ContactAdd.php", tmp, handleFunction);
 	
 	console.log("received: "+data);
 	
