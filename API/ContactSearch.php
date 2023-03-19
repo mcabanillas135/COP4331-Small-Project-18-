@@ -36,8 +36,10 @@
   }
   else
   {
+    $firstnamepattern = "%" . $contact->firstname . "%";
+    $lastnamepattern = "%" . $contact->lastname . "%";
     $stmt = $conn->prepare("SELECT * FROM Contact_database WHERE User_Id = ? AND User_Name = ? AND (FName LIKE ? OR LName Like ?)");
-    $stmt->bind_param("ssss", $contact->id, $contact->username, "%" . $contact->firstname . "%", "%" . $contact->lastname . "%");
+    $stmt->bind_param("ssss", $contact->id, $contact->username, $firstnamepattern, $lastnamepattern);
     $stmt->execute();
     $result = $stmt->get_result();
 
