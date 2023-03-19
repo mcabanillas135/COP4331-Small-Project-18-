@@ -82,7 +82,7 @@ function makeContactList(){
 		console.log("data in handler: ");
 		console.log(data);
 	}
-	postRequest("ContactDisplay.php", tmp, handleFunction);
+	await postRequest("ContactDisplay.php", tmp, handleFunction);
 	console.log("data=");
 	console.log(data);
 	
