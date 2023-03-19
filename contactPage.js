@@ -64,6 +64,28 @@ function selectRow() {
 	fillDetailed(this);	
 }
 
+function postRequest(loc, tmp){
+	baseurl = "http://24.199.121.145";
+	url = baseurl + "/API/"+loc;
+	let request = new XMLHttpRequest();
+	request.open("POST", url);
+	console.log(tmp);
+	let inputJSON = JSON.stringify(tmp);
+	console.log(inputJSON);
+	request.setRequestHeader("Content-Type", "application/json");
+	request.onload = function() {
+		if (request.status === 200) {
+			// parse the response JSON and do something with it
+			var outputData = JSON.parse(request.responseText);
+			console.log(outputData);
+			return outputData;
+		} else {
+			console.log("Request failed with status " + request.status);
+		}
+	};
+	request.send(inputJSON);
+}
+
 function fillDetailed(selectedRow) {
 	// api call that fills information for detailed tableRows
 	
@@ -161,6 +183,27 @@ function showAddContactPage() {
 
 function addContact() {
 	// add contact to database
+	
+	let tmp = {
+		User_Id: ,
+		User_Name: ,
+		FName: addFirstName.value, 
+		LName: addLastName.value, 
+		Phone: addPhone.value, 
+		Email: addEmail.value,
+		Street: addStreet.value,
+		City: addCity.value,
+		State: addState.value,
+		Zip_Code: addZip.value,
+		DOB: addBirth.value,
+		Date_Created: addCreated.value
+	}
+	
+	let data = postRequest("ContactAdd.php", tmp);
+	
+	console.log("received: "+data);
+	
+	
 	// add contact information to table
 	const newRow = contactTable.insertRow();
 	const firstNameCell = newRow.insertCell();
