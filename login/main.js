@@ -121,8 +121,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
         
                     // successful
                     console.log("signed up");
-                    console.log(response.User_Id);
-                    User_Id = response.User_Id;
+
                     
                 };
         
@@ -133,6 +132,8 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
             } catch (err) {
                 console.log("there was an error");
             }
+            console.log(response.User_Id);
+            User_Id = response.User_Id;
         }
     });
 });
