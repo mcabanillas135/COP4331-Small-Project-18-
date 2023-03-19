@@ -1,6 +1,7 @@
 <?php
   class Contact
   {
+    public $id;
     public $username;
     public $firstname;
     public $lastname;
@@ -15,8 +16,8 @@
   }
 
   // Error Testing
-  error_reporting(E_ALL);
-  ini_set('display_errors', 'on');
+  // error_reporting(E_ALL);
+  // ini_set('display_errors', 'on');
 
   $inData = getRequestInfo();
   $contact = new Contact();
@@ -34,6 +35,7 @@
   $contact->state = $inData["State"];
 
   // an int
+  $contact->id = $inData["User_Id"];
   $contact->zip = $inData["Zip_Code"];
 
   // a Date
@@ -48,8 +50,8 @@
   }
   else
   {
-    $stmt = $conn->prepare("SELECT * FROM Contact_database WHERE Phone = ?");
-    $stmt->bind_param("s", $contact->phone);
+    $stmt = $conn->prepare("SELECT * FROM Contact_database WHERE Phone = ? AND User_Id = ?");
+    $stmt->bind_param("ss", $contact->phone, $contact->id);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -59,8 +61,8 @@
     }
     else
     {
-      $stmt2 = $conn->prepare("INSERT INTO Contact_database VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-      $stmt2->bind_param("sssssssssss", $contact->username, $contact->firstname, $contact->lastname, $contact->phone, $contact->email,
+      $stmt2 = $conn->prepare("INSERT INTO Contact_database VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+      $stmt2->bind_param("ssssssssssss", $contact->id, $contact->username, $contact->firstname, $contact->lastname, $contact->phone, $contact->email,
                           $contact->street, $contact->city, $contact->state, $contact->zip, $contact->dob, $contact->datecreated);
       $result = $stmt2->execute();
 
@@ -92,13 +94,13 @@
 
   function returnWithError( $err )
   {
-    $retValue = '{"User_Name":"","FName":"","LName":"","Phone":"","Email":"","Street":"","City":"","State":"","Zip_Code":"","DOB":"","Date_Created":"","error":"' . $err . '"}';
+    $retValue = '{"User_Id":"","User_Name":"","FName":"","LName":"","Phone":"","Email":"","Street":"","City":"","State":"","Zip_Code":"","DOB":"","Date_Created":"","error":"' . $err . '"}';
     sendResultInfoAsJson( $retValue );
   }
 
   function returnWithInfo( $contact )
   {
-    $retValue = '{"User_Name":"' . $contact->username . '","FName":"' . $contact->firstname . '","LName":"' . $contact->lastname . '","Phone":"' . $contact->phone . '","Email":"' . $contact->email . '","Street":"' . $contact->street . '","City":"' . $contact->city . '","State":"' . $contact->state . '","Zip_Code":"' . $contact->zip . '","DOB":"' . $contact->dob . '","Date_Created":"' . $contact->datecreated . '","error":"", "success":"Successfully added contact."}';
+    $retValue = '{"User_Id":"' . $contact->id . '","User_Name":"' . $contact->username . '","FName":"' . $contact->firstname . '","LName":"' . $contact->lastname . '","Phone":"' . $contact->phone . '","Email":"' . $contact->email . '","Street":"' . $contact->street . '","City":"' . $contact->city . '","State":"' . $contact->state . '","Zip_Code":"' . $contact->zip . '","DOB":"' . $contact->dob . '","Date_Created":"' . $contact->datecreated . '","error":"", "success":"Successfully added contact."}';
     sendResultInfoAsJson( $retValue );
   }
 
