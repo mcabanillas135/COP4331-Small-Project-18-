@@ -69,6 +69,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
                     else {
                         const userId = response.User_Id;
                         localStorage.setItem("userId", userId);
+                        console.log(userId);
                     }
 
                 };
