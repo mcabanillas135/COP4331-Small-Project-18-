@@ -66,8 +66,11 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
                     }
         
                     // successful
-                    console.log("successful");
-                    window.location.href = "contactPage.html";
+                    else {
+                        const userId = response.User_Id;
+                        localStorage.setItem("userId", userId);
+                        window.location.href = "contactPage.html";
+                    }
 
                 };
         
@@ -121,6 +124,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
         
                     // successful
                     console.log("signed up");
+
                     
                 };
         
