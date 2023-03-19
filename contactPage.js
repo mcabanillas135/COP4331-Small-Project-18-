@@ -97,8 +97,7 @@ function populateTable(data) {
 
 function makeContactList(){
 	let tmp = {
-		User_Id : userId,
-		User_Name: username
+		User_Id : userId
 	};
 	let handleFunction = function(output) {
 		console.log("handler: ");
