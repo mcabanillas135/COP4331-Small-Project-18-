@@ -162,42 +162,6 @@
 			
 	</div>
 </body>
-<script>
-makeContactList();
-function getData() {
-	baseurl = "http://24.199.121.145";
-	displayContact = baseurl + "/API/ContactDisplay.php";
-	let request = new XMLHttpRequest();
-	request.open("POST", displayContact);
-	let tmp = {
-		User_Id : "16",
-		User_Name: "user"
-	};
-	console.log(tmp);
-	let inputJSON = JSON.stringify(tmp);
-	console.log(inputJSON);
-	request.setRequestHeader("Content-Type", "application/json");
-	request.onload = function() {
-		if (request.status === 200) {
-			// parse the response JSON and do something with it
-			var outputData = JSON.parse(request.responseText);
-			console.log(outputData);
-		} else {
-			console.log("Request failed with status " + request.status);
-		}
-	};
-
-	// send the request with the input JSON as the request body
-	request.send(inputJSON);
-}
-function makeContactList(){
-	getData();
-	// get table info from SQL query and fill table
-	
-	//let text = ...
-	//document.getElementById("contactList").innerHTML = text;
-}
-</script>
 <script src="./login/main.js"></script>
 <script src = "contactPage.js"></script>
 

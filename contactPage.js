@@ -37,10 +37,28 @@ const addEdited = document.getElementById('addEdited');
 const allAddInfo = document.getElementsByClassName('addInfo');
 const confirmAdd = document.getElementById('confirmAdd');
 
-alert("CHECK");
-alert(testVar);
+// get userId and UserName cookies
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+const userId = getCookie("userId");
+const username = getCookie("username");
+
 alert(userId);
-alert(User_Name);
+alert(username);
 
 for(let i=0; i < allDetailedInfo.length; i++) {
 	allDetailedInfo[i].disabled = true;
@@ -50,6 +68,42 @@ for(let i=0; i < allDetailedInfo.length; i++) {
 for(let i=1; i < tableRows.length; i++) {
 	const row = tableRows[i];
 	row.addEventListener('click', selectRow);
+}
+
+makeContactList();
+
+function getData() {
+	baseurl = "http://24.199.121.145";
+	displayContact = baseurl + "/API/ContactDisplay.php";
+	let request = new XMLHttpRequest();
+	request.open("POST", displayContact);
+	let tmp = {
+		User_Id : "16",
+		User_Name: "user"
+	};
+	console.log(tmp);
+	let inputJSON = JSON.stringify(tmp);
+	console.log(inputJSON);
+	request.setRequestHeader("Content-Type", "application/json");
+	request.onload = function() {
+		if (request.status === 200) {
+			// parse the response JSON and do something with it
+			var outputData = JSON.parse(request.responseText);
+			console.log(outputData);
+		} else {
+			console.log("Request failed with status " + request.status);
+		}
+	};
+
+	// send the request with the input JSON as the request body
+	request.send(inputJSON);
+}
+function makeContactList(){
+	let data = postRequest("ContactDisplay.php", 
+	// get table info from SQL query and fill table
+	
+	//let text = ...
+	//document.getElementById("contactList").innerHTML = text;
 }
 
 function selectRow() {
