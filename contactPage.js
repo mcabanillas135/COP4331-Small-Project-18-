@@ -164,6 +164,7 @@ function fillDetailed(selectedRow) {
 	};
 	
 	let handleFunction = function(data) {		
+	
 		
 		const fName = cells[0].textContent;
 		const lName = cells[1].textContent;
@@ -190,7 +191,7 @@ function fillDetailed(selectedRow) {
 		edited.value = EDITED;
 	};
 	
-	postRequest("PhoneSearch", tmp, handleFunction);
+	postRequest("PhoneSearch.php", tmp, handleFunction);
 	
 }
 
