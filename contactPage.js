@@ -199,11 +199,24 @@ function fillDetailed(selectedRow) {
 	
 }
 
+function deleteFromDatabase(row){
+	const cells = selectedRow.querySelectorAll('td');
+	const phone = cells[2].textContent;
+	
+	let tmp = {
+		Phone: phone
+	};
+	let handleFunction = function(){} // don't need to do anything with return values
+	
+	postRequest("ContactDelete.php",tmp,handleFunction);
+	
+}
 
 function deleteSelected() {
 	for(let i=0; i<tableRows.length; i++){
 		if(tableRows[i].classList.contains('selected')) {
 			contactTable.deleteRow(i);
+			deleteFromDatabase(tableRows[i]);
 		}
 	}
 	contactDetailsPage.style.display = 'none';
