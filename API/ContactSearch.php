@@ -68,7 +68,8 @@
     }
     else
     {
-      returnWithInfo($contacts); 
+      // returnWithInfo($contacts); 
+      echo json_encodse($contacts);
     }
 
     $stmt->close();
