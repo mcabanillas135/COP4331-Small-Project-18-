@@ -28,15 +28,19 @@
        $stmt->bind_param("ss", $contact->firstname, $contact->lastname);
        $stmt->execute();
        $result = $stmt->get_result();
+	    
+	$counter = 0;
 
-       if( $row = $result->fetch_assoc() )
+       while( $row = $result->fetch_assoc() )
        {
-		returnWithInfo($contact);
+		counter++;
+	       returnWithInfo($contact);
        }
-       else
-       {
-       		returnWithError("Contact does not exist.");
-       }
+	    
+	if(counter == 0)
+	{
+		returnWithError("Contact Does not exist.");
+	}
 	
        $stmt->close();
        $conn->close();
