@@ -29,15 +29,15 @@
        $stmt->execute();
        $result = $stmt->get_result();
 	    
-	$counter = 0;
+       $counter = 0;
 
        while( $row = $result->fetch_assoc() )
        {
-		counter++;
+	       counter++;
 	       returnWithInfo($contact);
        }
 	    
-	if(counter == 0)
+	if($counter == 0)
 	{
 		returnWithError("Contact Does not exist.");
 	}
