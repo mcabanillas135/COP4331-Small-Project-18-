@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
                         localStorage.setItem("userId", userId);
                         console.log(userId);
                         module.exports = {userId};
-                        module.exports{User_Name};
+                        module.exports = {User_Name};
 
 
 
