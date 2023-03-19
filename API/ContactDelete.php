@@ -19,9 +19,9 @@
 		$stmt1 = $conn->prepare("DELETE FROM Contact_database WHERE Phone = ?");
 		$stmt1->bind_param("s", $phone);
 		$stmt1->execute();
-		$result = $stmt1->get_result();
+		$affectedRows = $stmt1->affected_rows;
     
-			if ($result)
+			if ($affectedRows > 0)
 			{
 				returnWithInfo($id);
 			} else
