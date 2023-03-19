@@ -90,6 +90,7 @@ function getData() {
 			// parse the response JSON and do something with it
 			var outputData = JSON.parse(request.responseText);
 			console.log(outputData);
+			return outputData;
 		} else {
 			console.log("Request failed with status " + request.status);
 		}
@@ -99,7 +100,13 @@ function getData() {
 	request.send(inputJSON);
 }
 function makeContactList(){
-	let data = postRequest("ContactDisplay.php", 
+	let tmp = {
+		User_Id : "16",
+		User_Name: "user"
+	};
+	let data = postRequest("ContactDisplay.php", tmp};
+	console.log(data);
+	
 	// get table info from SQL query and fill table
 	
 	//let text = ...
