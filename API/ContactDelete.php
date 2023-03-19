@@ -21,12 +21,12 @@
 		$stmt1->execute();
 		$result = $stmt1->get_result();
     
-			if ($row = $result->fetch_assoc())
-			{
-				returnWithInfo($id);
-			} else
+			if ($result)
 			{
 				returnWithError("Failed to delete contact.");
+			} else
+			{
+				returnWithInfo($id);
 			}
 
 		$stmt1->close();
