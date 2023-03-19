@@ -20,10 +20,10 @@
   ini_set('display_errors', 'on');
 
   $inData = getRequestInfo();
-  $contact = new Contact();
+  $querycontact = new Contact();
 
-  $contact->id = $inData["User_Id"];
-  $contact->username = $inData["User_Name"];
+  $querycontact->id = $inData["User_Id"];
+  $querycontact->username = $inData["User_Name"];
 
   $conn = new mysqli("localhost", "contactmanager", "COP4331", "COP4331");
 
@@ -34,7 +34,7 @@
   else
   {
     $stmt = $conn->prepare( "SELECT * FROM Contact_database WHERE User_Id = ? AND User_Name = ?" );
-    $stmt->bind_param("ss", $contact->id, $contact->username);
+    $stmt->bind_param("ss", $querycontact->id, $querycontact->username);
     $stmt->execute();
     $result = $stmt->get_result();
 
