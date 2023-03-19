@@ -217,8 +217,8 @@ function deleteFromDatabase(row){
 function deleteSelected() {
 	for(let i=0; i<tableRows.length; i++){
 		if(tableRows[i].classList.contains('selected')) {
-			contactTable.deleteRow(i);
 			deleteFromDatabase(tableRows[i]);
+			contactTable.deleteRow(i);
 		}
 	}
 	contactDetailsPage.style.display = 'none';
