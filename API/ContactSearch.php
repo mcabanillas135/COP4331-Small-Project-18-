@@ -47,7 +47,7 @@
 
     while( $row = $result->fetch_assoc() )
     {
-      $counter = counter + 1;
+      $counter = $counter + 1;
       $contact->firstname = $row["FName"];
       $contact->lastname = $row["LName"];
       $contact->phone = $row["Phone"];
