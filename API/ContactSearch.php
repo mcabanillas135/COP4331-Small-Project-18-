@@ -1,73 +1,82 @@
 <?php
-    class Contact
+  class Contact
+  {
+    public $username;
+    public $firstname;
+    public $lastname;
+    public $phone;
+    public $email;
+    public $street = "";
+    public $city = "";
+    public $state = "";
+    public $zip = "";
+    public $dob = "";
+    public $datecreated;
+  }
+
+  // Error Testing
+  error_reporting(E_ALL);
+  ini_set('display_errors', 'on');
+
+  $inData = getRequestInfo();
+  $contact = new Contact();
+
+  // Required Fields
+  $contact->firstname = $inData["First_Name"];
+  $contact->lastname = $inData["Last_Name"];
+
+  $conn = new mysqli("localhost", "contactmanager", "COP4331", "COP4331");
+
+  if( $conn->connect_error )
+  {
+    returnWithError( $conn->connect_error );
+  }
+  else
+  {
+    $stmt = $conn->prepare("SELECT * FROM Contact_database WHERE First_Name = ? OR Last_Name = ?");
+    $stmt->bind_param("ss", $contact->firstname, $contact->lastname);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $counter = 0;
+
+    while( $row = $result->fetch_assoc() )
     {
-      public $firstname;
-      public $lastname;
+      counter++;
+      returnWithInfo($contact);
     }
 
-    // Error Testing
-    error_reporting(E_ALL);
-    ini_set('display_errors', 'on');
-
-    $inData = getRequestInfo();
-    $contact = new Contact();
-
-    // Required Fields
-    $contact->firstname = $inData["First_Name"];
-    $contact->lastname = $inData["Last_Name"];
-
-    $conn = new mysqli("localhost", "contactmanager", "COP4331", "COP4331"); 	
-
-    if( $conn->connect_error )
+    if($counter == 0)
     {
-       returnWithError( $conn->connect_error );
-    }
-    else
-    {
-       $stmt = $conn->prepare("SELECT * FROM Contact_database WHERE First_Name = ? AND Last_Name = ?");
-       $stmt->bind_param("ss", $contact->firstname, $contact->lastname);
-       $stmt->execute();
-       $result = $stmt->get_result();
-	    
-       $counter = 0;
-
-       while( $row = $result->fetch_assoc() )
-       {
-	       counter++;
-	       returnWithInfo($contact);
-       }
-	    
-	if($counter == 0)
-	{
-		returnWithError("Contact Does not exist.");
-	}
-	
-       $stmt->close();
-       $conn->close();
-	    
+      returnWithError("Contact Does not exist.");
     }
 
-    function getRequestInfo()
-    {
-       return json_decode(file_get_contents('php://input'), true);
-    }
+    $stmt->close();
+    $conn->close();
 
-    function sendResultInfoAsJson( $obj )
-    {
-       header('Content-type: application/json');
-       echo $obj;
-    }
+  }
 
-    function returnWithError( $err )
-    {
-       $retValue = '{"First_Name":"","Last_Name":"","error":"' . $err . '"}';
-       sendResultInfoAsJson( $retValue );
-    }
+  function getRequestInfo()
+  {
+    return json_decode(file_get_contents('php://input'), true);
+  }
 
-    function returnWithInfo( $contact ) 
-    {
-        $retValue = '{"First_Name":"' . $contact->firstname . '","Last_Name":"' . $contact->lastname . '","error":"","success":"Found Contact."}';
-        sendResultInfoAsJson( $retValue );
-    }
-	
+  function sendResultInfoAsJson( $obj )
+  {
+    header('Content-type: application/json');
+    echo $obj;
+  }
+
+  function returnWithError( $err )
+  {
+    $retValue = '{"First_Name":"","Last_Name":"","error":"' . $err . '"}';
+    sendResultInfoAsJson( $retValue );
+  }
+
+  function returnWithInfo( $contact )
+  {
+    $retValue = '{"First_Name":"' . $contact->firstname . '","Last_Name":"' . $contact->lastname . '","error":"","success":"Found Contact."}';
+    sendResultInfoAsJson( $retValue );
+  }
+
 ?>
