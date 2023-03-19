@@ -121,6 +121,8 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
         
                     // successful
                     console.log("signed up");
+                    console.log(response.User_Id);
+                    User_Id = response.User_Id;
                     
                 };
         
