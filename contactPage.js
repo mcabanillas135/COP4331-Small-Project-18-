@@ -69,26 +69,44 @@ for(let i=1; i < tableRows.length; i++) {
 
 makeContactList();
 
-async function makeContactList(){
+function addToTable(tempFirstName, tempLastName, tempPhone, tempEmail) {
+	const newRow = contactTable.insertRow();
+	const firstNameCell = newRow.insertCell();
+    firstNameCell.textContent = tempFirstName;
+
+    const lastNameCell = newRow.insertCell();
+    lastNameCell.textContent = tempLastName;
+
+    const phoneNumberCell = newRow.insertCell();
+    phoneNumberCell.textContent = tempPhone;
+
+    const emailCell = newRow.insertCell();
+    emailCell.textContent = tempEmail;
+	
+	newRow.addEventListener('click', selectRow);
+}
+
+function populateTable(data) {
+	console.log("populateTable:");
+	console.log(data);
+	console.log(data.contacts);
+	console.log(data.contacts.length);
+	console.log(data.contacts[0]);
+}
+
+function makeContactList(){
 	let tmp = {
 		User_Id : userId,
 		User_Name: username
 	};
-	let data = {};
 	let handleFunction = function(output) {
 		console.log("handler: ");
 		console.log(output);
-		data = output;
-		console.log("data in handler: ");
-		console.log(data);
+		populateTable(output);
 	}
 	postRequest("ContactDisplay.php", tmp, handleFunction);
 	console.log("data=");
 	console.log(data);
-	while(data == {} ){
-		console.log("data=");
-		console.log(data);
-	}
 	
 	// get table info from SQL query and fill table
 	
