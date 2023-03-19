@@ -89,9 +89,10 @@ function addToTable(tempFirstName, tempLastName, tempPhone, tempEmail) {
 function populateTable(data) {
 	console.log("populateTable:");
 	console.log(data);
-	console.log(data.contacts);
-	console.log(data.contacts.length);
-	console.log(data.contacts[0]);
+	for(let i=0; i<data.contacts.length; i++) {
+		let cur = data.contacts[i];
+		addToTable(cur.FName, cur.LName, cur.Phone, cur.Email);
+	}
 }
 
 function makeContactList(){
@@ -105,8 +106,6 @@ function makeContactList(){
 		populateTable(output);
 	}
 	postRequest("ContactDisplay.php", tmp, handleFunction);
-	console.log("data=");
-	console.log(data);
 	
 	// get table info from SQL query and fill table
 	
