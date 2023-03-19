@@ -18,7 +18,7 @@
 	else
 	{
 		$stmt = $conn->prepare( "UPDATE Contact_user SET User_Name = ?, Password = ? WHERE User_Id = ?" );
-		$stmt->bind_param( "sss", $username, $password, $id );
+		$stmt->bind_param( "ssi", $username, $password, $id );
 		$stmt->execute();
 		$affectedRows = $stmt->affected_rows;
 
@@ -26,13 +26,17 @@
 		{
 			returnWithInfo($id, $username, $password);
 		}
-		else if ($affectedRows == 0 && $conn->affected_rows == 0)
-		{
-			returnWithError( "That user does not exist" );
-		}
 		else
 		{
-			returnWithError( "Failed to edit user" )
+			$result = $conn->query("SELECT * FROM Contact_user WHERE User_Id = $id");
+			if ($result->num_rows == 0)
+			{
+				returnWithError( "User not found." );
+			}
+			else
+			{
+				returnWithError( "Failed to edit user" )
+			}
 		}
 
 		$stmt->close();
