@@ -164,7 +164,21 @@
 </body>
 <script>
 makeContactList();
+function getData() {
+	baseurl = "http://24.199.121.145";
+	displayContact = baseurl + "/API/ContactDisplay.php";
+	let request = new XMLHttpRequest();
+	request.open("POST", displayContact);
+	let tmp = {
+		User_Id : "7";
+		User_Name: "mrose";
+	}
+	console.log(tmp);
+	request.send(tmp);
+	console.log(request.responseText);
+}
 function makeContactList(){
+	getData();
 	// get table info from SQL query and fill table
 	
 	//let text = ...
