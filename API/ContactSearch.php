@@ -24,7 +24,6 @@
 
   // Required Fields
   $contact->id = $inData["User_Id"];
-  $contact->username = $inData["User_Name"];
   $contact->firstname = $inData["FName"];
   $contact->lastname = $inData["LName"];
 
@@ -38,8 +37,8 @@
   {
     $firstnamepattern = "%" . $contact->firstname . "%";
     $lastnamepattern = "%" . $contact->lastname . "%";
-    $stmt = $conn->prepare("SELECT * FROM Contact_database WHERE User_Id = ? AND User_Name = ? AND (FName LIKE ? OR LName Like ?)");
-    $stmt->bind_param("ssss", $contact->id, $contact->username, $firstnamepattern, $lastnamepattern);
+    $stmt = $conn->prepare("SELECT * FROM Contact_database WHERE User_Id = ? AND (FName LIKE ? OR LName Like ?)");
+    $stmt->bind_param("ssss", $contact->id, $firstnamepattern, $lastnamepattern);
     $stmt->execute();
     $result = $stmt->get_result();
 
