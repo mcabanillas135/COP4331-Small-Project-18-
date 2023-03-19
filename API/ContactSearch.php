@@ -37,6 +37,11 @@
        {
        		returnWithError("Contact does not exist.");
        }
+	
+       $stmt->close();
+       $conn->close();
+	    
+    }
 
     function getRequestInfo()
     {
