@@ -47,19 +47,18 @@
 
     while( $row = $result->fetch_assoc() )
     {
-      // $tmp = new Contact();
-      // $tmp->firstname = $row["FName"];
-      // $tmp->lastname = $row["LName"];
-      // $tmp->phone = $row["Phone"];
-      // $tmp->email = $row["Email"];
-      // $tmp->street = $row["Street"];
-      // $tmp->city = $row["City"];
-      // $tmp->state = $row["State"];
-      // $tmp->zip = $row["Zip_Code"];
-      // $tmp->dob = $row["DOB"];
-      // $tmp->datecreated = $row["Date_Created"];
-      // $contacts[] = $tmp;
-      $contacts[] = $row;
+      $tmp = new Contact();
+      $tmp->firstname = $row["FName"];
+      $tmp->lastname = $row["LName"];
+      $tmp->phone = $row["Phone"];
+      $tmp->email = $row["Email"];
+      $tmp->street = $row["Street"];
+      $tmp->city = $row["City"];
+      $tmp->state = $row["State"];
+      $tmp->zip = $row["Zip_Code"];
+      $tmp->dob = $row["DOB"];
+      $tmp->datecreated = $row["Date_Created"];
+      $contacts[] = $tmp;
     }
     
     if(count($contacts) == 0)
@@ -68,8 +67,7 @@
     }
     else
     {
-      // returnWithInfo($contacts); 
-      echo json_encode($contacts);
+      returnWithInfo($contacts); 
     }
 
     $stmt->close();
@@ -96,9 +94,28 @@
 
   function returnWithInfo( $contacts )
   {
-    // $retValue = '{"User_Id":"' . $contact->id . '","User_Name":"' . $contact->username . '","FName":"' . $contact->firstname . '","LName":"' . $contact->lastname . '","Phone":"' . $contact->phone . '","Email":"' . $contact->email . '","Street":"' . $contact->street . '","City":"' . $contact->city . '","State":"' . $contact->state . '","Zip_Code":"' . $contact->zip . '","DOB":"' . $contact->dob . '","Date_Created":"' . $contact->datecreated . '"}';
-    // sendResultInfoAsJson( $retValueArray );
-    sendResultInfoAsJson ( $contacts );
+    $retValue = array();
+    $retValue['success'] = 'Found ' . count($contacts) . ' contact(s).';
+    $retValue['contacts'] = array();
+    
+    foreach ($contacts as $contact) {
+      $retValue['contacts'][] = array(
+        'User_Id' => $contact->id,
+        'User_Name' => $contact->username,
+        'FName' => $contact->firstname,
+        'LName' => $contact->lastname,
+        'Phone' => $contact->phone,
+        'Email' => $contact->email,
+        'Street' => $contact->street,
+        'City' => $contact->city,
+        'State' => $contact->state,
+        'Zip_Code' => $contact->zip,
+        'DOB' => $contact->dob,
+        'Date_Created' => $contact->datecreated,
+      );
+    }
+    
+    sendResultInfoAsJson( json_encode($retValue) );
   }
 
 ?>
