@@ -16,8 +16,8 @@
   }
 
   // Error Testing
-  error_reporting(E_ALL);
-  ini_set('display_errors', 'on');
+  // error_reporting(E_ALL);
+  // ini_set('display_errors', 'on');
 
   $inData = getRequestInfo();
   $querycontact = new Contact();
@@ -33,7 +33,7 @@
   else
   {
     $stmt = $conn->prepare( "SELECT * FROM Contact_database WHERE User_Id = ?" );
-    $stmt->bind_param("ss", $querycontact->id);
+    $stmt->bind_param("s", $querycontact->id);
     $stmt->execute();
     $result = $stmt->get_result();
 
