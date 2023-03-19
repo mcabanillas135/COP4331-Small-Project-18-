@@ -23,6 +23,9 @@ insert into Contact_user values('tmoyers', 'Tmoyers01@');
 insert into Contact_user values('vmcdonald', 'Vmcdonald02@');
 insert into Contact_user values('Whumphrey', 'Whumphrey06@');
 
+-- addign field User_Id and making it an auto_increment field
+alter table Contact_user ADD User_Id int(20) UNIQUE AUTO_INCREMENT;
+
 
 -- Description of Contact_database
 -- Contact_database will have the columns User_Name, FName, LName,Phone, Email, Street, City,
