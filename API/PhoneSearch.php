@@ -57,7 +57,7 @@
     }
     else
     {
-      returnWithError("Contacts Do not exist.");
+      returnWithError("Contact does not exist.");
     }
 
     $stmt->close();
