@@ -206,6 +206,8 @@ function deleteFromDatabase(row){
 	let tmp = {
 		Phone: phone
 	};
+	console.log("delete: ");
+	console.log(tmp);
 	let handleFunction = function(){} // don't need to do anything with return values
 	
 	postRequest("ContactDelete.php",tmp,handleFunction);
