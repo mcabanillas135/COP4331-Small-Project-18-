@@ -65,3 +65,5 @@
 		$retValue = '{"User_Id":"' . $id . '","User_Name":"' . $user . '","Password":"' . $pass . '","error":"","success":"Successfully edited user"}';
 		sendResultInfoAsJson( $retValue );
 	}
+
+?>
