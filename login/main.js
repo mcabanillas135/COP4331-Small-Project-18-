@@ -72,8 +72,8 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
                         const userId = response.User_Id;
                         localStorage.setItem("userId", userId);
                         console.log(userId);
-                        module.exports = {userId};
-                        module.exports = {User_Name};
+                        window.location.href = "contactPage.html";
+
 
 
 
