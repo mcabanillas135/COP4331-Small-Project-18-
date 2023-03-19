@@ -72,40 +72,24 @@ for(let i=1; i < tableRows.length; i++) {
 
 makeContactList();
 
-function getData() {
-	baseurl = "http://24.199.121.145";
-	displayContact = baseurl + "/API/ContactDisplay.php";
-	let request = new XMLHttpRequest();
-	request.open("POST", displayContact);
+function makeContactList(){
 	let tmp = {
-		User_Id : "16",
-		User_Name: "user"
+		User_Id : userId,
+		User_Name: username
 	};
-	console.log(tmp);
-	let inputJSON = JSON.stringify(tmp);
-	console.log(inputJSON);
-	request.setRequestHeader("Content-Type", "application/json");
-	request.onload = function() {
+	let data = {};
+	let handleFunction = function() {
 		if (request.status === 200) {
 			// parse the response JSON and do something with it
 			var outputData = JSON.parse(request.responseText);
 			console.log(outputData);
-			return outputData;
+			data = outputData;
 		} else {
 			console.log("Request failed with status " + request.status);
 		}
 	};
-
-	// send the request with the input JSON as the request body
-	request.send(inputJSON);
-}
-function makeContactList(){
-	let tmp = {
-		User_Id : "16",
-		User_Name: "user"
-	};
-	let data = postRequest("ContactDisplay.php", tmp);
-	console.log(data);
+	postRequest("ContactDisplay.php", tmp, handleFunction);
+	console.log("data = "+data);
 	
 	// get table info from SQL query and fill table
 	
@@ -128,7 +112,7 @@ function selectRow() {
 	fillDetailed(this);	
 }
 
-function postRequest(loc, tmp){
+function postRequest(loc, tmp, handler){
 	baseurl = "http://24.199.121.145";
 	url = baseurl + "/API/"+loc;
 	let request = new XMLHttpRequest();
@@ -137,16 +121,7 @@ function postRequest(loc, tmp){
 	let inputJSON = JSON.stringify(tmp);
 	console.log(inputJSON);
 	request.setRequestHeader("Content-Type", "application/json");
-	request.onload = function() {
-		if (request.status === 200) {
-			// parse the response JSON and do something with it
-			var outputData = JSON.parse(request.responseText);
-			console.log(outputData);
-			return outputData;
-		} else {
-			console.log("Request failed with status " + request.status);
-		}
-	};
+	request.onload = handler;
 	request.send(inputJSON);
 }
 
