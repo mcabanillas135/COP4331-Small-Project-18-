@@ -103,7 +103,7 @@ function makeContactList(){
 		console.log("handler: ");
 		console.log(output);
 		populateTable(output);
-	}
+	};
 	postRequest("ContactDisplay.php", tmp, handleFunction);
 	
 	// get table info from SQL query and fill table
@@ -157,29 +157,40 @@ function fillDetailed(selectedRow) {
 	contactDetailsPage.style.display = 'block';
 	
 	const cells = selectedRow.querySelectorAll('td');
-	const fName = cells[0].textContent;
-	const lName = cells[1].textContent;
-	const phone = cells[2].textContent;
-	const email = cells[3].textContent;
-	const STREET = "";
-	const CITY = "";
-	const STATE = "";
-	const ZIP = "";
-	const BIRTH = "";
-	const CREATED = "";
-	const EDITED = "";
 	
-	detailedFirstName.value = fName;
-	detailedLastName.value = lName;
-	detailedPhone.value = phone;
-	detailedEmail.value = email;
-	street.value = STREET;
-	city.value = CITY;
-	state.value = STATE;
-	zip.value = ZIP;
-	birth.value = BIRTH;
-	created.value = CREATED;
-	edited.value = EDITED;
+	let tmp = {
+		User_Id : userId,
+		Phone: cells[2].textContent
+	};
+	
+	let handleFunction = function(data) {		
+		
+		const fName = cells[0].textContent;
+		const lName = cells[1].textContent;
+		const phone = cells[2].textContent;
+		const email = cells[3].textContent;
+		const STREET = "";
+		const CITY = "";
+		const STATE = "";
+		const ZIP = "";
+		const BIRTH = "";
+		const CREATED = "";
+		const EDITED = "";
+	
+		detailedFirstName.value = fName;
+		detailedLastName.value = lName;
+		detailedPhone.value = phone;
+		detailedEmail.value = email;
+		street.value = STREET;
+		city.value = CITY;
+		state.value = STATE;
+		zip.value = ZIP;
+		birth.value = BIRTH;
+		created.value = CREATED;
+		edited.value = EDITED;
+	};
+	
+	postRequest("PhoneSearch", tmp, handleFunction);
 	
 }
 
@@ -308,29 +319,6 @@ function searchTable() {
         }
     }
 }
-	
-/* legacy code (add button is handled differently now)
-
-//adds the contact button
-addContactButton.addEventListener("click", e => {
-    e.preventDefault();
-    const newRow = contactTable.insertRow();
-
-    const firstNameCell = newRow.insertCell();
-    firstNameCell.textContent = firstName.value;
-
-    const lastNameCell = newRow.insertCell();
-    lastNameCell.textContent = lastName.value;
-
-    const phoneNumberCell = newRow.insertCell();
-    phoneNumberCell.textContent = phoneNumber.value;
-
-    const emailCell = newRow.insertCell();
-    emailCell.textContent = email.value;
-
-
-}); 
-*/
 
 const settingsBtn = document.getElementById('settings-btn');
 const editUsernameBtn = document.querySelector('#Edit-User');
