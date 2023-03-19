@@ -29,7 +29,7 @@
        $stmt->execute();
        $result = $stmt->get_result();
 
-       if( $result )
+       if( $row = $result->fetch_assoc() )
        {
 		returnWithInfo($contact);
        }
