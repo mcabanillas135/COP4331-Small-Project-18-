@@ -104,7 +104,7 @@ function makeContactList(){
 		User_Id : "16",
 		User_Name: "user"
 	};
-	let data = postRequest("ContactDisplay.php", tmp};
+	let data = postRequest("ContactDisplay.php", tmp);
 	console.log(data);
 	
 	// get table info from SQL query and fill table
