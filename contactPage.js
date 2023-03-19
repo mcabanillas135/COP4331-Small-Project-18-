@@ -69,7 +69,7 @@ for(let i=1; i < tableRows.length; i++) {
 
 makeContactList();
 
-function makeContactList(){
+async function makeContactList(){
 	let tmp = {
 		User_Id : userId,
 		User_Name: username
