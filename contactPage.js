@@ -76,7 +76,8 @@ function makeContactList(){
 	};
 	let data = {};
 	let handleFunction = function(output) {
-		console.log("handler: "+output);
+		console.log("handler: ");
+		console.log(output);
 		data = output;
 	}
 	postRequest("ContactDisplay.php", tmp, handleFunction);
