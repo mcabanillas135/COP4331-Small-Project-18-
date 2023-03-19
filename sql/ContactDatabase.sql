@@ -25,6 +25,9 @@ insert into Contact_user values('Whumphrey', 'Whumphrey06@');
 
 -- addign field User_Id and making it an auto_increment field
 alter table Contact_user ADD User_Id int(20) UNIQUE AUTO_INCREMENT;
+-- adding new primary key
+alter table Contact_user ADD PRIMARY KEY(User_Id);
+
 
 
 -- Description of Contact_database
@@ -34,15 +37,18 @@ alter table Contact_user ADD User_Id int(20) UNIQUE AUTO_INCREMENT;
 -- The "User_Name" is regarded as the foreign key referencing the parent table Contact_user.
 -- Syntax for Contact_database
 
-create table Contact_database(User_Name varchar(255) NOT NULL,
+create table Contact_database(User_Id int(20),
+                              User_Name varchar(255) NOT NULL,
                               FName varchar(255) NOT NULL,
                               LName varchar(255) NOT NULL,
-                              Phone varchar(255) NOT NULL,
-                              Email varchar(255) NOT NULL,
+                              Phone varchar(255) NOT NULL UNIQUE, 
+                              Email varchar(255)  NOT NULL,
                               Street varchar(255) NOT NULL,
                               City varchar(255) NOT NULL,
                               State varchar(255), Zip_Code int, DOB DATE, Date_Created DATE,
-                              PRIMARY KEY (Phone)
-                              CONSTRAINT FK_ud FOREIGN KEY(User_Name)
-                              REFERENCES Contact_user(User_Name));
+                              PRIMARY KEY (Phone),
+                              CONSTRAINT FK_ud FOREIGN KEY(User_Id)
+                              REFERENCES Contact_user(User_Id));
+
+
 
