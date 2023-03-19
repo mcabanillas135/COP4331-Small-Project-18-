@@ -92,7 +92,8 @@
   function returnWithInfo( $contact )
   {
     $retValue = '{"User_Id":"' . $contact->id . '","User_Name":"' . $contact->username . '","FName":"' . $contact->firstname . '","LName":"' . $contact->lastname . '","Phone":"' . $contact->phone . '","Email":"' . $contact->email . '","Street":"' . $contact->street . '","City":"' . $contact->city . '","State":"' . $contact->state . '","Zip_Code":"' . $contact->zip . '","DOB":"' . $contact->dob . '","Date_Created":"' . $contact->datecreated . '"}';
-    sendResultInfoAsJson( $retValue );
+    $retValueArray = array($retValue);
+    sendResultInfoAsJson( json_encode($retValueArray) );
   }
 
 ?>
