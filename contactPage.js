@@ -200,7 +200,7 @@ function fillDetailed(selectedRow) {
 }
 
 function deleteFromDatabase(row){
-	const cells = selectedRow.querySelectorAll('td');
+	const cells = row.querySelectorAll('td');
 	const phone = cells[2].textContent;
 	
 	let tmp = {
