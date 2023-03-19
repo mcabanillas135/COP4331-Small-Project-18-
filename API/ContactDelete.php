@@ -21,7 +21,7 @@
 		$stmt1->execute();
 		$result = $stmt1->get_result();
     
-			if ($result)
+			if ($row = $result->fetch_assoc())
 			{
 				returnWithInfo($id);
 			} else
