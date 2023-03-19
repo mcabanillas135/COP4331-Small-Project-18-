@@ -35,7 +35,7 @@
 			}
 			else
 			{
-				returnWithError( "Failed to edit user" )
+				returnWithError( "Failed to edit user" );
 			}
 		}
 
