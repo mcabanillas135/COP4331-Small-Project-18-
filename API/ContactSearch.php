@@ -43,28 +43,32 @@
     $stmt->execute();
     $result = $stmt->get_result();
 
-    $counter = 0;
+    $contacts = array();
 
     while( $row = $result->fetch_assoc() )
     {
-      $counter = $counter + 1;
-      $contact->firstname = $row["FName"];
-      $contact->lastname = $row["LName"];
-      $contact->phone = $row["Phone"];
-      $contact->email = $row["Email"];
-      $contact->street = $row["Street"];
-      $contact->city = $row["City"];
-      $contact->state = $row["State"];
-      $contact->zip = $row["Zip_Code"];
-      $contact->dob = $row["DOB"];
-      $contact->datecreated = $row["Date_Created"];
-
-      returnWithInfo($contact);
+      // $tmp = new Contact();
+      // $tmp->firstname = $row["FName"];
+      // $tmp->lastname = $row["LName"];
+      // $tmp->phone = $row["Phone"];
+      // $tmp->email = $row["Email"];
+      // $tmp->street = $row["Street"];
+      // $tmp->city = $row["City"];
+      // $tmp->state = $row["State"];
+      // $tmp->zip = $row["Zip_Code"];
+      // $tmp->dob = $row["DOB"];
+      // $tmp->datecreated = $row["Date_Created"];
+      // $contacts[] = $tmp;
+      $contacts[] = $row;
     }
-
-    if($counter == 0)
+    
+    if(count($contacts) == 0)
     {
-      returnWithError("Contact does not exist.");
+      returnWithError("Contact Do not exist.");
+    }
+    else
+    {
+      returnWithInfo($contacts); 
     }
 
     $stmt->close();
@@ -89,11 +93,11 @@
     sendResultInfoAsJson( $retValue );
   }
 
-  function returnWithInfo( $contact )
+  function returnWithInfo( $contacts )
   {
-    $retValue = '{"User_Id":"' . $contact->id . '","User_Name":"' . $contact->username . '","FName":"' . $contact->firstname . '","LName":"' . $contact->lastname . '","Phone":"' . $contact->phone . '","Email":"' . $contact->email . '","Street":"' . $contact->street . '","City":"' . $contact->city . '","State":"' . $contact->state . '","Zip_Code":"' . $contact->zip . '","DOB":"' . $contact->dob . '","Date_Created":"' . $contact->datecreated . '"}';
-    $retValueArray = array($retValue);
-    sendResultInfoAsJson( json_encode($retValueArray) );
+    // $retValue = '{"User_Id":"' . $contact->id . '","User_Name":"' . $contact->username . '","FName":"' . $contact->firstname . '","LName":"' . $contact->lastname . '","Phone":"' . $contact->phone . '","Email":"' . $contact->email . '","Street":"' . $contact->street . '","City":"' . $contact->city . '","State":"' . $contact->state . '","Zip_Code":"' . $contact->zip . '","DOB":"' . $contact->dob . '","Date_Created":"' . $contact->datecreated . '"}';
+    // sendResultInfoAsJson( $retValueArray );
+    sendResultInfoAsJson ( $contacts );
   }
 
 ?>
