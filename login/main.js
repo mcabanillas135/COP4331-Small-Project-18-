@@ -148,5 +148,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
     });
 });
 //dark mode
+export{userId, User_Name};
+
 
 
