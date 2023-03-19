@@ -73,6 +73,8 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
                         console.log(User_Name);
                         const userId = response.User_Id;
                         localStorage.setItem("userId", userId);
+                        document.cookie = "userId=" + userId;
+                        document.cookie = "username=" +  User_Name;
                         console.log(userId);
                         window.location.href = "contactPage.html";
 
@@ -150,6 +152,5 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
     });
 });
 //dark mode
-
 
 
