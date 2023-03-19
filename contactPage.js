@@ -227,8 +227,8 @@ function addContact() {
 	// add contact to database
 	
 	let tmp = {
-		User_Id: "16",
-		User_Name: "user",
+		User_Id: userId,
+		User_Name: username,
 		FName: addFirstName.value, 
 		LName: addLastName.value, 
 		Phone: addPhone.value, 
