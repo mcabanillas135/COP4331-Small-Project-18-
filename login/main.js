@@ -67,14 +67,13 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
         
                     // successful
                     else {
-                        const userId = response.User_Id;
                         const User_Name = response.User_Name;
-                        localStorage.setItem("userId", userId);
-                        localStoarge.setItem("User_Name", User_Name);
-                        console.log(userId);
                         console.log(User_Name);
+                        const userId = response.User_Id;
+                        localStorage.setItem("userId", userId);
+                        console.log(userId);
                         module.exports = {userId};
-                        module.exports = {User_Name};
+                        module.exports{User_Name};
 
 
 
