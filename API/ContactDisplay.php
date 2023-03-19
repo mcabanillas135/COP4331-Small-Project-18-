@@ -42,7 +42,7 @@
 
     while( $row = $result->fetch_assoc() )
     {
-      counter++;
+      $counter = $counter + 1;
       returnWithInfo($contact);
     }
 
