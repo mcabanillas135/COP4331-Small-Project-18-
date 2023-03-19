@@ -79,10 +79,12 @@ function makeContactList(){
 		console.log("handler: ");
 		console.log(output);
 		data = output;
+		console.log("data in handler: ");
+		console.log(data);
 	}
 	postRequest("ContactDisplay.php", tmp, handleFunction);
 	console.log("data=");
-	console.log(JSON.stringify(data));
+	console.log(data);
 	
 	// get table info from SQL query and fill table
 	
