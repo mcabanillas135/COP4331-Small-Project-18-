@@ -80,7 +80,8 @@ function makeContactList(){
 		data = output;
 	}
 	postRequest("ContactDisplay.php", tmp, handleFunction);
-	console.log("data = "+JSON.stringify(data));
+	console.log("data=");
+	console.log(JSON.stringify(data));
 	
 	// get table info from SQL query and fill table
 	
