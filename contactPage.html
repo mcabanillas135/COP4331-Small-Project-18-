@@ -172,10 +172,23 @@ function getData() {
 	let tmp = {
 		User_Id : "7",
 		User_Name: "mrose"
-	}
+	};
 	console.log(tmp);
-	request.send(tmp);
-	console.log(request.responseText);
+	let inputJSON = JSON.stringify(tmp);
+	console.log(inputJSON);
+	request.setRequestHeader("Content-Type", "application/json");
+	request.onload = function() {
+		if (request.status === 200) {
+			// parse the response JSON and do something with it
+			var outputData = JSON.parse(request.responseText);
+			console.log(outputData);
+		} else {
+			console.log("Request failed with status " + request.status);
+		}
+	};
+
+	// send the request with the input JSON as the request body
+	xhr.send(inputJson);
 }
 function makeContactList(){
 	getData();
