@@ -47,6 +47,12 @@ font: 500 1rem 'Quicksand', sans-serif;
     
   }
 }
+
+#contactDetails
+{
+  justify-content: right;
+}
+
 .form__title {
   margin-bottom: 2rem;
   text-align: center;
@@ -208,11 +214,6 @@ tr.selected {
 
 td, th {
 	padding: 5px;
-}
-
-.addinfo
-{
-  justify-content: right;
 }
 
 
