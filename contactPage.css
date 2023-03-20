@@ -26,6 +26,7 @@
   #contactDetails{
     width: 150px;
   }
+
   @media screen and (max-width: 480px){
     .wrapper
     {
@@ -195,6 +196,12 @@
     border-radius: 5px;
     color: transparent;
   }
+
+  .addInfo
+  {
+    justify-content: right;
+  }
+  
   .settingsContainer {
   display: none;
   /* Other styles */
