@@ -48,12 +48,6 @@ font: 500 1rem 'Quicksand', sans-serif;
   }
 }
 
-.addinfo {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-top: 1rem;
-}
 
 .form__title {
   margin-bottom: 2rem;
