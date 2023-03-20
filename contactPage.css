@@ -15,7 +15,7 @@
   }
 
   .container {
-    width: 350px;
+    width: 300;
     margin: 1rem;
     padding: 2rem;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
@@ -24,7 +24,7 @@
   font: 500 1rem 'Quicksand', sans-serif;
   }
   #contactDetails{
-    width: 200px;
+    width: 150px;
   }
   @media screen and (max-width: 480px){
     .wrapper
