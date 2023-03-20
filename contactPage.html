@@ -104,39 +104,51 @@
 		<div class = "container" id = "addContactDetails" style = "display: none;">
 			<h1 class="form__title">Contact Information</h1>
 
-			<form action="/action_page.php">
+			<form action="/action_page.php" style = "display: table;" id = "addContactForm">
+				<p>
 				<label>First name:</label>
-				<input class = "addInfo" id="addFirstName" value="John">
-				<br>
+				<input class = "addInfo" id="addFirstName" value="John" >
+				</p>
+				<p>
 				<label>Last name:</label>
 				<input class = "addInfo" id="addLastName" value="Doe">
-				<br>
+				</p>
+				<p>
 				<label>Email:</label>
 				<input class = "addInfo" id="addEmail" value="example@email.com">
-				<br>
+				</p>
+				<p>
 				<label>Phone:</label>
 				<input class = "addInfo" id="addPhone" value="012-345-6789">
-				<br>
+				</p>
+				<p>
 				<label>Street Address:</label>
 				<input class = "addInfo" id="addStreet"  value="123 Example Court">
-				<br>
+				</p>
+				<p>
 				<label>City:</label>
 				<input class = "addInfo" id="addCity" name="city" value="Orlando">
-				<br>
+				</p>
+				<p>
 				<label>State:</label>
 				<input class = "addInfo" id="addState" name="state" value="FL">
-				<br>
+				</p>
+				<p>
 				<label>Zip Code:</label>
 				<input class = "addInfo" id="addZip" name="zip" value="32817">
-				<br>
+				</p>
+				<p>
 				<label>Birth Date:</label>
 				<input class = "addInfo" id="addBirth" name="birth" value="2000-01-01">
-				<br>
+				</p>
+				<p>
 				<label>Date Created:</label>
 				<input class = "addInfo" id="addCreated" name="created" value="2023-03-17">
-				<br>
+				</p>
+				<p>
 				<label>Last Edited:</label>
 				<input class = "addInfo" id="addEdited" name="edited" value="2023-03-18">
+				</p>
 			</form>
 
 			<button id = 'confirmAdd' onclick = 'addContact()'>Confirm</button>

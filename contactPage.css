@@ -215,5 +215,10 @@ td, th {
 	padding: 5px;
 }
 
+#addContactForm label, input {
+	display: table-cell;
+}
 
-
+#addContactForm p {
+	display: table-row;
+}
