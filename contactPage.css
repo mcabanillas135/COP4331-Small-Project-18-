@@ -48,6 +48,9 @@ font: 500 1rem 'Quicksand', sans-serif;
   }
 }
 
+.addinfo {
+  float: right;
+}
 
 .form__title {
   margin-bottom: 2rem;
