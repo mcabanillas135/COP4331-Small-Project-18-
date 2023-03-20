@@ -257,6 +257,7 @@ function cancelEdits() {
 	const selectedRow = document.querySelector('.selected');
 	fillDetailed(selectedRow);
 	setUneditable();
+	document.getElementById("editErrorMessage").style.display = "none";
 }
 
 function confirmEdits() {
@@ -296,8 +297,74 @@ function showAddContactPage() {
 	}
 }
 
+function hideAddContactPage(){
+	addContactPage.style.display = 'none';
+	document.getElementById("addErrorMessage").style.display = 'none';
+}
+
+// (for now?) just tests if it is an integer
+function validZip(value) {
+	if(parseInt(value,10).toString()===value) {
+	return true
+	}
+	return false;
+}
+
+function validBirthday(date){
+	return true;
+}
+
+function unused(tempPhone){
+	// query database for if element is used
+	let tmp = {
+		User_Id: userId,
+		Phone: tempPhone
+	}
+	let handleFunction = function(output) {
+		// check if result is error message
+		
+	}
+	postRequest("", tmp, handleFunction);
+}
+
 function addContact() {
-	// add contact to database
+	
+	// check that entries are valid
+	
+	document.getElementById("addErrorMessage").style.display = 'none';
+	// check that entries are non-empty
+	if(addFirstName.value == "" || addLastName.value == "" || addEmail.value == "" || addPhone.value == "") {
+		document.getElementById("addErrorMessage").innerHTML = "Must include first name, last name, email, and phone number";
+		document.getElementById("addErrorMessage").style.display = 'block';
+		return;
+	}
+	// check that phone number is not used
+	if(!unused(addPhone.value)){
+		document.getElementById("addErrorMessage").innerHTML = "Phone number is already in use for another contact";
+		document.getElementById("addErrorMessage").style.display = 'block';
+		return false;
+	}
+	// check if birth date is valid
+	if(!validBirthday(addBirth.value)){
+		document.getElementById("addErrorMessage").innerHTML = "Birth Date is invalid";
+		document.getElementById("addErrorMessage").style.display = 'block';
+		return false;
+	}
+	if(addZip.value == "") {
+		addZip.value = "0";
+	}
+	// check if zip code is valid
+	if(!validZip(addZip.value)){
+		document.getElementById("addErrorMessage").innerHTML = "Zip-Code is invalid";
+		document.getElementById("addErrorMessage").style.display = 'block';
+		return false;
+	}
+	
+	
+	// add entries to database
+	
+	let yourDate = new Date();
+	yourDate.toISOString().split('T')[0];
 	
 	let tmp = {
 		User_Id: userId,
@@ -311,7 +378,7 @@ function addContact() {
 		State: addState.value,
 		Zip_Code: addZip.value,
 		DOB: addBirth.value,
-		Date_Created: addCreated.value
+		Date_Created: yourDate
 	}
 	handleFunction = function() {}; // I don't do anything with the output data, I just want to add
 	postRequest("ContactAdd.php", tmp, handleFunction);

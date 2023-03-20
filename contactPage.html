@@ -54,9 +54,9 @@
 				</div>	
 			</form>
 		</div>
-
-		</div>
-
+	</div>
+	
+	<div class ="wrapper">
 		<div class = "container" id = "contactDetails" style = "display: none;">
 			<h1 class="form__title">Contact Information</h1>
 
@@ -95,6 +95,7 @@
 				<input class = "detailedInfo" id="edited" name="edited" value="">
 			</form>
 
+			<label id = "editErrorMessage" style = "display: none; color: red;"> </label>
 			<button id = "editButton" onclick = 'setEditable()'>Edit</button>
 			<button id = "cancelButton" onclick = 'cancelEdits()' style = "display: none">Cancel</button> 
 			<button id = "confirmButton" onclick = 'confirmEdits()' style = "display: none">Confirm</button>
@@ -102,62 +103,57 @@
 		</div>
 
 		<div class = "container" id = "addContactDetails" style = "display: none;">
-			<h1 class="form__title">Contact Information</h1>
+		
+			<h1 class="form__title">Add New Contact</h1>
 
 			<form action="/action_page.php" style = "display: table;" id = "addContactForm">
-				<p>
+				<div>
 				<label>First name:</label>
 				<input class = "addInfo" id="addFirstName" value="John" >
-				</p>
-				<p>
+				</div>
+				<div>
 				<label>Last name:</label>
 				<input class = "addInfo" id="addLastName" value="Doe">
-				</p>
-				<p>
+				</div>
+				<div>
 				<label>Email:</label>
 				<input class = "addInfo" id="addEmail" value="example@email.com">
-				</p>
-				<p>
+				</div>
+				<div>
 				<label>Phone:</label>
 				<input class = "addInfo" id="addPhone" value="012-345-6789">
-				</p>
-				<p>
+				</div>
+				<div>
 				<label>Street Address:</label>
 				<input class = "addInfo" id="addStreet"  value="123 Example Court">
-				</p>
-				<p>
+				</div>
+				<div>
 				<label>City:</label>
 				<input class = "addInfo" id="addCity" name="city" value="Orlando">
-				</p>
-				<p>
+				</div>
+				<div>
 				<label>State:</label>
 				<input class = "addInfo" id="addState" name="state" value="FL">
-				</p>
-				<p>
+				</div>
+				<div>
 				<label>Zip Code:</label>
 				<input class = "addInfo" id="addZip" name="zip" value="32817">
-				</p>
-				<p>
+				</div>
+				<div>
 				<label>Birth Date:</label>
 				<input class = "addInfo" id="addBirth" name="birth" value="2000-01-01">
-				</p>
-				<p>
-				<label>Date Created:</label>
-				<input class = "addInfo" id="addCreated" name="created" value="2023-03-17">
-				</p>
-				<p>
-				<label>Last Edited:</label>
-				<input class = "addInfo" id="addEdited" name="edited" value="2023-03-18">
-				</p>
+				</div>
 			</form>
+			
+			<label style = "display: none; color: red;" id = "addErrorMessage"></label>
 
+			<button id = 'cancelAdd' onclick = "hideAddContactPage()">Cancel</button>
 			<button id = 'confirmAdd' onclick = 'addContact()'>Confirm</button>
-
-		</div>
-
 		</div>
 	</div>
+	
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src = "contactPage.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
