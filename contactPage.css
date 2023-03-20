@@ -33,9 +33,18 @@ font: 500 1rem 'Quicksand', sans-serif;
   }
 }
 @media screen and (max-width: 480){
+  #container
+  {
+    width: 50%
+  }
+
+  
+}
+@media screen and (max-width: 480){
   #contactDetails
   {
-    margin-top: 2rem;
+    width: 50%
+    
   }
 }
 .form__title {
