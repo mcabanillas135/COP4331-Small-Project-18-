@@ -7,142 +7,143 @@
 
 </head>
 <body>
-	
-	<div class = "container" id = "container">
-		<h1 class="form__title">Contacts</h1>
-		
-		
-		<input type="text" id = "searchBar">
-		<button onclick = "searchTable()">Search</button>
-	
-		<table id="contactList">
-			<tr>
-				<th> First Name </th>
-				<th> Last Name </th>
-				<th> Phone Number </th>
-				<th> Email </th>
-			</tr>
-		</table>
-		
-		<button id="addContactButton" onclick = "showAddContactPage()">Add Contact</button>
-		
-		<div class = "buttonParent">
+	<div class ="wrapper">
+		<div class = "container" id = "container">
+			<h1 class="form__title">Contacts</h1>
 
-		
-		<div class="form__input-group">
-			<button onclick = "deleteSelected()">delete</button>
+
+			<input type="text" id = "searchBar">
+			<button onclick = "searchTable()">Search</button>
+
+			<table id="contactList">
+				<tr>
+					<th> First Name </th>
+					<th> Last Name </th>
+					<th> Phone Number </th>
+					<th> Email </th>
+				</tr>
+			</table>
+
+			<button id="addContactButton" onclick = "showAddContactPage()">Add Contact</button>
+
+			<div class = "buttonParent">
+
+
+			<div class="form__input-group">
+				<button onclick = "deleteSelected()">delete</button>
+			</div>
+
+			<form>
+				<div id = "settingsBar">
+					<button id="settings-btn">Settings</button>
+
+					<div id="settings-dropdown" style="display: none;">
+
+					<br>
+						<button id="Edit-User">Edit username</button>
+						<br>
+						<button id ="Edit-pass">Edit password</button>
+						<br>
+						<div id="dark-mode-widget"></div>
+						<label for="size-slider">Size:</label>
+						<br> 
+						<input type="range" id="size-slider" min="1" max="50" value="25">
+					</div>
+						<button>Log Out</button>
+					</div>
+				</div>	
+			</form>
 		</div>
-		
-		<form>
-			<div id = "settingsBar">
-				<button id="settings-btn">Settings</button>
-        
-				<div id="settings-dropdown" style="display: none;">
-	
-			  	<br>
-					<button id="Edit-User">Edit username</button>
-					<br>
-					<button id ="Edit-pass">Edit password</button>
-					<br>
-					<div id="dark-mode-widget"></div>
-					<label for="size-slider">Size:</label>
-					<br> 
-					<input type="range" id="size-slider" min="1" max="50" value="25">
-				</div>
-					<button>Log Out</button>
-				</div>
-			</div>	
-		</form>
-	</div>
-	
-	</div>
 
-	<div class = "container" id = "contactDetails" style = "display: none;">
-		<h1 class="form__title">Contact Information</h1>
+		</div>
 
-		<form action="/action_page.php">
-			<label>First name:</label>
-			<input class = "detailedInfo" id="detailedFirstName" value="">
-			<br>
-			<label>Last name:</label>
-			<input class = "detailedInfo" id="detailedLastName" value="">
-			<br>
-			<label>Email:</label>
-			<input class = "detailedInfo" id="detailedEmail" value="">
-			<br>
-			<label>Phone:</label>
-			<input class = "detailedInfo" id="detailedPhone" value="">
-			<br>
-			<label>Street Address:</label>
-			<input class = "detailedInfo" id="street"  value="">
-			<br>
-			<label>City:</label>
-			<input class = "detailedInfo" id="city" name="city" value="">
-			<br>
-			<label>State:</label>
-			<input class = "detailedInfo" id="state" name="state" value="">
-			<br>
-			<label>Zip Code:</label>
-			<input class = "detailedInfo" id="zip" name="zip" value="">
-			<br>
-			<label>Birth Date:</label>
-			<input class = "detailedInfo" id="birth" name="birth" value="">
-			<br>
-			<label>Date Created:</label>
-			<input class = "detailedInfo" id="created" name="created" value="">
-			<br>
-			<label>Last Edited:</label>
-			<input class = "detailedInfo" id="edited" name="edited" value="">
-		</form>
-		
-		<button id = "editButton" onclick = 'setEditable()'>Edit</button>
-		<button id = "cancelButton" onclick = 'cancelEdits()' style = "display: none">Cancel</button> 
-		<button id = "confirmButton" onclick = 'confirmEdits()' style = "display: none">Confirm</button>
-		
-	</div>
-	
-	<div class = "container" id = "addContactDetails" style = "display: none;">
-		<h1 class="form__title">Contact Information</h1>
+		<div class = "container" id = "contactDetails" style = "display: none;">
+			<h1 class="form__title">Contact Information</h1>
 
-		<form action="/action_page.php">
-			<label>First name:</label>
-			<input class = "addInfo" id="addFirstName" value="John">
-			<br>
-			<label>Last name:</label>
-			<input class = "addInfo" id="addLastName" value="Doe">
-			<br>
-			<label>Email:</label>
-			<input class = "addInfo" id="addEmail" value="example@email.com">
-			<br>
-			<label>Phone:</label>
-			<input class = "addInfo" id="addPhone" value="012-345-6789">
-			<br>
-			<label>Street Address:</label>
-			<input class = "addInfo" id="addStreet"  value="123 Example Court">
-			<br>
-			<label>City:</label>
-			<input class = "addInfo" id="addCity" name="city" value="Orlando">
-			<br>
-			<label>State:</label>
-			<input class = "addInfo" id="addState" name="state" value="FL">
-			<br>
-			<label>Zip Code:</label>
-			<input class = "addInfo" id="addZip" name="zip" value="32817">
-			<br>
-			<label>Birth Date:</label>
-			<input class = "addInfo" id="addBirth" name="birth" value="2000-01-01">
-			<br>
-			<label>Date Created:</label>
-			<input class = "addInfo" id="addCreated" name="created" value="2023-03-17">
-			<br>
-			<label>Last Edited:</label>
-			<input class = "addInfo" id="addEdited" name="edited" value="2023-03-18">
-		</form>
-		
-		<button id = 'confirmAdd' onclick = 'addContact()'>Confirm</button>
-		
-	</div>
-			
+			<form action="/action_page.php">
+				<label>First name:</label>
+				<input class = "detailedInfo" id="detailedFirstName" value="">
+				<br>
+				<label>Last name:</label>
+				<input class = "detailedInfo" id="detailedLastName" value="">
+				<br>
+				<label>Email:</label>
+				<input class = "detailedInfo" id="detailedEmail" value="">
+				<br>
+				<label>Phone:</label>
+				<input class = "detailedInfo" id="detailedPhone" value="">
+				<br>
+				<label>Street Address:</label>
+				<input class = "detailedInfo" id="street"  value="">
+				<br>
+				<label>City:</label>
+				<input class = "detailedInfo" id="city" name="city" value="">
+				<br>
+				<label>State:</label>
+				<input class = "detailedInfo" id="state" name="state" value="">
+				<br>
+				<label>Zip Code:</label>
+				<input class = "detailedInfo" id="zip" name="zip" value="">
+				<br>
+				<label>Birth Date:</label>
+				<input class = "detailedInfo" id="birth" name="birth" value="">
+				<br>
+				<label>Date Created:</label>
+				<input class = "detailedInfo" id="created" name="created" value="">
+				<br>
+				<label>Last Edited:</label>
+				<input class = "detailedInfo" id="edited" name="edited" value="">
+			</form>
+
+			<button id = "editButton" onclick = 'setEditable()'>Edit</button>
+			<button id = "cancelButton" onclick = 'cancelEdits()' style = "display: none">Cancel</button> 
+			<button id = "confirmButton" onclick = 'confirmEdits()' style = "display: none">Confirm</button>
+
+		</div>
+
+		<div class = "container" id = "addContactDetails" style = "display: none;">
+			<h1 class="form__title">Contact Information</h1>
+
+			<form action="/action_page.php">
+				<label>First name:</label>
+				<input class = "addInfo" id="addFirstName" value="John">
+				<br>
+				<label>Last name:</label>
+				<input class = "addInfo" id="addLastName" value="Doe">
+				<br>
+				<label>Email:</label>
+				<input class = "addInfo" id="addEmail" value="example@email.com">
+				<br>
+				<label>Phone:</label>
+				<input class = "addInfo" id="addPhone" value="012-345-6789">
+				<br>
+				<label>Street Address:</label>
+				<input class = "addInfo" id="addStreet"  value="123 Example Court">
+				<br>
+				<label>City:</label>
+				<input class = "addInfo" id="addCity" name="city" value="Orlando">
+				<br>
+				<label>State:</label>
+				<input class = "addInfo" id="addState" name="state" value="FL">
+				<br>
+				<label>Zip Code:</label>
+				<input class = "addInfo" id="addZip" name="zip" value="32817">
+				<br>
+				<label>Birth Date:</label>
+				<input class = "addInfo" id="addBirth" name="birth" value="2000-01-01">
+				<br>
+				<label>Date Created:</label>
+				<input class = "addInfo" id="addCreated" name="created" value="2023-03-17">
+				<br>
+				<label>Last Edited:</label>
+				<input class = "addInfo" id="addEdited" name="edited" value="2023-03-18">
+			</form>
+
+			<button id = 'confirmAdd' onclick = 'addContact()'>Confirm</button>
+
+		</div>
+
+		</div>
 	</div>
 </body>
 <script src = "contactPage.js"></script>
