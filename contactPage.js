@@ -275,8 +275,9 @@ function confirmEdits() {
 	};
 	let handleFunction = function(){}; // we don't do anything with the response
 	
+	console.log("Sending Update Request: ");
+	console.log(tmp);
 	postRequest("ContactUpdate.php", tmp, handleFunction);
-	
 	
 	setUneditable();
 	const selectedRow = document.querySelector('.selected');
