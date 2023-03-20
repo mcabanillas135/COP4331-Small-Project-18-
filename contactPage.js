@@ -223,6 +223,13 @@ function deleteSelected() {
 	}
 	contactDetailsPage.style.display = 'none';
 }
+
+function deselectAll(){
+	for(let i = 0;i < tableRows.length; i++) {
+		tableRows[i].classList.remove('selected');
+	}
+	contactDetailsPage.style.display = 'none';
+}
 	
 function setEditable() {
 	editButton.style.display = 'none';
@@ -232,13 +239,7 @@ function setEditable() {
 	for(let i = 0; i < allDetailedInfo.length; i++){
 		allDetailedInfo[i].disabled = false;
 	}
-}
-
-function deselectAll(){
-	for(let i = 0;i < tableRows.length; i++) {
-		tableRows[i].classList.remove('selected');
-	}
-	contactDetailsPage.style.display = 'none';
+	allDetailedInfo[3].disabled = true;
 }
 
 function setUneditable() {
@@ -259,7 +260,24 @@ function cancelEdits() {
 }
 
 function confirmEdits() {
+	
 	// update the database
+	let tmp = {
+		FName: detailedFirstName.value, 
+		LName: detailedLastName.value, 
+		Phone: detailedPhone.value, 
+		Email: detailedEmail.value,
+		Street: street.value,
+		City: city.value,
+		State: state.value,
+		Zip_Code: zip.value,
+		DOB: birth.value
+	};
+	let handleFunction = function(){}; // we don't do anything with the response
+	
+	postRequest("ContactUpdate.php", tmp, handleFunction);
+	
+	
 	setUneditable();
 	const selectedRow = document.querySelector('.selected');
 	const cells = selectedRow.querySelectorAll('td');
