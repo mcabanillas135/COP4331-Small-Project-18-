@@ -48,7 +48,7 @@
       $fetchedcontact->lastname = $row["LName"];
       $fetchedcontact->phone = $row["Phone"];
       $fetchedcontact->email = $row["Email"];
-      $fetchedcontact->fetchedstreet = $row["Street"];
+      $fetchedcontact->street = $row["Street"];
       $fetchedcontact->city = $row["City"];
       $fetchedcontact->state = $row["State"];
       $fetchedcontact->zip = $row["Zip_Code"];
