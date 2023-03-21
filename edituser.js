@@ -63,19 +63,14 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
                 password: password
             }
             let request = new XMLHttpRequest();
-            if (!request.open("POST", editUser))
+            if (!request.open("POST", login))
             {
                 baseurl = "http://24.199.121.145";
                 editUser = baseurl + "/API/EditUser.php";
-                request.open("POST", editUser);
-            }
-            if (request.status === 500)
-            {
-                setFormMessage(loginForm, "error", "That username already exists")
+                request.open("POST", login);
             }
             console.log(tmp);
-            if (request.status === 200)
-            {
+
                 try {
                     request.onload = function () {
                         console.log("Data has been recieved");
@@ -103,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
                 } catch (err) {
                     console.log("test");
                 }
-            }
+            
             }
 
         
