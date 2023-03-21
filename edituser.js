@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
             {
                 baseurl = "http://24.199.121.145";
                 editUser = baseurl + "/API/EditUser.php";
-                request.open("POST", login);
+                request.open("POST", editUser);
             }
             if (request.status === 500)
             {
