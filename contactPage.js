@@ -460,6 +460,7 @@ editUsernameBtn.addEventListener('click', e => {
 
 editPasswordBtn.addEventListener('click', e => {
   e.preventDefault();
+  window.location.href = "editpass.html";
 
   const newPassword = prompt('Enter your new password:');
   if (newPassword) {
