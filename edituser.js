@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
                 password: password
             }
             let request = new XMLHttpRequest();
-            if (!request.open("POST", login))
+            if (!request.open("POST", editUser))
             {
                 baseurl = "http://24.199.121.145";
                 editUser = baseurl + "/API/EditUser.php";
