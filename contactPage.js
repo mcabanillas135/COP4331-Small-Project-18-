@@ -438,12 +438,8 @@ const editPasswordBtn = document.querySelector('#Edit-pass');
 
 document.getElementById("settings-btn").addEventListener("click", e => {
   e.preventDefault();
-  var dropdown = document.getElementById("settings-dropdown");
-  if (dropdown.style.display === "none") {
-    dropdown.style.display = "block";
-  } else {
-    dropdown.style.display = "none";
-  }
+  window.location.href = "edituser.html";
+
 });
 
 // When the slider value changes, update the text font size
