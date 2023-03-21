@@ -454,11 +454,8 @@ document.getElementById("size-slider").addEventListener("change", function() {
 
 editUsernameBtn.addEventListener('click', e => {
   e.preventDefault();
+  window.location.href = "edituser.html";
 
-  const newUsername = prompt('Enter your new username:');
-  if (newUsername) {
-    document.querySelector('#username').value = newUsername;
-  }
 });
 
 editPasswordBtn.addEventListener('click', e => {
