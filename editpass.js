@@ -1,7 +1,7 @@
 let testVar = "thisisatest";
 
 baseurl = "http://cop4332.xyz";
-editPass = baseurl + "/API/EditPass.php";
+editUser = baseurl + "/API/EditUser.php";
 
 function setFormMessage(formElement, type, message) {
     const messageElement = formElement.querySelector(".form__message");
@@ -37,36 +37,37 @@ function getCookie(cname) {
   }
   
   const userId = getCookie("userId");
-  const username = getCookie("username")
+  const password = getCookie("password");
+
 document.addEventListener("DOMContentLoaded", () => { //displays the login or the signup form
     const loginForm = document.querySelector("#Username");
 
 
 
     loginForm.addEventListener("submit", async e => { 
-        e.preventDefault(); 
-        const newPass = document.getElementById("newPass").value;
-        const confirmPass = document.getElementById("confirmPass").value;
-        const password = document.getElementById("Password").value;
+        e.preventDefault();
+        const newUser = document.getElementById("newUser").value;
+        const username = document.getElementById("username").value;
+        const confirmUser = document.getElementById("confirmUser").value;
         console.log(password);
-        if(newPass != confirmPass)
+        if(newUser != confirmUser)
         {
-            setFormMessage(loginForm, "error", "New Password and Confirm New Password dont match");
+            setFormMessage(loginForm, "error", "New Username and Confirm New Username dont match");
         }
 
-        if (newPass === confirmPass)
+        if (newUser === confirmUser)
         {
             let tmp = {
                 User_id: userId,
-                User_name: username,
-                password: newPass
+                User_name: newUser,
+                password: password
             }
             let request = new XMLHttpRequest();
-            if (!request.open("POST", editPass))
+            if (!request.open("POST", login))
             {
                 baseurl = "http://24.199.121.145";
-                editPass = baseurl + "/API/EditPass.php";
-                request.open("POST", editPass);
+                editUser = baseurl + "/API/EditUser.php";
+                request.open("POST", login);
             }
             console.log(tmp);
 
