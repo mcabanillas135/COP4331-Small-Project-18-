@@ -52,10 +52,10 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
         console.log(password);
         if(newPass != confirmPass)
         {
-            setFormMessage(loginForm, "error", "New Username and Confirm New Username dont match");
+            setFormMessage(loginForm, "error", "New Password and Confirm New Password dont match");
         }
 
-        if (newUser === confirmUser)
+        if (newPass === confirmPass)
         {
             let tmp = {
                 User_id: userId,
