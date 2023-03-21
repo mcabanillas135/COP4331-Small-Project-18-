@@ -138,6 +138,8 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
                     // successful
                     console.log("signed up");
                     setFormMessage(createAccountForm, "success", "Account created please go back to the login page");
+                    loginForm.classList.remove("form--hidden");
+                    createAccountForm.classList.add("form--hidden");
 
 
                     
