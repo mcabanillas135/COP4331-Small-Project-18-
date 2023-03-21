@@ -69,36 +69,43 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
                 editUser = baseurl + "/API/EditUser.php";
                 request.open("POST", login);
             }
-            console.log(tmp);
-        
-            try {
-                request.onload = function () {
-                    console.log("Data has been recieved");
-                    
-                    let response = JSON.parse(request.responseText);
-                    console.log(response);
-        
-                    if (response.error) {
-                        //console.log("error");
-                        setFormMessage(loginForm, "error", response.error);
-                        return;
-                    }
-        
-                    // successful
-                    else {
-                        window.location.href = "Index.html";
-                    }
-
-                };
-        
-                console.log("Sending a request");
-        
-                if (tmp instanceof FormData) request.send(tmp);
-                else request.send(JSON.stringify(tmp));
-            } catch (err) {
-                console.log("test");
+            if (request.status === 500)
+            {
+                setFormMessage(loginForm, "error", "That username already exists")
             }
-        }
+            console.log(tmp);
+            if (request.status === 200)
+            {
+                try {
+                    request.onload = function () {
+                        console.log("Data has been recieved");
+                        
+                        let response = JSON.parse(request.responseText);
+                        console.log(response);
+            
+                        if (response.error) {
+                            //console.log("error");
+                            setFormMessage(loginForm, "error", response.error);
+                            return;
+                        }
+            
+                        // successful
+                        else {
+                            window.location.href = "Index.html";
+                        }
+    
+                    };
+            
+                    console.log("Sending a request");
+            
+                    if (tmp instanceof FormData) request.send(tmp);
+                    else request.send(JSON.stringify(tmp));
+                } catch (err) {
+                    console.log("test");
+                }
+            }
+            }
+
         
 
     });
