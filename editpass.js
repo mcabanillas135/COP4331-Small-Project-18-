@@ -37,16 +37,15 @@ function getCookie(cname) {
   }
   
   const userId = getCookie("userId");
-
+  const username = getCookie("username")
 document.addEventListener("DOMContentLoaded", () => { //displays the login or the signup form
     const loginForm = document.querySelector("#Username");
 
 
 
     loginForm.addEventListener("submit", async e => { 
-        e.preventDefault();
+        e.preventDefault(); 
         const newPass = document.getElementById("newPass").value;
-        const username = document.getElementById("username").value;
         const confirmPass = document.getElementById("confirmPass").value;
         const password = document.getElementById("Password").value;
         console.log(password);
@@ -70,8 +69,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
                 request.open("POST", editPass);
             }
             console.log(tmp);
-            if (request.status === 200)
-            {
+
                 try {
                     request.onload = function () {
                         console.log("Data has been recieved");
@@ -99,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
                 } catch (err) {
                     console.log("test");
                 }
-            }
+            
             }
 
         
