@@ -75,6 +75,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
                         localStorage.setItem("userId", userId);
                         document.cookie = "userId=" + userId;
                         document.cookie = "username=" +  User_Name;
+                        document.cookie = "password=" + Password;
                         console.log(userId);
                         window.location.href = "contactPage.html";
 
