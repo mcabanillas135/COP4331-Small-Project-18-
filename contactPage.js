@@ -315,6 +315,8 @@ function validBirthday(date){
 }
 
 function unused(tempPhone){
+	return true;
+	
 	// query database for if element is used
 	let tmp = {
 		User_Id: userId,
