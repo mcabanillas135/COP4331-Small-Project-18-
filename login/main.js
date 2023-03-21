@@ -1,8 +1,7 @@
 let testVar = "thisisatest";
 
 baseurl = "http://cop4332.xyz";
-login = baseurl + "/API/Login.php";
-signup = baseurl + "/API/Signup.php"
+editPass = baseurl + "/API/EditPass.php";
 
 function setFormMessage(formElement, type, message) {
     const messageElement = formElement.querySelector(".form__message");
@@ -21,140 +20,90 @@ function clearInputError(inputElement) {
     inputElement.classList.remove("form__input--error");
     inputElement.parentElement.querySelector(".form__input-error-message").textContent = "";
 }
-
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+  
+  const userId = getCookie("userId");
 
 document.addEventListener("DOMContentLoaded", () => { //displays the login or the signup form
-    const loginForm = document.querySelector("#login");
-    const createAccountForm = document.querySelector("#createAccount");
+    const loginForm = document.querySelector("#Username");
 
-    document.querySelector("#linkCreateAccount").addEventListener("click", e => {
-        e.preventDefault();
-        loginForm.classList.add("form--hidden");
-        createAccountForm.classList.remove("form--hidden");
-    });
 
-    document.querySelector("#linkLogin").addEventListener("click", e => {
-        e.preventDefault();
-        loginForm.classList.remove("form--hidden");
-        createAccountForm.classList.add("form--hidden");
-    });
 
     loginForm.addEventListener("submit", async e => { 
-        let tmp = {
-             User_Name : document.getElementById("username").value,
-             Password : document.getElementById("password").value
-        };
         e.preventDefault();
-            let request = new XMLHttpRequest();
-            if (!request.open("POST", login))
-            {
-                baseurl = "http://24.199.121.145";
-                login = baseurl + "/API/Login.php";
-                request.open("POST", login);
-            }
-            console.log(tmp);
-        
-            try {
-                request.onload = function () {
-                    console.log("Data has been recieved");
-                    
-                    let response = JSON.parse(request.responseText);
-                    console.log(response);
-        
-                    if (response.error) {
-                        //console.log("error");
-                        setFormMessage(loginForm, "error", response.error);
-                        return;
-                    }
-        
-                    // successful
-                    else {
-                        const User_Name = response.User_Name;
-                        console.log(User_Name);
-                        const userId = response.User_Id;
-                        localStorage.setItem("userId", userId);
-                        document.cookie = "userId=" + userId;
-                        document.cookie = "username=" +  User_Name;
-                        console.log(userId);
-                        window.location.href = "contactPage.html";
+        const newPass = document.getElementById("newPass").value;
+        const username = document.getElementById("username").value;
+        const confirmPass = document.getElementById("confirmPass").value;
+        const password = document.getElementById("Password").value;
+        console.log(password);
+        if(newPass != confirmPass)
+        {
+            setFormMessage(loginForm, "error", "New Password and Confirm New Password dont match");
+        }
 
-
-
-
-
-
-                    }
-
-                };
-        
-                console.log("Sending a request");
-        
-                if (tmp instanceof FormData) request.send(tmp);
-                else request.send(JSON.stringify(tmp));
-            } catch (err) {
-                console.log("test");
-            }
-        // api stuff
-
-    });
-    createAccountForm.addEventListener("submit", async e => { 
-        e.preventDefault();
-         signupUsername = document.getElementById("signupUsername").value;
-         signUpPassword = document.getElementById("signupPassword").value;
-         confirmPassword = document.getElementById("confirmPassword").value;
-         if (signUpPassword != confirmPassword)
-         {
-                alert("passwords dont match");
-         }
-        if (signUpPassword === confirmPassword)
-        
+        if (newPass === confirmPass)
         {
             let tmp = {
-                User_Name : document.getElementById("signupUsername").value,
-                Password : document.getElementById("signupPassword").value
-           };
+                User_id: userId,
+                User_name: username,
+                password: newPass
+            }
             let request = new XMLHttpRequest();
-            if (!request.open("POST", signup))
+            if (!request.open("POST", editPass))
             {
                 baseurl = "http://24.199.121.145";
-                signup = baseurl + "/API/Signup.php";
-                request.open("POST", signup);
+                editPass = baseurl + "/API/EditPass.php";
+                request.open("POST", editPass);
             }
             console.log(tmp);
-        
-            try {
-                request.onload = function () {
-                    console.log("Data has been recieved");
-                    
-                    let response = JSON.parse(request.responseText);
-                    console.log(response);
-        
-                    if (response.error) {
-                        //console.log("not signed up");
-                        setFormMessage(createAccountForm, "error", response.error);
-                        return;
-                    }
-        
-                    // successful
-                    console.log("signed up");
-                    setFormMessage(createAccountForm, "success", "Account created please go back to the login page");
-                    loginForm.classList.remove("form--hidden");
-                    createAccountForm.classList.add("form--hidden");
 
-
-                    
-                };
-        
-                console.log("Sending a request");
-        
-                if (tmp instanceof FormData) request.send(tmp);
-                else request.send(JSON.stringify(tmp));
-            } catch (err) {
-                console.log("there was an error");
+                try {
+                    request.onload = function () {
+                        console.log("Data has been recieved");
+                        
+                        let response = JSON.parse(request.responseText);
+                        console.log(response);
+            
+                        if (response.error) {
+                            //console.log("error");
+                            setFormMessage(loginForm, "error", response.error);
+                            return;
+                        }
+            
+                        // successful
+                        else {
+                            window.location.href = "Index.html";
+                        }
+    
+                    };
+            
+                    console.log("Sending a request");
+            
+                    if (tmp instanceof FormData) request.send(tmp);
+                    else request.send(JSON.stringify(tmp));
+                } catch (err) {
+                    console.log("test");
+                }
+            
             }
-        }
+
+        
+
     });
 });
-//dark mode
 
 
