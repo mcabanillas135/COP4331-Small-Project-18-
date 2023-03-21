@@ -70,6 +70,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
                     // successful
                     else {
                         const User_Name = response.User_Name;
+                        const Password = response.Password;
                         console.log(User_Name);
                         const userId = response.User_Id;
                         localStorage.setItem("userId", userId);
