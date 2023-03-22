@@ -23,8 +23,8 @@
 		$result = $stmt->get_result();
 		if ( $row = $result->fetch_assoc() )
 		{
-			$stmt2 = $conn->prepare( "SELECT * FROM Contact_user WHERE User_Name = ?" );
-			$stmt2->bind_param( "s", $username );
+			$stmt2 = $conn->prepare( "SELECT * FROM Contact_user WHERE User_Name = ? AND NOT User_Id = ?" );
+			$stmt2->bind_param( "si", $username, $id );
 			$stmt2->execute();
 			$result = $stmt2->get_result();
 
