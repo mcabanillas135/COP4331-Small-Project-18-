@@ -167,7 +167,7 @@ input[type="range"]::-webkit-slider-thumb {
   appearance: none;
   width: 15px;
   height: 15px;
-  background: #bf2d00;
+  background: #19c5e6;
   cursor: pointer;
   border-radius: 50%;
 }
