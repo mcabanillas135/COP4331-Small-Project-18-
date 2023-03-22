@@ -17,27 +17,48 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare( "UPDATE Contact_user SET User_Name = ?, Password = ? WHERE User_Id = ?" );
-		$stmt->bind_param( "ssi", $username, $password, $id );
+		$stmt= $conn->prepare( "SELECT * FROM Contact_user WHERE User_Name = ?" );
+		$stmt->bind_param( "s", $username );
 		$stmt->execute();
-		$affectedRows = $stmt->affected_rows;
-
-		if ($affectedRows > 0)
+		$result = $stmt->get_result();
+		
+		if ( $row = $result->fetch_assoc() )
 		{
-			returnWithInfo($id, $username, $password);
+			returnWithError( "That username is already in use" );
 		}
 		else
 		{
-			$result = $conn->query("SELECT * FROM Contact_user WHERE User_Id = $id");
-			if ($result->num_rows == 0)
+			$stmt2 = $conn->prepare( "UPDATE Contact_user SET User_Name = ?, Password = ? WHERE User_Id = ?" );
+			$stmt2->bind_param( "ssi", $username, $password, $id );
+			$stmt2->execute();
+			$affectedRows = $stmt2->affected_rows;
+
+			if ($affectedRows > 0)
 			{
-				returnWithError( "User not found." );
+				returnWithInfo($id, $username, $password);
 			}
 			else
 			{
-				returnWithError( "Failed to edit user" );
-			}
+				$stmt3 = $conn->prepare( "SELECT * FROM Contact_user WHERE User_Id = ?" );
+				$stmt3->bind_param( "i", $id );
+				$stmt3->execute();
+				$result = $stmt3->get_result();
+				
+				if ($result->num_rows == 0)
+				{
+					returnWithError( "User not found." );
+				}
+				else
+				{
+					returnWithError( "Failed to edit user" );
+				}
+				
+				$stmt3->close();
+			}	
+			
+			$stmt2->close();
 		}
+		
 
 		$stmt->close();
 		$conn->close();
