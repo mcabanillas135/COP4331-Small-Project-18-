@@ -1,8 +1,7 @@
 <?php
   class Contact
   {
-    public $id;
-    public $username;
+    public $userid;
     public $firstname;
     public $lastname;
     public $phone;
@@ -13,6 +12,7 @@
     public $zip;
     public $dob;
     public $datecreated;
+    public $contactid;
   }
 
   // Error Testing
@@ -24,7 +24,7 @@
 
   $querycontact->id = $inData["User_Id"];
 
-  $conn = new mysqli("localhost", "contactmanager", "COP4331", "COP4331");
+  $conn = new mysqli( "localhost", "contactmanager", "COP4331", "COP4331" );
 
   if( $conn->connect_error )
   {
@@ -33,7 +33,7 @@
   else
   {
     $stmt = $conn->prepare( "SELECT * FROM Contact_database WHERE User_Id = ?" );
-    $stmt->bind_param("s", $querycontact->id);
+    $stmt->bind_param( "s", $querycontact->userid );
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -42,8 +42,8 @@
     while( $row = $result->fetch_assoc() )
     {
       $fetchedcontact = new Contact();
-      $fetchedcontact->id = $row["User_Id"];
-      $fetchedcontact->username = $row["User_Name"];
+      $fetchedcontact->userid = $row["User_Id"];
+      $fetchedcontact->contactid = $row["Contact_Id"];
       $fetchedcontact->firstname = $row["FName"];
       $fetchedcontact->lastname = $row["LName"];
       $fetchedcontact->phone = $row["Phone"];
@@ -57,13 +57,13 @@
       $contacts[] = $fetchedcontact;
     }
 
-    if(count($contacts) == 0)
+    if( count($contacts) == 0 )
     {
-      returnWithError("Contacts Do not exist.");
+      returnWithError("Contacts not found.");
     }
     else
     {
-      returnWithInfo($contacts);  
+      returnWithInfo( $contacts );  
     }
     
     $stmt->close();
@@ -84,7 +84,7 @@
 
   function returnWithError( $err )
   {
-    $retValue = '{"First_Name":"","Last_Name":"","error":"' . $err . '"}';
+    $retValue = '{"User_Id":"","Contact_Id":"","FName":"","LName":"","Phone":"","Email":"","Street":"","City":"","State":"","Zip_Code":"","DOB":"","Date_Created":"","error":"' . $err . '"}';
     sendResultInfoAsJson( $retValue );
   }
 
@@ -96,8 +96,8 @@
     
     foreach ($contacts as $contact) {
       $retValue['contacts'][] = array(
-        'User_Id' => $contact->id,
-        'User_Name' => $contact->username,
+        'User_Id' => $contact->userid,
+        'Contact_Id' => $contact->contactid,
         'FName' => $contact->firstname,
         'LName' => $contact->lastname,
         'Phone' => $contact->phone,
