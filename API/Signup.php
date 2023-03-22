@@ -20,37 +20,39 @@
 		{
 			returnWithError("Empty User");
 		}
-
-		$stmt1 = $conn->prepare("SELECT * FROM Contact_user WHERE User_Name = ?");
-		$stmt1->bind_param("s", $username);
-		$stmt1->execute();
-		$result = $stmt1->get_result();
-
-
-		if( $row = $result->fetch_assoc() )
-		{
-			returnWithError("Failed to add user. Username already exists.");
-		}
 		else
 		{
-			$stmt2 = $conn->prepare("INSERT INTO Contact_user (User_Name, Password) VALUES (?, ?)");
-			$stmt2->bind_param("ss", $username, $password);
-			$result = $stmt2->execute();
-			$id = $stmt2->insert_id;
+			$stmt1 = $conn->prepare("SELECT * FROM Contact_user WHERE User_Name = ?");
+			$stmt1->bind_param("s", $username);
+			$stmt1->execute();
+			$result = $stmt1->get_result();
 
-			if ($result)
+
+			if( $row = $result->fetch_assoc() )
 			{
-				returnWithInfo($id, $username, $password);
-			} else
+				returnWithError("Failed to add user. Username already exists.");
+			}
+			else
 			{
-				returnWithError("Failed to add user");
+				$stmt2 = $conn->prepare("INSERT INTO Contact_user (User_Name, Password) VALUES (?, ?)");
+				$stmt2->bind_param("ss", $username, $password);
+				$result = $stmt2->execute();
+				$id = $stmt2->insert_id;
+
+				if ($result)
+				{
+					returnWithInfo($id, $username, $password);
+				} else
+				{
+					returnWithError("Failed to add user");
+				}
+
+				$stmt2->close();
 			}
 
-			$stmt2->close();
+			$stmt1->close();
+			$conn->close();
 		}
-
-		$stmt1->close();
-		$conn->close();
 	}
 
 	function sendResultInfoAsJson( $obj )
