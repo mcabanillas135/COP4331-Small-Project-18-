@@ -21,13 +21,25 @@
 		$stmt->execute();
 		$result = $stmt->get_result();
 
-		if( $row = $result->fetch_assoc() )
+		if ( $row = $result->fetch_assoc() )
 		{
 			returnWithInfo( $row['User_Id'], $row['User_Name'], $row['Password'] );
 		}
 		else
 		{
-			returnWithError( "No Records Found" );
+			$stmt2 = $conn->prepare( "SELECT * FROM Contact_user WHERE User_Name = ?" );
+			$stmt2->bind_param( "s", $username );
+			$stmt2->execute();
+			$result = $stmt2->get_result();
+			
+			if ( $row = $result->fetch_assoc() )
+			{
+				returnWithError( "Incorrect Password" );
+			}
+			else
+			{
+				returnWithError( "Username not found" );
+			}
 		}
 
 		$stmt->close();
