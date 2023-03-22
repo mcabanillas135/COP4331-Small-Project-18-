@@ -24,7 +24,8 @@
 		if ($affectedRows > 0)
 		{
 			returnWithInfo($contactid);
-		} else
+		} 
+		else
 		{
 			returnWithError("Failed to delete contact.");
 		}
