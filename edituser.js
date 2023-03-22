@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
         {
             let tmp = {
                 User_Id: userId,
-                User_name: document.getElementById("confirmUser").value,
+                User_Name: document.getElementById("confirmUser").value,
             }
             let request = new XMLHttpRequest();
             if (!request.open("POST", editUser))
