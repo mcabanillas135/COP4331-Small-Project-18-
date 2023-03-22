@@ -5,7 +5,6 @@
 
 	$inData = getRequestInfo();
 
-	$id = 0;
 	$username = $inData["User_Name"];
 	$password = $inData["Password"];
 
