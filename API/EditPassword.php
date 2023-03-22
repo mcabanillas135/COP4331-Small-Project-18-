@@ -23,22 +23,22 @@
 		if ( $row = $result->fetch_assoc() )
 		{
 			$stmt2 = $conn->prepare( "UPDATE Contact_user SET Password = ? WHERE User_Id = ?" );
-      $stmt2->bind_param( "si", $password, $id );
-      $stmt2->execute();
-      $affectedRows = $stmt2->affected_rows;
+			$stmt2->bind_param( "si", $password, $id );
+			$stmt2->execute();
+			$affectedRows = $stmt2->affected_rows;
 
-      if ($affectedRows > 0)
-      {
-        returnWithInfo( $id, $password );
-      }
-      else
-      {
+			if ($affectedRows > 0)
+			{
+			returnWithInfo( $id, $password );
+			}
+			else
+			{
 
-        returnWithError( "Failed to edit password" );
+			returnWithError( "Failed to edit password" );
 
-      }	
+			}	
 
-      $stmt2->close();
+			$stmt2->close();
 		}
 		else
 		{
