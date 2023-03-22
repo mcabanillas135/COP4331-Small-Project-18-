@@ -43,22 +43,36 @@
 	}
 	else
 	{
-
-		$stmt1 = $conn->prepare( "UPDATE Contact_database SET FName = ?, LName = ?, Email = ?, Phone = ?, Street = ?, City = ?, State = ?, Zip_Code = ?, DOB = ? WHERE Contact_Id = ?" );
-		$stmt1->bind_param( "sssssssisi", $contact->firstname, $contact->lastname, $contact->email, $contact->phone, $contact->street, $contact->city, $contact->state, $contact->zip, $contact->dob, $contact->contactid);
-		$stmt1->execute();
-		$affectedRows = $stmt1->affected_rows;
-
-		if ($affectedRows > 0)
+		$stmt = $conn->prepare( "SELECT * FROM Contact_database WHERE Contact_Id = ?" );
+		$stmt->bind_param( "i", $contact->contactid );
+		$stmt->execute();
+		$result = $stmt->get_result();
+		
+		if ( $row = $result->fetch_assoc() )
 		{
-			returnWithInfo($contact);
-		} 
+			$stmt2 = $conn->prepare( "UPDATE Contact_database SET FName = ?, LName = ?, Email = ?, Phone = ?, Street = ?, City = ?, State = ?, Zip_Code = ?, DOB = ? WHERE Contact_Id = ?" );
+			$stmt2->bind_param( "sssssssisi", $contact->firstname, $contact->lastname, $contact->email, $contact->phone, $contact->street, $contact->city, $contact->state, $contact->zip, $contact->dob, $contact->contactid);
+			$stmt2->execute();
+			$affectedRows = $stmt2->affected_rows;
+
+			if ($affectedRows > 0)
+			{
+				returnWithInfo($contact);
+			} 
+			else
+			{
+				returnWithError("Failed to update contact.");
+			}
+
+			$stmt2->close();		
+		}
 		else
 		{
-			returnWithError("Failed to update contact.");
+			returnWithError( "Contact not found" );	
 		}
-
-		$stmt1->close();
+		
+		
+		$stmt->close();
 		$conn->close();
 	}
 
@@ -76,13 +90,13 @@
 
 	function returnWithError( $err )
 	{
-    $retValue = '{"User_Id":"","Contact_Id":"","FName":"","LName":"","Phone":"","Email":"","Street":"","City":"","State":"","Zip_Code":"","DOB":"","Date_Created":"","error":"' . $err . '"}';
+   		$retValue = '{"User_Id":"","Contact_Id":"","FName":"","LName":"","Phone":"","Email":"","Street":"","City":"","State":"","Zip_Code":"","DOB":"","Date_Created":"","error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 
 	function returnWithInfo( $contact )
 	{
-    $retValue = '{"User_Id":"' . $contact->userid . '","Contact_Id":"' . $contact->contactid . '","FName":"' . $contact->firstname . '","LName":"' . $contact->lastname . '","Phone":"' . $contact->phone . '","Email":"' . $contact->email . '","Street":"' . $contact->street . '","City":"' . $contact->city . '","State":"' . $contact->state . '","Zip_Code":"' . $contact->zip . '","DOB":"' . $contact->dob . '","Date_Created":"' . $contact->datecreated . '","error":"", "success":"Successfully updated contact."}';
+    		$retValue = '{"User_Id":"' . $contact->userid . '","Contact_Id":"' . $contact->contactid . '","FName":"' . $contact->firstname . '","LName":"' . $contact->lastname . '","Phone":"' . $contact->phone . '","Email":"' . $contact->email . '","Street":"' . $contact->street . '","City":"' . $contact->city . '","State":"' . $contact->state . '","Zip_Code":"' . $contact->zip . '","DOB":"' . $contact->dob . '","Date_Created":"' . $contact->datecreated . '","error":"", "success":"Successfully updated contact."}';
 		sendResultInfoAsJson( $retValue );
 	}
 
