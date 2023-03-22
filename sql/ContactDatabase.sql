@@ -14,12 +14,12 @@ use COP4331;
 -- Syntax for Contact_user 
 
  CREATE TABLE `Contact_user` (
-      User_Name varchar(255) NOT NULL,
-      Password varchar(255) NOT NULL,
-      User_Id int NOT NULL AUTO_INCREMENT,
-      PRIMARY KEY (`User_Id`),
-      UNIQUE KEY `User_Id` (`User_Id`),
-      UNIQUE KEY `User_Name` (`User_Name`)
+  User_Name varchar(255) NOT NULL,
+  Password varchar(255) NOT NULL,
+  User_Id int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`User_Id`),
+  UNIQUE KEY `User_Id` (`User_Id`),
+  UNIQUE KEY `User_Name` (`User_Name`)
 )
 
 insert into Contact_user values('jhumphrey', 'Jhumphrey05@');
@@ -43,22 +43,22 @@ alter table Contact_user ADD PRIMARY KEY(User_Id);
 -- Syntax for Contact_database
 
 CREATE TABLE `Contact_database` (
-      User_Id int(20) NULL,
-      FName varchar(255) NOT NULL,
-      LName varchar(255) NOT NULL,
-      Phone varchar(255) NOT NULL,
-      Email varchar(255) NOT NULL,
-      Street varchar(255) NOT NULL,
-      City varchar(255) NOT NULL,
-      State varchar(255) DEFAULT NULL,
-      Zip_Code int DEFAULT NULL,
-      DOB date DEFAULT NULL,
-      Date_Created` date DEFAULT NULL,
-      Contact_Id int NOT NULL AUTO_INCREMENT,
-      PRIMARY KEY (`Contact_Id`),
-      UNIQUE KEY `Contact_Id` (`Contact_Id`),
-      KEY `FK_ud` (`User_Id`),
-      CONSTRAINT `FK_ud` FOREIGN KEY (`User_Id`) REFERENCES `Contact_user` (`User_Id`)
+  User_Id int DEFAULT NULL,
+  FNam` varchar(255) NOT NULL,
+  LName varchar(255) NOT NULL,
+  Phone varchar(255) NOT NULL,
+  Email varchar(255) NOT NULL,
+  Street varchar(255) NOT NULL,
+  Cit` varchar(255) NOT NULL,
+  State varchar(255) DEFAULT NULL,
+  Zip_Code int DEFAULT NULL,
+  DOB date DEFAULT NULL,
+  Date_Created date DEFAULT NULL,
+  Contact_Id int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`Contact_Id`),
+  UNIQUE KEY `Contact_Id` (`Contact_Id`),
+  KEY `FK_User_Id` (`User_Id`),
+  CONSTRAINT `FK_User_Id` FOREIGN KEY (`User_Id`) REFERENCES `Contact_user` (`User_Id`) ON DELETE CASCADE
 )
 
 
