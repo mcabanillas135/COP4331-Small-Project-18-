@@ -239,7 +239,6 @@ function setEditable() {
 	for(let i = 0; i < allDetailedInfo.length; i++){
 		allDetailedInfo[i].disabled = false;
 	}
-	allDetailedInfo[3].disabled = true;
 }
 
 function setUneditable() {
