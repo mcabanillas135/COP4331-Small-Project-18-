@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
                         
                         // successful
                         else {
-                            window.location.href = "Index.html";
+                            window.location.href = "index.html";
                         }
     
                     };
