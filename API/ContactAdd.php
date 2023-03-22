@@ -1,8 +1,7 @@
 <?php
   class Contact
   {
-    public $id;
-    public $username;
+    public $userid;
     public $firstname;
     public $lastname;
     public $phone;
@@ -13,6 +12,7 @@
     public $zip = "";
     public $dob = "";
     public $datecreated;
+    public $contactid;
   }
 
   // Error Testing
@@ -22,23 +22,15 @@
   $inData = getRequestInfo();
   $contact = new Contact();
 
-  // these values are not allowed to be null
-  $contact->username = $inData["User_Name"];
+  $contact->userid = $inData["User_Id"];
   $contact->firstname = $inData["FName"];
   $contact->lastname = $inData["LName"];
   $contact->phone = $inData["Phone"];
   $contact->email = $inData["Email"];
   $contact->street = $inData["Street"];
   $contact->city = $inData["City"];
-
-  // can be null
   $contact->state = $inData["State"];
-
-  // an int
-  $contact->id = $inData["User_Id"];
   $contact->zip = $inData["Zip_Code"];
-
-  // a Date
   $contact->dob = $inData["DOB"];
   $contact->datecreated = $inData["Date_Created"];
 
@@ -50,33 +42,21 @@
   }
   else
   {
-    $stmt = $conn->prepare("SELECT * FROM Contact_database WHERE Phone = ? AND User_Id = ?");
-    $stmt->bind_param("ss", $contact->phone, $contact->id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if( $row = $result->fetch_assoc() )
+    $stmt = $conn->prepare("INSERT INTO Contact_database VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("isssssssiss", $contact->userid, $contact->firstname, $contact->lastname, $contact->phone, $contact->email,
+                        $contact->street, $contact->city, $contact->state, $contact->zip, $contact->dob, $contact->datecreated);
+    $result = $stmt->execute();
+    $contact->contactid = $stmt->insert_id;
+    
+    if ($result)
     {
-      returnWithError("Failed to add contact. Phone Number already exists.");
-    }
+      returnWithInfo($contact);
+    } 
     else
     {
-      $stmt2 = $conn->prepare("INSERT INTO Contact_database VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-      $stmt2->bind_param("ssssssssssss", $contact->id, $contact->username, $contact->firstname, $contact->lastname, $contact->phone, $contact->email,
-                          $contact->street, $contact->city, $contact->state, $contact->zip, $contact->dob, $contact->datecreated);
-      $result = $stmt2->execute();
-
-      if ($result)
-      {
-        returnWithInfo($contact);
-      } else
-      {
-        returnWithError("Failed to add contact");
-      }
-
-      $stmt2->close();
+      returnWithError("Failed to add contact");
     }
-
+    
     $stmt->close();
     $conn->close();
   }
@@ -94,13 +74,13 @@
 
   function returnWithError( $err )
   {
-    $retValue = '{"User_Id":"","User_Name":"","FName":"","LName":"","Phone":"","Email":"","Street":"","City":"","State":"","Zip_Code":"","DOB":"","Date_Created":"","error":"' . $err . '"}';
+    $retValue = '{"User_Id":"","Contact_Id":"","FName":"","LName":"","Phone":"","Email":"","Street":"","City":"","State":"","Zip_Code":"","DOB":"","Date_Created":"","error":"' . $err . '"}';
     sendResultInfoAsJson( $retValue );
   }
 
   function returnWithInfo( $contact )
   {
-    $retValue = '{"User_Id":"' . $contact->id . '","User_Name":"' . $contact->username . '","FName":"' . $contact->firstname . '","LName":"' . $contact->lastname . '","Phone":"' . $contact->phone . '","Email":"' . $contact->email . '","Street":"' . $contact->street . '","City":"' . $contact->city . '","State":"' . $contact->state . '","Zip_Code":"' . $contact->zip . '","DOB":"' . $contact->dob . '","Date_Created":"' . $contact->datecreated . '","error":"", "success":"Successfully added contact."}';
+    $retValue = '{"User_Id":"' . $contact->userid . '","Contact_Id":"' . $contact->contactid . '","FName":"' . $contact->firstname . '","LName":"' . $contact->lastname . '","Phone":"' . $contact->phone . '","Email":"' . $contact->email . '","Street":"' . $contact->street . '","City":"' . $contact->city . '","State":"' . $contact->state . '","Zip_Code":"' . $contact->zip . '","DOB":"' . $contact->dob . '","Date_Created":"' . $contact->datecreated . '","error":"", "success":"Successfully added contact."}';
     sendResultInfoAsJson( $retValue );
   }
 
