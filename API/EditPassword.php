@@ -29,13 +29,11 @@
 
 			if ($affectedRows > 0)
 			{
-			returnWithInfo( $id, $password );
+				returnWithInfo( $id, $password );
 			}
 			else
 			{
-
-			returnWithError( "Failed to edit password" );
-
+				returnWithError( "Failed to edit password" );
 			}	
 
 			$stmt2->close();
