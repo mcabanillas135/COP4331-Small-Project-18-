@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
         {
             let tmp = {
                 User_Id: userId,
-                password: document.getElementById("newPass").value
+                Password: document.getElementById("newPass").value
             }
             let request = new XMLHttpRequest();
             if (!request.open("POST", editPass))
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
             
                         // successful
                         else {
-                            window.location.href = "Index.html";
+                            window.location.href = "index.html";
                         }
     
                     };
