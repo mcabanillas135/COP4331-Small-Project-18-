@@ -15,22 +15,35 @@
 	}
 	else
 	{
-
-		$stmt1 = $conn->prepare("DELETE FROM Contact_database WHERE Contact_Id = ?");
-		$stmt1->bind_param("i", $contactid);
-		$stmt1->execute();
-		$affectedRows = $stmt1->affected_rows;
-    
-		if ($affectedRows > 0)
+		$stmt = $conn->prepare( "SELECT * FROM Contact_database WHERE Contact_Id = ?" );
+		$stmt->bind_param( "i", $contactid );
+		$stmt->execute();
+		$result = $stmt->get_result();
+		
+		if ( $row = $result->fetch_assoc() )
 		{
-			returnWithInfo($contactid);
-		} 
+			$stmt2 = $conn->prepare( "DELETE FROM Contact_database WHERE Contact_Id = ?" );
+			$stmt2->bind_param( "i", $contactid );
+			$stmt2->execute();
+			$affectedRows = $stmt2->affected_rows;
+
+			if ($affectedRows > 0)
+			{
+				returnWithInfo($contactid);
+			} 
+			else
+			{
+				returnWithError("Failed to delete contact.");
+			}
+
+			$stmt2->close();	
+		}
 		else
 		{
-			returnWithError("Failed to delete contact.");
+			returnWithError( "Contact not found" );	
 		}
-
-		$stmt1->close();
+		
+		$stmt->close();
 		$conn->close();
 	}
 
