@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
         if (document.getElementById("newPass").value === document.getElementById("confirmPass").value)
         {
             let tmp = {
-                User_id: userId,
+                User_Id: userId,
                 password: document.getElementById("newPass").value
             }
             let request = new XMLHttpRequest();
