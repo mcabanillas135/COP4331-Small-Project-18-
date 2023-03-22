@@ -1,6 +1,6 @@
 body {
-  --color-primary: #ef3800;
-  --color-primary-dark: #bf2d00;
+  --color-primary: #00d7ff;
+  --color-primary-dark: #19c5e6;
   --color-secondary: #252c6a;
   --color-error: #cc3333;
   --color-success: #4bb544;
@@ -26,7 +26,14 @@ font: 500 1rem 'Quicksand', sans-serif;
 }
 
 .wrapper {
-	margin: 1rem;
+  display: flex;
+
+  height: 100vh;
+  width: 100%;
+  background-image: linear-gradient(#dad395,#00d7ff);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and (max-width: 480px){
@@ -110,7 +117,7 @@ table {
 }
 
 tr:first-child{
-  background-color: #bf2d00;
+  background-color: #19c5e6;
   color: white;
 }
 
@@ -128,7 +135,7 @@ td:not(:last-child){
 
 button {
 
-  background-color: #bf2d00;
+  background-color: #19c5e6;
   border: none;
   color: white;
   width: 100 px;
@@ -168,7 +175,7 @@ input[type="range"]::-webkit-slider-thumb {
 input[type="range"]::-moz-range-thumb {
   width: 15px;
   height: 15px;
-  background: #bf2d00;
+  background: #19c5e6;
   cursor: pointer;
   border-radius: 50%;
 }
@@ -176,7 +183,7 @@ input[type="range"]::-moz-range-thumb {
 input[type="range"]::-ms-thumb {
   width: 15px;
   height: 15px;
-  background: #bf2d00;
+  background: #19c5e6;
   cursor: pointer;
   border-radius: 50%;
 }
@@ -247,5 +254,4 @@ td, th {
 	background-color: none;
 	
 }
-
 
