@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
     loginForm.addEventListener("submit", async e => { 
         e.preventDefault();
 
-        if(document.getElementById("newUser").value != document.getElementById("confirmUser")
+        if(document.getElementById("newUser").value != document.getElementById("confirmUser"))
         {
             setFormMessage(loginForm, "error", "New Username and Confirm New Username dont match");
         }
@@ -102,5 +102,4 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
 
     });
 });
-
 
