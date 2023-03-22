@@ -1,6 +1,6 @@
 body {
-    --color-primary: #ef3800;
-    --color-primary-dark: #bf2d00;
+    --color-primary: #00d7ff;
+    --color-primary-dark: #19c5e6;
     --color-secondary: #252c6a;
     --color-error: #cc3333;
     --color-success: #4bb544;
@@ -13,6 +13,15 @@ body {
     justify-content: center;
     font-size: 18px;
 }
+.box {
+    height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(#dad395,#00d7ff);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 .container {
     width: 400px;
@@ -24,8 +33,6 @@ body {
     background: #ffffff;
 }
 
-.container,
-.form__input,
 .form__button {
     font: 500 1rem 'Quicksand', sans-serif;
 }
