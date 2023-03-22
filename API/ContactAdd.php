@@ -34,7 +34,7 @@
   $contact->dob = $inData["DOB"];
   $contact->datecreated = $inData["Date_Created"];
 
-  $conn = new mysqli("localhost", "contactmanager", "COP4331", "COP4331");
+  $conn = new mysqli( "localhost", "contactmanager", "COP4331", "COP4331" );
 
   if( $conn->connect_error )
   {
@@ -42,7 +42,7 @@
   }
   else
   {
-    $stmt = $conn->prepare("INSERT INTO Contact_database VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO Contact_database (User_Id, FName, LName, Phone, Email, Street, City, State, Zip_Code, DOB, Date_Created) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("isssssssiss", $contact->userid, $contact->firstname, $contact->lastname, $contact->phone, $contact->email,
                         $contact->street, $contact->city, $contact->state, $contact->zip, $contact->dob, $contact->datecreated);
     $result = $stmt->execute();
