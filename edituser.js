@@ -1,7 +1,7 @@
 let testVar = "thisisatest";
 
 baseurl = "http://cop4332.xyz";
-editUser = baseurl + "/API/EditUser.php";
+editUser = baseurl + "/API/EditUsername.php";
 
 function setFormMessage(formElement, type, message) {
     const messageElement = formElement.querySelector(".form__message");
@@ -37,8 +37,6 @@ function getCookie(cname) {
   }
   
   const userId = getCookie("userId");
-  const password = getCookie("password");
-
 document.addEventListener("DOMContentLoaded", () => { //displays the login or the signup form
     const loginForm = document.querySelector("#Username");
 
@@ -57,7 +55,6 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
             let tmp = {
                 User_id: userId,
                 User_name: document.getElementById("confirmUser").value,
-                password: password
             }
             let request = new XMLHttpRequest();
             if (!request.open("POST", editUser))
@@ -80,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
                             setFormMessage(loginForm, "error", response.error);
                             return;
                         }
-            
+                        
                         // successful
                         else {
                             window.location.href = "Index.html";
