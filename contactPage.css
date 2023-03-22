@@ -219,16 +219,33 @@ td, th {
 	padding: 5px;
 }
 
-#addContactForm {
+#addContactForm, #contactDetailsForm {
 	display: table;
 }
 
-#addContactForm label, input {
+#addContactForm label, input, #contactDetailsForm label, input{
 	display: table-cell;
 }
 
-#addContactForm div {
+#contactDetailsForm input {
+	padding-left: 1rem;
+}
+
+#addContactForm div, #contactDetailsForm div {
 	display: table-row;
+}
+
+#addContactForm input, #contactDetailsForm input{
+	border: 1 !important;
+	box-shadow: none !important;
+	background-color: white !important;
+	cursor: default !important;
+	border-top-style: hidden;
+	border-right-style: hidden;
+	border-left-style: hidden;
+	border-bottom-style: hidden;
+	background-color: none;
+	
 }
 
 

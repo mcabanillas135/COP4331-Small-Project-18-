@@ -60,39 +60,47 @@
 		<div class = "container" id = "contactDetails" style = "display: none;">
 			<h1 class="form__title">Contact Information</h1>
 
-			<form action="/action_page.php">
+			<form action="/action_page.php" id = "contactDetailsForm">
+				<div>
 				<label>First name:</label>
-				<input class = "detailedInfo" id="detailedFirstName" value="">
-				<br>
+				<input class = "detailedInfo" id="detailedFirstName" value="John">
+				</div>
+				<div>
 				<label>Last name:</label>
-				<input class = "detailedInfo" id="detailedLastName" value="">
-				<br>
+				<input class = "detailedInfo" id="detailedLastName" value="Doe">
+				</div>
+				<div>
 				<label>Email:</label>
-				<input class = "detailedInfo" id="detailedEmail" value="">
-				<br>
+				<input class = "detailedInfo" id="detailedEmail" value="ex@email.com">
+				</div>
+				<div>
 				<label>Phone:</label>
-				<input class = "detailedInfo" id="detailedPhone" value="">
-				<br>
-				<label>Street Address:</label>
-				<input class = "detailedInfo" id="street"  value="">
-				<br>
+				<input class = "detailedInfo" id="detailedPhone" value="012-345-6789">
+				</div>
+				<div>
+				<label>Address:</label>
+				<input class = "detailedInfo" id="street"  value="123 Court">
+				</div>
+				<div>
 				<label>City:</label>
-				<input class = "detailedInfo" id="city" name="city" value="">
-				<br>
+				<input class = "detailedInfo" id="city" name="city" value="Orlando">
+				</div>
+				<div>
 				<label>State:</label>
-				<input class = "detailedInfo" id="state" name="state" value="">
-				<br>
+				<input class = "detailedInfo" id="state" name="state" value="Florida">
+				</div>
+				<div>
 				<label>Zip Code:</label>
-				<input class = "detailedInfo" id="zip" name="zip" value="">
-				<br>
+				<input class = "detailedInfo" id="zip" name="zip" value="32817">
+				</div>
+				<div>
 				<label>Birth Date:</label>
-				<input class = "detailedInfo" id="birth" name="birth" value="">
-				<br>
+				<input class = "detailedInfo" id="birth" name="birth" value="2020-01-01">
+				</div>
+				<div>
 				<label>Date Created:</label>
-				<input class = "detailedInfo" id="created" name="created" value="">
-				<br>
-				<label>Last Edited:</label>
-				<input class = "detailedInfo" id="edited" name="edited" value="">
+				<input class = "detailedInfo" id="created" name="created" value="2020-01-01">
+				</div>
 			</form>
 
 			<label id = "editErrorMessage" style = "display: none; color: red;"> </label>
@@ -106,7 +114,7 @@
 		
 			<h1 class="form__title">Add New Contact</h1>
 
-			<form action="/action_page.php" style = "display: table;" id = "addContactForm">
+			<form action="/action_page.php" id = "addContactForm">
 				<div>
 				<label>First name:</label>
 				<input class = "addInfo" id="addFirstName" value="John" >
