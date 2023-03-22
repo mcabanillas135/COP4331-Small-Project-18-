@@ -1,18 +1,18 @@
 <?php
   class Contact
   {
-    public $id;
-    public $username;
+    public $userid;
     public $firstname;
     public $lastname;
     public $phone;
     public $email;
-    public $street = "";
-    public $city = "";
-    public $state = "";
-    public $zip = "";
-    public $dob = "";
+    public $street;
+    public $city;
+    public $state;
+    public $zip;
+    public $dob;
     public $datecreated;
+    public $contactid;
   }
 
   // Error Testing
@@ -27,7 +27,7 @@
   $contact->firstname = $inData["FName"];
   $contact->lastname = $inData["LName"];
 
-  $conn = new mysqli("localhost", "contactmanager", "COP4331", "COP4331");
+  $conn = new mysqli( "localhost", "contactmanager", "COP4331", "COP4331" );
 
   if( $conn->connect_error )
   {
@@ -37,8 +37,8 @@
   {
     $firstnamepattern = "%" . $contact->firstname . "%";
     $lastnamepattern = "%" . $contact->lastname . "%";
-    $stmt = $conn->prepare("SELECT * FROM Contact_database WHERE User_Id = ? AND (FName LIKE ? OR LName Like ?)");
-    $stmt->bind_param("sss", $contact->id, $firstnamepattern, $lastnamepattern);
+    $stmt = $conn->prepare( "SELECT * FROM Contact_database WHERE User_Id = ? AND (FName LIKE ? OR LName Like ?)" );
+    $stmt->bind_param("iss", $contact->userid, $firstnamepattern, $lastnamepattern);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -47,8 +47,8 @@
     while( $row = $result->fetch_assoc() )
     {
       $tmp = new Contact();
-      $tmp->id = $row["User_Id"];
-      $tmp->username = $row["User_Name"];
+      $tmp->userid = $row["User_Id"];
+      $tmp->contactid = $row["Contact_Id"];
       $tmp->firstname = $row["FName"];
       $tmp->lastname = $row["LName"];
       $tmp->phone = $row["Phone"];
@@ -62,9 +62,9 @@
       $contacts[] = $tmp;
     }
     
-    if(count($contacts) == 0)
+    if( count($contacts) == 0 )
     {
-      returnWithError("Contact Do not exist.");
+      returnWithError("Contact(s) not found.");
     }
     else
     {
@@ -89,7 +89,7 @@
 
   function returnWithError( $err )
   {
-    $retValue = '{"First_Name":"","Last_Name":"","error":"' . $err . '"}';
+    $retValue = '{"User_Id":"","Contact_Id":"","FName":"","LName":"","Phone":"","Email":"","Street":"","City":"","State":"","Zip_Code":"","DOB":"","Date_Created":"","error":"' . $err . '"}';
     sendResultInfoAsJson( $retValue );
   }
 
@@ -101,8 +101,8 @@
     
     foreach ($contacts as $contact) {
       $retValue['contacts'][] = array(
-        'User_Id' => $contact->id,
-        'User_Name' => $contact->username,
+        'User_Id' => $contact->userid,
+        'Contact_Id' => $contact->contactid,
         'FName' => $contact->firstname,
         'LName' => $contact->lastname,
         'Phone' => $contact->phone,
