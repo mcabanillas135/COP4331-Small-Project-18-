@@ -43,13 +43,13 @@ alter table Contact_user ADD PRIMARY KEY(User_Id);
 -- Syntax for Contact_database
 
 CREATE TABLE `Contact_database` (
-  User_Id int DEFAULT NULL,
-  FNam` varchar(255) NOT NULL,
+  User_Id int(20) NULL,
+  FName varchar(255) NOT NULL,
   LName varchar(255) NOT NULL,
   Phone varchar(255) NOT NULL,
   Email varchar(255) NOT NULL,
   Street varchar(255) NOT NULL,
-  Cit` varchar(255) NOT NULL,
+  City varchar(255) NOT NULL,
   State varchar(255) DEFAULT NULL,
   Zip_Code int DEFAULT NULL,
   DOB date DEFAULT NULL,
