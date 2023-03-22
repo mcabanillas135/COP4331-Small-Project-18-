@@ -18,9 +18,8 @@ use COP4331;
   Password varchar(255) NOT NULL,
   User_Id int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`User_Id`),
-  UNIQUE KEY `User_Id` (`User_Id`),
-  UNIQUE KEY `User_Name` (`User_Name`)
-)
+  UNIQUE KEY `User_Id` (`User_Id`)
+) 
 
 insert into Contact_user values('jhumphrey', 'Jhumphrey05@');
 insert into Contact_user values('mrose', 'Mrose03@');
