@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
             if (!request.open("POST", editPass))
             {
                 baseurl = "http://24.199.121.145";
-                editPass = baseurl + "/API/EditPass.php";
+                editPass = baseurl + "/API/EditPassword.php";
                 request.open("POST", editPass);
             }
             console.log(tmp);
