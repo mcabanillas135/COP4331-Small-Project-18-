@@ -23,7 +23,7 @@
   $contact = new Contact();
 
   // Required Fields
-  $contact->id = $inData["User_Id"];
+  $contact->userid = $inData["User_Id"];
   $contact->firstname = $inData["FName"];
   $contact->lastname = $inData["LName"];
 
