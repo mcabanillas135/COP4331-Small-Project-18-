@@ -20,9 +20,8 @@
   // ini_set('display_errors', 'on');
 
   $inData = getRequestInfo();
-  $querycontact = new Contact();
 
-  $querycontact->id = $inData["User_Id"];
+  $id = $inData["User_Id"];
 
   $conn = new mysqli( "localhost", "contactmanager", "COP4331", "COP4331" );
 
@@ -33,7 +32,7 @@
   else
   {
     $stmt = $conn->prepare( "SELECT * FROM Contact_database WHERE User_Id = ?" );
-    $stmt->bind_param( "s", $querycontact->userid );
+    $stmt->bind_param( "s", $id );
     $stmt->execute();
     $result = $stmt->get_result();
 
