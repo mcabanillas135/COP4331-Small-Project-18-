@@ -3,40 +3,39 @@
 	//error_reporting(E_ALL);
 	//ini_set('display_errors', 'on');
 
-  class Contact
-  {
-    public $firstname;
-    public $lastname;
-    public $email;
-    public $street = "";
-    public $city = "";
-    public $state = "";
-    public $zip = "";
-    public $dob = "";
-  }
+	class Contact
+	{
+		public $userid;
+		public $firstname;
+		public $lastname;
+		public $phone;
+		public $email;
+		public $street;
+		public $city;
+		public $state;
+		public $zip;
+		public $dob;
+		public $datecreated;
+		public $contactid;
+	}
 
-  $inData = getRequestInfo();
-  $contact = new Contact();
+	$inData = getRequestInfo();
+	$contact = new Contact();
 
-  $phone = $inData["Phone"];
+	$contact->userid = $inData["User_Id"];
+	$contact->contactid = $inData["Contact_Id"];
+	$contact->firstname = $inData["FName"];
+	$contact->lastname = $inData["LName"];
+	$contact->phone = $inData["Phone"];
+	$contact->email = $inData["Email"];
+	$contact->street = $inData["Street"];
+	$contact->city = $inData["City"];
+	$contact->state = $inData["State"];
+	$contact->zip = $inData["Zip_Code"];
+	$contact->dob = $inData["DOB"];
+	$contact->datecreated = $inData["Date_Created"];
 
-  // these values are not allowed to be null
-  $contact->firstname = $inData["FName"];
-  $contact->lastname = $inData["LName"];
-  $contact->email = $inData["Email"];
-  $contact->street = $inData["Street"];
-  $contact->city = $inData["City"];
-
-  // can be null
-  $contact->state = $inData["State"];
-
-  // an int
-  $contact->zip = $inData["Zip_Code"];
-
-  // a Date
-  $contact->dob = $inData["DOB"];
-
-  $conn = new mysqli("localhost", "contactmanager", "COP4331", "COP4331");
+	$conn = new mysqli( "localhost", "contactmanager", "COP4331", "COP4331" );
 
 	if( $conn->connect_error )
 	{
@@ -45,18 +44,19 @@
 	else
 	{
 
-		$stmt1 = $conn->prepare("UPDATE Contact_database SET FName = ?, LName = ?, Email = ?, Street = ?, City = ?, State = ?, Zip_Code = ?, DOB = ? WHERE Phone = ?");
-		$stmt1->bind_param("sssssssss", $contact->firstname, $contact->lastname, $contact->email, $contact->street, $contact->city, $contact->state, $contact->zip, $contact->dob, $phone);
+		$stmt1 = $conn->prepare( "UPDATE Contact_database SET FName = ?, LName = ?, Email = ?, Phone = ?, Street = ?, City = ?, State = ?, Zip_Code = ?, DOB = ? WHERE Contact_Id = ?" );
+		$stmt1->bind_param( "sssssssisi", $contact->firstname, $contact->lastname, $contact->email, $contact->phone, $contact->street, $contact->city, $contact->state, $contact->zip, $contact->dob, $contact->contactid);
 		$stmt1->execute();
 		$affectedRows = $stmt1->affected_rows;
-    
-			if ($affectedRows > 0)
-			{
-				returnWithInfo($contact, $phone);
-			} else
-			{
-				returnWithError("Failed to update contact.");
-			}
+
+		if ($affectedRows > 0)
+		{
+			returnWithInfo($contact);
+		} 
+		else
+		{
+			returnWithError("Failed to update contact.");
+		}
 
 		$stmt1->close();
 		$conn->close();
@@ -76,14 +76,14 @@
 
 	function returnWithError( $err )
 	{
-		$retValue = '{"FName":"","LName":"","Phone":"","Email":"","Street":"","City":"","State":"","Zip_Code":"","DOB":"","error":"' . $err . '"}';
+    $retValue = '{"User_Id":"","Contact_Id":"","FName":"","LName":"","Phone":"","Email":"","Street":"","City":"","State":"","Zip_Code":"","DOB":"","Date_Created":"","error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 
-	function returnWithInfo($contact, $phone)
+	function returnWithInfo( $contact )
 	{
-		$retValue = '{"FName":"' . $contact->firstname . '","LName":"' . $contact->lastname . '","Phone":"' . $phone . '","Email":"' . $contact->email . '","Street":"' . $contact->street . '","City":"' . $contact->city . '","State":"' . $contact->state . '","Zip_Code":"' . $contact->zip . '","DOB":"' . $contact->dob . '","error":"", "success":"Successfully updated contact."}';
-    		sendResultInfoAsJson( $retValue );
-  	}
+    $retValue = '{"User_Id":"' . $contact->userid . '","Contact_Id":"' . $contact->contactid . '","FName":"' . $contact->firstname . '","LName":"' . $contact->lastname . '","Phone":"' . $contact->phone . '","Email":"' . $contact->email . '","Street":"' . $contact->street . '","City":"' . $contact->city . '","State":"' . $contact->state . '","Zip_Code":"' . $contact->zip . '","DOB":"' . $contact->dob . '","Date_Created":"' . $contact->datecreated . '","error":"", "success":"Successfully updated contact."}';
+		sendResultInfoAsJson( $retValue );
+	}
 
 ?>
