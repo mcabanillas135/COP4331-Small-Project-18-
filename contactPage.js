@@ -462,4 +462,8 @@ editPasswordBtn.addEventListener('click', e => {
   window.location.href = "editpass.html";
   
 });
-  
+document.getElementById("logout").addEventListener("click", e => {
+	e.preventDefault();
+	window.location.href = "index.html";
+
+});
