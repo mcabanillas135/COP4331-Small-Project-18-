@@ -6,11 +6,11 @@
     public $lastname;
     public $phone;
     public $email;
-    public $street = "";
-    public $city = "";
-    public $state = "";
-    public $zip = "";
-    public $dob = "";
+    public $street;
+    public $city;
+    public $state;
+    public $zip;
+    public $dob;
     public $datecreated;
     public $contactid;
   }
