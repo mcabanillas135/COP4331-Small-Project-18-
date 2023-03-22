@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
         if (document.getElementById("newUser").value === document.getElementById("confirmUser").value)
         {
             let tmp = {
-                User_id: userId,
+                User_Id: userId,
                 User_name: document.getElementById("confirmUser").value,
             }
             let request = new XMLHttpRequest();
