@@ -1,8 +1,7 @@
 <?php
   class Contact
   {
-    public $id;
-    public $username;
+    public $userid;
     public $firstname;
     public $lastname;
     public $phone;
@@ -13,6 +12,7 @@
     public $zip;
     public $dob;
     public $datecreated;
+    public $contactid;
   }
 
   // Error Testing
@@ -22,10 +22,10 @@
   $inData = getRequestInfo();
   $querycontact = new Contact();
 
-  $querycontact->id = $inData["User_Id"];
+  $querycontact->userid = $inData["User_Id"];
   $querycontact->phone = $inData["Phone"];
 
-  $conn = new mysqli("localhost", "contactmanager", "COP4331", "COP4331");
+  $conn = new mysqli( "localhost", "contactmanager", "COP4331", "COP4331" );
 
   if( $conn->connect_error )
   {
@@ -33,31 +33,39 @@
   }
   else
   {
-    $stmt = $conn->prepare( "SELECT * FROM Contact_database WHERE User_Id = ? AND Phone = ? LIMIT 1" );
-    $stmt->bind_param("ss", $querycontact->id, $querycontact->phone);
+    $stmt = $conn->prepare( "SELECT * FROM Contact_database WHERE User_Id = ? AND Phone = ?" );
+    $stmt->bind_param( "is", $querycontact->userid, $querycontact->phone );
     $stmt->execute();
     $result = $stmt->get_result();
 
-    if( $row = $result->fetch_assoc() )
+    $contacts = array();
+    
+    while( $row = $result->fetch_assoc() )
     {
       $fetchedcontact = new Contact();
-      $fetchedcontact->id = $row["User_Id"];
+      $fetchedcontact->userid = $row["User_Id"];
+      $fetchedcontact->contactid = $row["Contact_Id"];
       $fetchedcontact->username = $row["User_Name"];
       $fetchedcontact->firstname = $row["FName"];
       $fetchedcontact->lastname = $row["LName"];
       $fetchedcontact->phone = $row["Phone"];
       $fetchedcontact->email = $row["Email"];
-      $fetchedcontact->fetchedstreet = $row["Street"];
+      $fetchedcontact->street = $row["Street"];
       $fetchedcontact->city = $row["City"];
       $fetchedcontact->state = $row["State"];
       $fetchedcontact->zip = $row["Zip_Code"];
       $fetchedcontact->dob = $row["DOB"];
       $fetchedcontact->datecreated = $row["Date_Created"];
-      returnWithInfo($fetchedcontact);
+      $contacts[] = $fetchedcontact;
+    }
+    
+    if ( count($contacts) == 0 )
+    {
+      returnWithError( "Contact(s) not found." );
     }
     else
     {
-      returnWithError("Contact does not exist.");
+      returnWithInfo( $contacts );
     }
 
     $stmt->close();
@@ -78,14 +86,34 @@
 
   function returnWithError( $err )
   {
-    $retValue = '{"User_Id":"","User_Name":"","FName":"","LName":"","Phone":"","Email":"","Street":"","City":"","State":"","Zip_Code":"","DOB":"","Date_Created":"","error":"' . $err . '"}';
+    $retValue = '{"User_Id":"","Contact_Id":"","FName":"","LName":"","Phone":"","Email":"","Street":"","City":"","State":"","Zip_Code":"","DOB":"","Date_Created":"","error":"' . $err . '"}';
     sendResultInfoAsJson( $retValue );
   }
 
-  function returnWithInfo( $contact )
+  function returnWithInfo( $contacts )
   {
-    $retValue = '{"User_Id":"' . $contact->id . '","User_Name":"' . $contact->username . '","FName":"' . $contact->firstname . '","LName":"' . $contact->lastname . '","Phone":"' . $contact->phone . '","Email":"' . $contact->email . '","Street":"' . $contact->street . '","City":"' . $contact->city . '","State":"' . $contact->state . '","Zip_Code":"' . $contact->zip . '","DOB":"' . $contact->dob . '","Date_Created":"' . $contact->datecreated . '","error":"", "success":"Successfully added contact."}';
-    sendResultInfoAsJson( $retValue );
+    $retValue = array();
+    $retValue['success'] = 'Found ' . count($contacts) . ' contact(s).';
+    $retValue['contacts'] = array();
+    
+    foreach ($contacts as $contact) {
+      $retValue['contacts'][] = array(
+        'User_Id' => $contact->userid,
+        'Contact_Id' => $contact->contactid,
+        'FName' => $contact->firstname,
+        'LName' => $contact->lastname,
+        'Phone' => $contact->phone,
+        'Email' => $contact->email,
+        'Street' => $contact->street,
+        'City' => $contact->city,
+        'State' => $contact->state,
+        'Zip_Code' => $contact->zip,
+        'DOB' => $contact->dob,
+        'Date_Created' => $contact->datecreated,
+      );
+    }
+    
+    sendResultInfoAsJson( json_encode($retValue) );
   }
 
 ?>
