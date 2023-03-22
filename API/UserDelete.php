@@ -18,13 +18,13 @@
 		$stmt = $conn->prepare( "DELETE FROM Contact_user WHERE User_Id = ?" );
 		$stmt->bind_param( "i", $id );
 		$stmt->execute();
-		$affectedRows = $stmt1->affected_rows;
+		$affectedRows = $stmt->affected_rows;
     
 		if ($affectedRows > 0)
 		{
 			returnWithInfo($id);
 		} 
-    else
+   		else
 		{
 			returnWithError("Failed to delete user.");
 		}
