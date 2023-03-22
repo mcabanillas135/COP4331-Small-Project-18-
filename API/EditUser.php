@@ -17,6 +17,12 @@
 	}
 	else
 	{
+		$stmt = $conn->prepare( "Select * FROM Contact_user WHERE Password = ?" );
+		$stmt->bind_param( "s", $password );
+		$stmt->execute();
+		$result = $stmt->get_result();
+		
+		
 		$stmt = $conn->prepare( "UPDATE Contact_user SET User_Name = ?, Password = ? WHERE User_Id = ?" );
 		$stmt->bind_param( "ssi", $username, $password, $id );
 		$stmt->execute();
