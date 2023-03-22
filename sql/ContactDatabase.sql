@@ -53,7 +53,7 @@ CREATE TABLE `Contact_database` (
       State varchar(255) DEFAULT NULL,
       Zip_Code int DEFAULT NULL,
       DOB date DEFAULT NULL,
-      Date_Create` date DEFAULT NULL,
+      Date_Created` date DEFAULT NULL,
       Contact_Id int NOT NULL AUTO_INCREMENT,
       PRIMARY KEY (`Contact_Id`),
       UNIQUE KEY `Contact_Id` (`Contact_Id`),
