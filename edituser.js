@@ -37,6 +37,7 @@ function getCookie(cname) {
   }
   
   const userId = getCookie("userId");
+  const password = getCookie("password");
 
 document.addEventListener("DOMContentLoaded", () => { //displays the login or the signup form
     const loginForm = document.querySelector("#Username");
@@ -45,21 +46,17 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
 
     loginForm.addEventListener("submit", async e => { 
         e.preventDefault();
-        const newUser = document.getElementById("newUser").value;
-        const username = document.getElementById("username").value;
-        const confirmUser = document.getElementById("confirmUser").value;
-        const password = document.getElementById("Password").value;
-        console.log(password);
+
         if(newUser != confirmUser)
         {
             setFormMessage(loginForm, "error", "New Username and Confirm New Username dont match");
         }
 
-        if (newUser === confirmUser)
+        if (document.getElementById("newUser").value === document.getElementById("confirmUser").value)
         {
             let tmp = {
                 User_id: userId,
-                User_name: newUser,
+                User_name: document.getElementById("confirmUser").value,
                 password: password
             }
             let request = new XMLHttpRequest();
