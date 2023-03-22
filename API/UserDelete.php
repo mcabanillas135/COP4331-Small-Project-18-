@@ -26,7 +26,7 @@
 		} 
    		else
 		{
-			returnWithError("Failed to delete user.");
+			returnWithError("User not found.");
 		}
 
 		$stmt1->close();
