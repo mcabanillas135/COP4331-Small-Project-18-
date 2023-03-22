@@ -31,38 +31,52 @@
   }
   else
   {
-    $stmt = $conn->prepare( "SELECT * FROM Contact_database WHERE User_Id = ?" );
+    $stmt = $conn->prepare( "SELECT * FROM Contact_user WHERE User_Id = ?" );
     $stmt->bind_param( "s", $id );
     $stmt->execute();
     $result = $stmt->get_result();
-
-    $contacts = array();
-
-    while( $row = $result->fetch_assoc() )
+    
+    if ( $row = $result->fetch_assoc() )
     {
-      $fetchedcontact = new Contact();
-      $fetchedcontact->userid = $row["User_Id"];
-      $fetchedcontact->contactid = $row["Contact_Id"];
-      $fetchedcontact->firstname = $row["FName"];
-      $fetchedcontact->lastname = $row["LName"];
-      $fetchedcontact->phone = $row["Phone"];
-      $fetchedcontact->email = $row["Email"];
-      $fetchedcontact->street = $row["Street"];
-      $fetchedcontact->city = $row["City"];
-      $fetchedcontact->state = $row["State"];
-      $fetchedcontact->zip = $row["Zip_Code"];
-      $fetchedcontact->dob = $row["DOB"];
-      $fetchedcontact->datecreated = $row["Date_Created"];
-      $contacts[] = $fetchedcontact;
-    }
+      $stmt2 = $conn->prepare( "SELECT * FROM Contact_database WHERE User_Id = ?" );
+      $stmt2->bind_param( "s", $id );
+      $stmt2->execute();
+      $result = $stmt2->get_result();
 
-    if( count($contacts) == 0 )
-    {
-      returnWithError("Contacts not found.");
+      $contacts = array();
+
+      while( $row = $result->fetch_assoc() )
+      {
+        $fetchedcontact = new Contact();
+        $fetchedcontact->userid = $row["User_Id"];
+        $fetchedcontact->contactid = $row["Contact_Id"];
+        $fetchedcontact->firstname = $row["FName"];
+        $fetchedcontact->lastname = $row["LName"];
+        $fetchedcontact->phone = $row["Phone"];
+        $fetchedcontact->email = $row["Email"];
+        $fetchedcontact->street = $row["Street"];
+        $fetchedcontact->city = $row["City"];
+        $fetchedcontact->state = $row["State"];
+        $fetchedcontact->zip = $row["Zip_Code"];
+        $fetchedcontact->dob = $row["DOB"];
+        $fetchedcontact->datecreated = $row["Date_Created"];
+        $contacts[] = $fetchedcontact;
+      }
+
+      if( count($contacts) == 0 )
+      {
+        returnWithError("Contacts not found.");
+      }
+      else
+      {
+        returnWithInfo( $contacts );  
+      }
+
+      $stmt2->close();  
     }
     else
     {
-      returnWithInfo( $contacts );  
+      returnWithError("User not found."); 
     }
     
     $stmt->close();
