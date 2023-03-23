@@ -98,5 +98,10 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
         
 
     });
-});
+    document.getElementById("Cancel").onclick = async e =>  {
+        e.preventDefault();
+        window.location.href = "contactPage.html";
 
+        
+    };
+});
