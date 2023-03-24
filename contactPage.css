@@ -254,4 +254,17 @@ td, th {
 	background-color: none;
 	
 }
+@media screen and (max-width: 912px)
+{
+  #contactDetails {
+    position: relative;
+  }
+}
 
+@media screen and (max-width: 912px)
+{
+  #addContactDetails {
+    position: absolute;
+    top: 100%;
+  }
+}
