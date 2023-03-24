@@ -134,3 +134,9 @@ body {
 #Cancel {
     background-color: red;
 }
+@media screen and (max-width: 912px)
+{
+  .container {
+    width: 75%;
+  }
+}
