@@ -259,7 +259,7 @@ td, th {
   #contactDetails {
     position: absolute;
     top: 100%;
-    left: 0;
+    left: -5%;
   }
 }
 
@@ -268,7 +268,7 @@ td, th {
   #addContactDetails {
     position: absolute;
     top: 100%;
-    left: 0;
+    left: -5%;
   }
 }
 
