@@ -116,9 +116,6 @@ table {
   margin-bottom:10px;
 }
 
-table tbody { overflow-y: scroll; width: 100%; }
-table thead { display:block;}
-
 tr:first-child{
   background-color: #19c5e6;
   color: white;
@@ -277,4 +274,5 @@ td, th {
 
 #contactTable {
 	max-height: 300px;
+	overflow-y: auto;
 }
