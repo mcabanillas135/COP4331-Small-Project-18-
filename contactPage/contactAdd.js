@@ -73,6 +73,20 @@ function unused(tempPhone){
 	postRequest("", tmp, handleFunction);
 }
 
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+
 function addContact() {
 	
 	// check that entries are valid
@@ -113,7 +127,8 @@ function addContact() {
 	// add entries to database
 	
 	let yourDate = new Date();
-	yourDate.toISOString().split('T')[0];
+	yourDate = formatDate(yourDate);
+	console.log(yourDate);
 	
 	let tmp = {
 		User_Id: userId,
@@ -126,7 +141,7 @@ function addContact() {
 		State: addState.value,
 		Zip_Code: addZip.value,
 		DOB: addBirth.value,
-		Date_Created: "2023-03-27"
+		Date_Created: yourDate
 	}
 	const data = makeRequest("ContactAdd.php", tmp);
 	
