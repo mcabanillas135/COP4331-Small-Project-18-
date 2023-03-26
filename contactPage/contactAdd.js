@@ -26,10 +26,10 @@ function hideAddContactPage(){
 }
 
 function isIntegerString(value){
-	if(parseInt(value,10).toString()===value) {
-		return true
+	for(var i=0;i<value.length;i++){
+		if(value[i]<'0' || value[i]>'9') return false;
 	}
-	return false;
+	return true;
 }
 // (for now?) just tests if it is an integer
 function validZip(value) {
@@ -50,6 +50,9 @@ function validBirthday(date){
 	}
 	if( !isIntegerString(date.substr(0, 4)) || !isIntegerString(date.substr(5,2)) || !isIntegerString(date.substr(8,2)) ){
 		console.log("Not Integers");
+		console.log(isIntegerString(date.substr(0, 4)));
+		console.log(isIntegerString(date.substr(5, 2)));
+		console.log(isIntegerString(date.substr(8 ,2)));
 		return false;
 	}
 	return true;
