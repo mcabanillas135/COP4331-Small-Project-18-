@@ -1,10 +1,12 @@
 const contactTable = document.getElementById('contactList');
 const contactTableRows = contactTable.getElementsByTagName('tr');
 const contactDetailsPage = document.getElementById('contactDetails');
+const searchBar = document.getElementById("searchBar");
 
 const userId = getCookie("userId");
 const username = getCookie("username");
 
+searchBar.addEventListener('input', searchTable());
 fillContactTable();
 
 async function fillContactTable(){
