@@ -116,7 +116,8 @@ table {
   margin-bottom:10px;
 }
 
-table tbody { height:300px; overflow-y:scroll;	}
+table tbody { height:300px; overflow-y:scroll; display:block; }
+table thead { display:block; }
 
 tr:first-child{
   background-color: #19c5e6;
