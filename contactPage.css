@@ -112,11 +112,12 @@ font: 500 1rem 'Quicksand', sans-serif;
 table {
   border-collapse: collapse;
   width: 100%;
-  height: 1 rem;
-  overflow-y: scroll;
   border: 1px black solid;
   margin-bottom:10px;
 }
+
+table tbody { height:300px; overflow-y:scroll; display:block; }
+table thead { display:block; }
 
 tr:first-child{
   background-color: #19c5e6;
