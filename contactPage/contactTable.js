@@ -15,11 +15,11 @@ async function fillContactTable(){
 	
 	for(let i = 0; i < data.contacts.length; i++) {
 		const cur = data.contacts[i];
-		addToTable(cur.FName, cur.LName, cur.Phone, cur.Email);
+		addToTable(cur.FName, cur.LName, cur.Phone, cur.Email, cur.Contact_Id);
 	}
 }
 
-function addToTable(tempFirstName, tempLastName, tempPhone, tempEmail) {
+function addToTable(tempFirstName, tempLastName, tempPhone, tempEmail, tempID) {
 	const newRow = contactTable.insertRow();
 	
 	const firstNameCell = newRow.insertCell();
@@ -33,6 +33,10 @@ function addToTable(tempFirstName, tempLastName, tempPhone, tempEmail) {
 
     const emailCell = newRow.insertCell();
     emailCell.textContent = tempEmail;
+	
+	const hiddenCell = newRow.insertCell();
+	hiddenCell.style.display = "none";
+	hiddenCell.textContent = tempID;
 	
 	newRow.addEventListener('click', selectRow);
 }

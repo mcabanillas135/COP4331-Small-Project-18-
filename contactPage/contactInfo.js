@@ -57,3 +57,62 @@ async function fillDetailed(selectedRow) {
 	created.value = CREATED;
 	
 }
+
+function setEditable() {
+	editButton.style.display = 'none';
+	confirmButton.style.display = 'inline';
+	cancelButton.style.display = 'inline';
+	
+	for(let i = 0; i < allDetailedInfo.length; i++){
+		allDetailedInfo[i].disabled = false;
+	}
+}
+
+function setUneditable() {
+	editButton.style.display = 'inline';
+	confirmButton.style.display = 'none';
+	cancelButton.style.display = 'none';
+	
+	for(let i=0; i<allDetailedInfo.length; i++) {
+		allDetailedInfo[i].disabled = true;
+	}
+}
+
+function cancelEdits() {
+	// need to reload information from database
+	const selectedRow = document.querySelector('.selected');
+	fillDetailed(selectedRow);
+	setUneditable();
+	document.getElementById("editErrorMessage").style.display = "none";
+}
+
+function confirmEdits() {
+	
+	const selectedRow = document.querySelector('.selected');
+	const cells = selectedRow.querySelectorAll('td');
+	
+	// update the database
+	let tmp = {
+		FName: detailedFirstName.value, 
+		LName: detailedLastName.value, 
+		Contact_Id: cells[4].innerHTML,
+		Phone: detailedPhone.value, 
+		Email: detailedEmail.value,
+		Street: street.value,
+		City: city.value,
+		State: state.value,
+		Zip_Code: zip.value,
+		DOB: birth.value
+	};
+	let handleFunction = function(){}; // we don't do anything with the response
+	
+	console.log("Sending Update Request: ");
+	console.log(tmp);
+	makeRequest("ContactUpdate.php", tmp);
+	
+	setUneditable();
+	cells[0].innerHTML = detailedFirstName.value;
+	cells[1].innerHTML = detailedLastName.value;
+	cells[2].innerHTML = detailedPhone.value;
+	cells[3].innerHTML = detailedEmail.value;
+}
