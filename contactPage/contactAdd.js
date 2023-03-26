@@ -93,7 +93,6 @@ function addContact() {
 	
 	let tmp = {
 		User_Id: userId,
-		User_Name: username,
 		FName: addFirstName.value, 
 		LName: addLastName.value, 
 		Phone: addPhone.value, 
@@ -105,7 +104,6 @@ function addContact() {
 		DOB: addBirth.value,
 		Date_Created: yourDate
 	}
-	handleFunction = function() {}; // I don't do anything with the output data, I just want to add
 	makeRequest("ContactAdd.php", tmp);
 	
 	
