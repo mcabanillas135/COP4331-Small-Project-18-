@@ -8,10 +8,9 @@ async function makeRequest(file, input){
 			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify(input)
-	}).then(function(response){	
-		console.log(response.json());
-		return response.json();
-	});
+	})
+	.then(response => response().json());
+	.then(data => console.log(data));
 }
 
 // gets value of cookie given its name
