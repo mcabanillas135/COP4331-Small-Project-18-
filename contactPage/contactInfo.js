@@ -31,7 +31,7 @@ async function fillDetailed(selectedRow) {
 		LName: cells[1].textContent
 	};
 	
-	data = await makeRequest("ContactSearch.php", tmp);
+	data = await makeRequest("ContactSearch.php", tmp)[0];
 	
 	const fName = data.FName;
 	const lName = data.LName;
