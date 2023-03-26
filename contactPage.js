@@ -17,7 +17,6 @@ const state = document.getElementById('state');
 const zip = document.getElementById('zip');
 const birth = document.getElementById('birth');
 const created = document.getElementById('created');
-const edited = document.getElementById('edited');
 const editButton = document.getElementById('editButton');
 const confirmButton = document.getElementById('confirmButton');
 const allDetailedInfo = document.getElementsByClassName("detailedInfo");
@@ -33,7 +32,6 @@ const addState = document.getElementById('addState');
 const addZip = document.getElementById('addZip');
 const addBirth = document.getElementById('addBirth');
 const addCreated = document.getElementById('addCreated');
-const addEdited = document.getElementById('addEdited');
 const allAddInfo = document.getElementsByClassName('addInfo');
 const confirmAdd = document.getElementById('confirmAdd');
 
@@ -59,72 +57,6 @@ const username = getCookie("username");
 
 for(let i=0; i < allDetailedInfo.length; i++) {
 	allDetailedInfo[i].disabled = true;
-}
-
-// adds the highlight function (adds "selected" class to highlighted row)
-for(let i=1; i < tableRows.length; i++) {
-	const row = tableRows[i];
-	row.addEventListener('click', selectRow);
-}
-
-makeContactList();
-
-function addToTable(tempFirstName, tempLastName, tempPhone, tempEmail) {
-	const newRow = contactTable.insertRow();
-	const firstNameCell = newRow.insertCell();
-    firstNameCell.textContent = tempFirstName;
-
-    const lastNameCell = newRow.insertCell();
-    lastNameCell.textContent = tempLastName;
-
-    const phoneNumberCell = newRow.insertCell();
-    phoneNumberCell.textContent = tempPhone;
-
-    const emailCell = newRow.insertCell();
-    emailCell.textContent = tempEmail;
-	
-	newRow.addEventListener('click', selectRow);
-}
-
-function populateTable(data) {
-	console.log("populateTable:");
-	console.log(data);
-	for(let i=0; i<data.contacts.length; i++) {
-		let cur = data.contacts[i];
-		addToTable(cur.FName, cur.LName, cur.Phone, cur.Email);
-	}
-}
-
-function makeContactList(){
-	let tmp = {
-		User_Id : userId
-	};
-	let handleFunction = function(output) {
-		console.log("handler: ");
-		console.log(output);
-		populateTable(output);
-	};
-	postRequest("ContactDisplay.php", tmp, handleFunction);
-	
-	// get table info from SQL query and fill table
-	
-	//let text = ...
-	//document.getElementById("contactList").innerHTML = text;
-}
-
-function selectRow() {
-	if(this.classList.contains('selected')){
-		this.classList.remove('selected');
-		contactDetailsPage.style.display = 'none';
-		return;
-	}
-	// remove previously selected row
-	for(let i=0; i < tableRows.length; i++) {
-		tableRows[i].classList.remove('selected');
-	}
-	this.classList.add('selected');
-	
-	fillDetailed(this);	
 }
 
 function postRequest(loc, tmp, handler){
@@ -178,7 +110,6 @@ function fillDetailed(selectedRow) {
 		const ZIP = data.Zip_Code;
 		const BIRTH = data.DOB;
 		const CREATED = data.Date_Created;
-		const EDITED = "";
 	
 		detailedFirstName.value = fName;
 		detailedLastName.value = lName;
@@ -190,7 +121,6 @@ function fillDetailed(selectedRow) {
 		zip.value = ZIP;
 		birth.value = BIRTH;
 		created.value = CREATED;
-		edited.value = EDITED;
 		
 		console.log("Values changed");
 	};
