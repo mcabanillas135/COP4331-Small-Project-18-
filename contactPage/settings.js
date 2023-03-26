@@ -1,3 +1,4 @@
+
 const settingsBtn = document.getElementById('settings-btn');
 const editUsernameBtn = document.querySelector('#Edit-User');
 const editPasswordBtn = document.querySelector('#Edit-pass');
@@ -19,7 +20,7 @@ document.getElementById("settings-btn").addEventListener("click", e => {
 // When the slider value changes, update the text font size
 document.getElementById("size-slider").addEventListener("change", function() {
 	var size = this.value;
-	document.getElementById("container").style.fontSize = size + "px";
+	document.getElementById("contactTable").style.fontSize = size + "px";
 	
 	var buttons = document.getElementsByTagName("button");
 	for (var i = 0; i < buttons.length; i++) {
