@@ -23,10 +23,10 @@ function addToTable(tempFirstName, tempLastName, tempPhone, tempEmail) {
 	const newRow = contactTable.insertRow();
 	
 	const firstNameCell = newRow.insertCell();
-	nameCell.textContent = tempFirstName;
+	firstNameCell.textContent = tempFirstName;
 	
 	const lastNameCell = newRow.insertCell();
-	nameCell.textContent = tempLastName;
+	lastNameCell.textContent = tempLastName;
 
     const phoneNumberCell = newRow.insertCell();
     phoneNumberCell.textContent = tempPhone;
