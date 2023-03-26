@@ -21,6 +21,10 @@ for(let i=0; i < allDetailedInfo.length; i++) {
 async function fillDetailed(selectedRow) {
 	// api call that fills information for detailed tableRows
 	
+	// check if using dummy value for blank birthday
+	var birthday = data.DOB;
+	if(birthday == "0001-01-01") birthday = "";
+	
 	contactDetailsPage.style.display = 'block';
 	
 	const cells = selectedRow.querySelectorAll('td');
@@ -42,7 +46,7 @@ async function fillDetailed(selectedRow) {
 	const CITY = data.City;
 	const STATE = data.State;
 	const ZIP = data.Zip_Code;
-	const BIRTH = data.DOB;
+	const BIRTH = birthday;
 	const CREATED = data.Date_Created;
 
 	detailedFirstName.value = fName;
@@ -63,7 +67,7 @@ function setEditable() {
 	confirmButton.style.display = 'inline';
 	cancelButton.style.display = 'inline';
 	
-	for(let i = 0; i < allDetailedInfo.length; i++){
+	for(let i = 0; i < allDetailedInfo.length-1; i++){
 		allDetailedInfo[i].disabled = false;
 	}
 }

@@ -25,15 +25,24 @@ function hideAddContactPage(){
 	document.getElementById("addErrorMessage").style.display = 'none';
 }
 
+function isIntegerString(value){
+	if(parseInt(value,10).toString()===value) {
+		return true
+	}
+	return false;
+}
 // (for now?) just tests if it is an integer
 function validZip(value) {
 	if(parseInt(value,10).toString()===value) {
-	return true
+		return true
 	}
 	return false;
 }
 
 function validBirthday(date){
+	if(date.length != 10) return false;
+	if( !(date[4]=='-' && date[7]=='-') ) return false;
+	if( !isInteger(date.substring(0, 4)) || !isIntegerString(date.substring(5,7)) || !isIntegerString(date.substring(8,10)) ) return false;
 	return true;
 }
 
@@ -69,9 +78,12 @@ function addContact() {
 		document.getElementById("addErrorMessage").style.display = 'block';
 		return false;
 	}
+	if(addBirth.value == ""){
+		addBirth.value = "0001-01-01";
+	}
 	// check if birth date is valid
 	if(!validBirthday(addBirth.value)){
-		document.getElementById("addErrorMessage").innerHTML = "Birth Date is invalid";
+		document.getElementById("addErrorMessage").innerHTML = "Birth Date is invalid, must be in format YYYY-MM-DD";
 		document.getElementById("addErrorMessage").style.display = 'block';
 		return false;
 	}
