@@ -40,9 +40,18 @@ function validZip(value) {
 }
 
 function validBirthday(date){
-	if(date.length != 10) return false;
-	if( !(date[4]=='-' && date[7]=='-') ) return false;
-	if( !isIntegerString(date.substring(0, 4)) || !isIntegerString(date.substring(5,7)) || !isIntegerString(date.substring(8,10)) ) return false;
+	if(date.length != 10) {
+		console.log("Invalid Length");
+		return false;
+	}
+	if( !(date[4]=='-' && date[7]=='-') ) {
+		console.log("Invalid dashes");
+		return false;
+	}
+	if( !isIntegerString(date.substr(0, 4)) || !isIntegerString(date.substr(5,2)) || !isIntegerString(date.substr(8,2)) ){
+		console.log("Not Integers");
+		return false;
+	}
 	return true;
 }
 
