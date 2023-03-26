@@ -21,10 +21,6 @@ for(let i=0; i < allDetailedInfo.length; i++) {
 async function fillDetailed(selectedRow) {
 	// api call that fills information for detailed tableRows
 	
-	// check if using dummy value for blank birthday
-	var birthday = data.DOB;
-	if(birthday == "0001-01-01") birthday = "";
-	
 	contactDetailsPage.style.display = 'block';
 	
 	const cells = selectedRow.querySelectorAll('td');
@@ -37,6 +33,10 @@ async function fillDetailed(selectedRow) {
 	
 	data = await makeRequest("ContactSearch.php", tmp);
 	data = data.contacts[0];
+	
+	// check if using dummy value for blank birthday
+	var birthday = data.DOB;
+	if(birthday == "0001-01-01") birthday = "";
 	
 	const fName = data.FName;
 	const lName = data.LName;
