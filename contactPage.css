@@ -116,7 +116,7 @@ table {
   margin-bottom:10px;
 }
 
-table tbody { height:300px; overflow-y:scroll; display:block; }
+table tbody { height:300px; overflow-y:scroll;}
 table thead { display:block; }
 
 tr:first-child{
