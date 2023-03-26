@@ -35,8 +35,6 @@ const addCreated = document.getElementById('addCreated');
 const allAddInfo = document.getElementsByClassName('addInfo');
 const confirmAdd = document.getElementById('confirmAdd');
 
-alert("CHANGED");
-
 // get userId and UserName cookies
 function getCookie(cname) {
   let name = cname + "=";
