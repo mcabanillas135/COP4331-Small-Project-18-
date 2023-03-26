@@ -22,8 +22,11 @@ async function fillContactTable(){
 function addToTable(tempFirstName, tempLastName, tempPhone, tempEmail) {
 	const newRow = contactTable.insertRow();
 	
-	const nameCell = newRow.insertCell();
-	nameCell.textContent = tempFirstName + tempLastName;
+	const firstNameCell = newRow.insertCell();
+	nameCell.textContent = tempFirstName;
+	
+	const lastNameCell = newRow.insertCell();
+	nameCell.textContent = tempLastName;
 
     const phoneNumberCell = newRow.insertCell();
     phoneNumberCell.textContent = tempPhone;

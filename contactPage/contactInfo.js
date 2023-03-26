@@ -27,15 +27,16 @@ async function fillDetailed(selectedRow) {
 	
 	let tmp = {
 		User_Id : userId,
-		Phone: cells[2].textContent
+		FName: cells[0].textContent,
+		LName: cells[1].textContent
 	};
 	
 	data = await makeRequest("PhoneSearch.php", tmp);
 	
 	const fName = data.FName;
 	const lName = data.LName;
-	const phone = cells[1].textContent;
-	const email = cells[2].textContent;
+	const phone = cells[2].textContent;
+	const email = cells[3].textContent;
 	const STREET = data.Street;
 	const CITY = data.City;
 	const STATE = data.State;
