@@ -102,7 +102,7 @@ function addContact() {
 		State: addState.value,
 		Zip_Code: addZip.value,
 		DOB: addBirth.value,
-		Date_Created: yourDate
+		Date_Created: "2023-03-27"
 	}
 	makeRequest("ContactAdd.php", tmp);
 	
