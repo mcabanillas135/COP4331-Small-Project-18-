@@ -128,10 +128,11 @@ function addContact() {
 		DOB: addBirth.value,
 		Date_Created: "2023-03-27"
 	}
-	makeRequest("ContactAdd.php", tmp);
+	const data = makeRequest("ContactAdd.php", tmp);
 	
 	
 	// add contact information to table
+	/*
 	const newRow = contactTable.insertRow();
 	const firstNameCell = newRow.insertCell();
     firstNameCell.textContent = addFirstName.value;
@@ -146,6 +147,8 @@ function addContact() {
     emailCell.textContent = addEmail.value;
 	
 	newRow.addEventListener('click', selectRow);
+	*/
+	addToTable(addFirstName.value, addLastName.value, addPhone.value, addEmail.value, data.Contact_Id);
 	
 	addContactPage.style.display = 'none';
 }
