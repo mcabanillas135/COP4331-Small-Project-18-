@@ -39,8 +39,8 @@ async function fillDetailed(selectedRow) {
 	if(birthday == "0001-01-01") birthday = "";
 	
 	// check if zip dummy value is used
-	var zip = data.Zip_Code;
-	if(zip=='0') zip = "";
+	var tempzip = data.Zip_Code;
+	if(tempzip=='0') tempzip = "";
 	
 	const fName = data.FName;
 	const lName = data.LName;
@@ -49,7 +49,7 @@ async function fillDetailed(selectedRow) {
 	const STREET = data.Street;
 	const CITY = data.City;
 	const STATE = data.State;
-	const ZIP = zip;
+	const ZIP = tempzip;
 	const BIRTH = birthday;
 	const CREATED = data.Date_Created;
 
