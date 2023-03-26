@@ -18,9 +18,14 @@ document.getElementById("settings-btn").addEventListener("click", e => {
 
 // When the slider value changes, update the text font size
 document.getElementById("size-slider").addEventListener("change", function() {
-  var size = this.value;
-  document.getElementById("container").style.fontSize = size + "px";
-});
+	var size = this.value;
+	document.getElementById("container").style.fontSize = size + "px";
+	
+	var buttons = document.getElementsByTagName("button");
+	for (var i = 0; i < buttons.length; i++) {
+	  buttons[i].style.fontSize = size + "px";
+	}
+  });
 
 editUsernameBtn.addEventListener('click', e => {
   e.preventDefault();
