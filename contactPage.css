@@ -272,7 +272,7 @@ td, th {
   }
 }
 
-#contactTable {
+#scroller {
 	max-height: 300px;
 	overflow-y: auto;
 }
