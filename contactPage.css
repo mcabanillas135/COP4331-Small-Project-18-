@@ -273,6 +273,6 @@ td, th {
 }
 
 #scroller {
-	max-height: 10 rem;
+	max-height: 300px;
 	overflow-y: auto;
 }
