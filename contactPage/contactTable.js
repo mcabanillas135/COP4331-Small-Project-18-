@@ -61,20 +61,20 @@ function deleteFromDatabase(row){
 	const phone = cells[2].textContent;
 	
 	let tmp = {
-		Phone: phone
+		Contact_Id: cells[4].textContent
 	};
 	console.log("delete: ");
 	console.log(tmp);
 	let handleFunction = function(){} // don't need to do anything with return values
 	
-	postRequest("ContactDelete.php",tmp,handleFunction);
+	makeRequest("ContactDelete.php", tmp);
 	
 }
 
 function deleteSelected() {
-	for(let i=0; i<tableRows.length; i++){
-		if(tableRows[i].classList.contains('selected')) {
-			deleteFromDatabase(tableRows[i]);
+	for(let i=0; i<contactTableRows.length; i++){
+		if(contactTableRows[i].classList.contains('selected')) {
+			deleteFromDatabase(contactTableRows[i]);
 			contactTable.deleteRow(i);
 		}
 	}
@@ -82,8 +82,8 @@ function deleteSelected() {
 }
 
 function deselectAll(){
-	for(let i = 0;i < tableRows.length; i++) {
-		tableRows[i].classList.remove('selected');
+	for(let i = 0;i < contactTableRows.length; i++) {
+		contactTableRows[i].classList.remove('selected');
 	}
 	contactDetailsPage.style.display = 'none';
 }
