@@ -9,7 +9,7 @@ async function makeRequest(file, input){
 		},
 		body: JSON.stringify(input)
 	})
-	.then(response => response().json())
+	.then(response => response.json())
 	.then(data => console.log(data));
 }
 
