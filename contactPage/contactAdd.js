@@ -42,7 +42,7 @@ function validZip(value) {
 function validBirthday(date){
 	if(date.length != 10) return false;
 	if( !(date[4]=='-' && date[7]=='-') ) return false;
-	if( !isInteger(date.substring(0, 4)) || !isIntegerString(date.substring(5,7)) || !isIntegerString(date.substring(8,10)) ) return false;
+	if( !isIntegerString(date.substring(0, 4)) || !isIntegerString(date.substring(5,7)) || !isIntegerString(date.substring(8,10)) ) return false;
 	return true;
 }
 
