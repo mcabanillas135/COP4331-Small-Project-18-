@@ -2,6 +2,8 @@ const baseurl = "http://24.199.121.145/API/";
 
 // just returns data from php request
 async function makeRequest(file, input){
+	console.log(file);
+	console.log(input);
 	return await fetch(baseurl+file, {
 		method: 'POST',
 		headers: {
