@@ -6,7 +6,7 @@ const searchBar = document.getElementById("searchBar");
 const userId = getCookie("userId");
 const username = getCookie("username");
 
-searchBar.addEventListener('input', searchTable());
+searchBar.addEventListener('input', searchTable);
 fillContactTable();
 
 async function fillContactTable(){
@@ -91,10 +91,10 @@ function deselectAll(){
 }
 
 function searchTable() {
+	console.log("Searching");
 	// Needs to be improved to search detailed values as well
     var input, filter, found, table, tr, td, i, j;
-    input = document.getElementById("searchBar");
-    filter = input.value.toUpperCase();
+    filter = searchBar.value.toUpperCase();
     table = document.getElementById("contactList");
     tr = table.getElementsByTagName("tr");
     for (i = 1; i < tr.length; i++) {
