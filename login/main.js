@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => { //displays the login or th
          confirmPassword = document.getElementById("confirmPassword").value;
          if (signUpPassword != confirmPassword)
          {
-                alert("passwords dont match");
+            setFormMessage(createAccountForm, "error", "passwords dont match");
          }
         if (signUpPassword === confirmPassword)
         
